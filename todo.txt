@@ -1,0 +1,2 @@
+* get rid of create-react app boilerplate : done
+* make file for getting bird recordings (node.js)
