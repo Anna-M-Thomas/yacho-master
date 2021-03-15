@@ -1,0 +1,9 @@
+- get rid of create-react app boilerplate.....done
+- write inital readme.....done
+- make file for getting bird recordings.....done
+- write a single request to save in db.json.....done
+- write a single request to xeno-canto api and check it saves in db.json.....done
+- figure out how to filter responses to the first one with a suitable license and save in db.json....done
+  --We want share alike (international) creativecommons.org/licenses/by-nc-sa/4.0/
+  --Not non derivative //creativecommons.org/licenses/by-nc-nd/4.0/ which would mean we can't alter the recording
+-

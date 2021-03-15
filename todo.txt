@@ -1,4 +1,0 @@
-* get rid of create-react app boilerplate : done
-* write inital readme: done
-* make file for getting bird recordings done 
-* write a single request to xeno-canto api and check it saves in db.json

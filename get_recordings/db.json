@@ -1,9 +1,83 @@
 {
   "birds": [
     {
-      "name": "Bird Bird",
-      "species": "yellow",
-      "habitat": "Sesame Street",
+      "id": "560515",
+      "gen": "Terpsiphone",
+      "sp": "atrocaudata",
+      "ssp": "",
+      "en": "Japanese Paradise Flycatcher",
+      "rec": "Anon Torimi",
+      "cnt": "Japan",
+      "loc": "Kyoto Prefecture",
+      "lat": null,
+      "lng": null,
+      "alt": "?",
+      "type": "call, song",
+      "url": "//www.xeno-canto.org/560515",
+      "file": "//www.xeno-canto.org/560515/download",
+      "file-name": "XC560515-sankouchou_s_200522_sub.mp3",
+      "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/GNYVMVEMZX/ffts/XC560515-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/GNYVMVEMZX/ffts/XC560515-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/GNYVMVEMZX/ffts/XC560515-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/GNYVMVEMZX/ffts/XC560515-full.png"
+      },
+      "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+      "q": "A",
+      "length": "1:25",
+      "time": "07:30",
+      "date": "2020-05-22",
+      "uploaded": "2020-05-22",
+      "also": [
+        "Phylloscopus examinandus",
+        "Ficedula narcissina",
+        "Zosterops japonicus",
+        "Yungipicus kizuki",
+        "Sittiparus varius",
+        "Motacilla cinerea"
+      ],
+      "rmk": "",
+      "bird-seen": "no",
+      "playback-used": "no"
+    },
+    {
+      "id": "623530",
+      "gen": "Strix",
+      "sp": "uralensis",
+      "ssp": "macroura",
+      "en": "Ural Owl",
+      "rec": "András Schmidt",
+      "cnt": "Hungary",
+      "loc": "Fony, Gönc District, Borsod-Abaúj-Zemplén",
+      "lat": "48.4393",
+      "lng": "21.3592",
+      "alt": "650",
+      "type": "adult, call, female",
+      "url": "//www.xeno-canto.org/623530",
+      "file": "//www.xeno-canto.org/623530/download",
+      "file-name": "XC623530-STRURA190323a (online-audio-converter.com).mp3",
+      "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/WMHNJNGJCW/ffts/XC623530-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/WMHNJNGJCW/ffts/XC623530-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/WMHNJNGJCW/ffts/XC623530-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/WMHNJNGJCW/ffts/XC623530-full.png"
+      },
+      "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+      "q": "A",
+      "length": "0:33",
+      "time": "20:55",
+      "date": "2019-03-23",
+      "uploaded": "2021-02-22",
+      "also": [
+        ""
+      ],
+      "rmk": "No modification. The bird was calling from a tree near the edge of the forest, next to a clearing. Same bird as XC623527 and XC623528.",
+      "bird-seen": "yes",
+      "playback-used": "no"
+    }
+  ],
+  "noresult": [
+    {
       "id": 1
     }
   ]

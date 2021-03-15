@@ -1,28 +1,47 @@
 const axios = require("axios");
-const dbJSON = "http://localhost:3001/birds";
+const dbJSONyesbird = "http://localhost:3001/birds";
+const dbJSONnobird = "http://localhost:3001/noresult";
+
 const xenoCanto = "https://www.xeno-canto.org/api/2/recordings?query=";
 
-const birdName = "Japanese Paradise Flycatcher";
+const birdNames = ["Japanese Paradise Flycatcher", "Ural owl", "bad query"];
 
 const getData = async (birdQuery) => {
   try {
-    console.log("this is the url", `${xenoCanto}${birdName}`);
-    const result = await axios.get(`${xenoCanto}${birdName}`);
-    console.log(result.data);
+    console.log("this is the url", `${xenoCanto}${birdQuery}`);
+    const result = await axios.get(`${xenoCanto}${birdQuery}`);
+    let birds = result.data.recordings;
+    //the creative commons license we want: non commercial share alike
+    const ccbird = birds.find(
+      (bird) => bird.lic === "//creativecommons.org/licenses/by-nc-sa/4.0/"
+    );
+    if (ccbird) {
+      saveBird(ccbird);
+    } else noBird(ccbird);
   } catch (error) {
     console.log(error);
   }
 };
 
-// const saveData = async (birdResult) => {
-//   try {
-//     await axios.post(dbJSON, birdResult);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+const saveBird = async (birdResult) => {
+  try {
+    await axios.post(dbJSONyesbird, birdResult);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-getData(birdName);
+const noBird = async (birdResult) => {
+  try {
+    await axios.post(dbJSONnobird, birdResult);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+birdNames.forEach((bird) => getData(bird));
+
+// getData(birdName);
 
 //I probably don't actually need https and there was something wrong with URL,
 //axios OK now
