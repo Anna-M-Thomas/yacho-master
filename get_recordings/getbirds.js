@@ -1,13 +1,11 @@
 const axios = require("axios");
 const birds = require("./birdlist");
-const gottenBirds = require("./db.json");
 const dbJSONyesbird = "http://localhost:3001/birds";
 const dbJSONnobird = "http://localhost:3001/noresult";
 
 const xenoCanto = "https://www.xeno-canto.org/api/2/recordings?query=";
 
 const searchBirds = birds.map((bird) => bird.en);
-console.log(gottenBirds);
 
 //errors in console:
 const getData = async (birdQuery) => {
@@ -52,26 +50,3 @@ const noBird = async (birdResult) => {
 
 //the whole shebang
 // searchBirds.forEach((bird) => getData(bird));
-
-//figuring out which birds I didn't get
-
-//I probably don't actually need https and there was something wrong with URL,
-//axios OK now
-// const https = require("https");
-
-// const googleTest = "https://www.googleapis.com/books/v1/volumes?q=cat";
-// const xenoCantoTest =
-//   "https://www.xeno-canto.org/api/2/recordings?query=cnt:brazil";
-
-// https
-//   .get(`${xenoCanto}${birdName}`, (res) => {
-//     console.log(`statusCode: ${res.statusCode}`);
-//     console.log("headers:", res.headers);
-
-//     res.on("data", (data) => {
-//       process.stdout.write(d);
-//     });
-//   })
-//   .on("error", (e) => {
-//     console.error(e);
-//   });
