@@ -1,0 +1,10 @@
+{
+  "birds": [
+    {
+      "name": "Bird Bird",
+      "species": "yellow",
+      "habitat": "Sesame Street",
+      "id": 1
+    }
+  ]
+}
