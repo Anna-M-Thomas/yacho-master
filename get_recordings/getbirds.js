@@ -1,11 +1,15 @@
 const axios = require("axios");
+const birds = require("./birdlist");
+const gottenBirds = require("./db.json");
 const dbJSONyesbird = "http://localhost:3001/birds";
 const dbJSONnobird = "http://localhost:3001/noresult";
 
 const xenoCanto = "https://www.xeno-canto.org/api/2/recordings?query=";
 
-const birdNames = ["Japanese Paradise Flycatcher", "Ural owl", "bad query"];
+const searchBirds = birds.map((bird) => bird.en);
+console.log(gottenBirds);
 
+//errors in console:
 const getData = async (birdQuery) => {
   try {
     console.log("this is the url", `${xenoCanto}${birdQuery}`);
@@ -15,8 +19,12 @@ const getData = async (birdQuery) => {
     const ccbird = birds.find(
       (bird) => bird.lic === "//creativecommons.org/licenses/by-nc-sa/4.0/"
     );
+    //Have to limit # of fields, the objects coming back are too big and filled up db.json
     if (ccbird) {
-      saveBird(ccbird);
+      const { "file-name": filename } = ccbird;
+      const { id, en, rec, cnt, url, file, lic, length } = ccbird;
+      const finalBird = { id, en, rec, cnt, url, file, lic, length, filename };
+      saveBird(finalBird);
     } else noBird(ccbird);
   } catch (error) {
     console.log(error);
@@ -39,9 +47,13 @@ const noBird = async (birdResult) => {
   }
 };
 
-birdNames.forEach((bird) => getData(bird));
+//single bird
+// getData("Japanese Paradise Flycatcher");
 
-// getData(birdName);
+//the whole shebang
+// searchBirds.forEach((bird) => getData(bird));
+
+//figuring out which birds I didn't get
 
 //I probably don't actually need https and there was something wrong with URL,
 //axios OK now

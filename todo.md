@@ -6,4 +6,4 @@
 - figure out how to filter responses to the first one with a suitable license and save in db.json....done
   --We want share alike (international) creativecommons.org/licenses/by-nc-sa/4.0/
   --Not non derivative //creativecommons.org/licenses/by-nc-nd/4.0/ which would mean we can't alter the recording
--
+- Make another .js file importing db.json and birdlist to see how many birds are not saved yet, export that, make another pass with getbirds.js
