@@ -3,3 +3,9 @@ March 15, 2021
 started work on javascript/db.json thing for automating calls to xeno-canto api to get recordings
 30 minutes: saving to db.json. Working get request to xeno.canto api.
 30 minutes: get request to xeno.canto api with axis
+30 minutes: got _some_ birds and saved in db.json
+Total: 2 hours
+
+March 16, 2021
+30 minutes: Made function to compare bird list with attained birds, got most of remaining
+30 minutes: Got data for all birds, figuring out how to download mp3s with Node

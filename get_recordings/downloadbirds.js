@@ -1,16 +1,16 @@
-const http = require("http"); // or 'https' for https:// URLs
-const fs = require("fs");
+const { DownloaderHelper } = require("node-downloader-helper");
 
-const file = fs.createWriteStream("file.mp3");
-const request = http
-  .get("http://www.xeno-canto.org/581686/download", function (response) {
-    response.pipe(file);
-    file.on("finish", function () {
-      file.close(cb); // close() is async, call cb after close completes.
-    });
-  })
-  .on("error", function (err) {
-    // Handle errors
-    fs.unlink(dest); // Delete the file async. (But we don't check the result)
-    if (cb) cb(err.message);
-  });
+const downloadBird = (id) => {
+  // URL. This will be "http:"" and then ${file} inside object
+  const file = `http://www.xeno-canto.org/${id}/download`;
+  // Path at which image will be downloaded
+  const filePath = `./files`;
+  const options = { fileName: `${id}.mp3` };
+
+  const dl = new DownloaderHelper(file, filePath, options);
+
+  dl.on("end", () => console.log("Download Completed"));
+  dl.start();
+};
+
+downloadBird("611565");
