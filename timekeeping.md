@@ -9,3 +9,5 @@ Total: 2 hours
 March 16, 2021
 30 minutes: Made function to compare bird list with attained birds, got most of remaining
 30 minutes: Got data for all birds, figuring out how to download mp3s with Node
+30 minutes: Can download mp3 with node, rename file, set default mp3 player to Audacity
+30 minutes: Downloading batches of mp3 files.
