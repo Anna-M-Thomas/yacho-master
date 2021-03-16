@@ -1,7 +1,18 @@
+//Fisher-Yates algorithm
+//thanks to Nitin Patel, Medium article
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+};
+
 //Includes min, excludes max
 //Math.floor(Math.random() * (max - min) + min);
 //Min index is zero
-
 const getQuestion = (array) => {
   console.log("array length", array.length);
   const randomIndex = Math.floor(Math.random() * array.length);
@@ -18,7 +29,7 @@ const getAnswer = (length, question, array) => {
       returnArray.push(candidate);
     }
   }
-  return returnArray;
+  return shuffle(returnArray);
 };
 
 module.exports = { getQuestion, getAnswer };

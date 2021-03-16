@@ -57,6 +57,7 @@ describe("Get answer", () => {
 
   test("No answers duplicate each other", () => {
     const result = getAnswer(4, "527210", testArray);
+    console.log(result);
     const unique = isArrayUnique(result);
     expect(unique).toBeTruthy();
   });

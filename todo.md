@@ -16,4 +16,5 @@
 - Why do I have 239 items when there should be only 238...what I am I missing...it's DS_Store!.....done
 - Look at xeno-canto widget--probably can't use.....done
 - Setting up testing for helper function...in progress
-- A function that, given an array, picks a question, and n number of answers including real answer
+- A function that, given an array, picks a question, and n number of answers including real answer...done
+- The answers need to be in random order, right now answer is always first
