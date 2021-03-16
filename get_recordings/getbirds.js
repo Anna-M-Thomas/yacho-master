@@ -1,16 +1,13 @@
 const axios = require("axios");
+//full list
 const birds = require("./birdlist");
-const pass1 = require("./remainingbirds");
+//Second pass of missed birds
+const pass2 = require("./remainingbirds");
 const dbJSONyesbird = "http://localhost:3001/birds";
 const dbJSONnobird = "http://localhost:3001/noresult";
-
 const xenoCanto = "https://www.xeno-canto.org/api/2/recordings?query=";
 
-//First full list
-//const searchBirds = birds.map((bird) => bird.en);
-
-//First pass with missed birds
-const searchBirds = pass1.map((bird) => bird.en);
+//const searchBirds = pass1.map((bird) => bird.en);
 
 const getData = async (birdQuery) => {
   try {
@@ -50,8 +47,6 @@ const noBird = async (birdResult) => {
   }
 };
 
-//single bird
-// getData("Japanese Paradise Flycatcher");
-
 //the whole shebang
-searchBirds.forEach((bird) => getData(bird));
+//searchBirds.forEach((bird) => getData(bird));
+getData("Warbling white-eye");

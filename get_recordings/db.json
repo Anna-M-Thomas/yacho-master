@@ -265,17 +265,6 @@
       "filename": "XC488222-Latham's Snipe-calls-1-3-Xeno-ground-East Hokkaido, Japan-11th June 2019.mp3"
     },
     {
-      "id": "371653",
-      "en": "Golden-crested Myna",
-      "rec": "Rolf A. de By",
-      "cnt": "Vietnam",
-      "url": "//www.xeno-canto.org/371653",
-      "file": "//www.xeno-canto.org/371653/download",
-      "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
-      "length": "0:36",
-      "filename": "XC371653-rdb033_2017-02-03_15h55_Golden-crested_Myna_qB.mp3"
-    },
-    {
       "id": "569658",
       "en": "Ruddy-breasted Crake",
       "rec": "PT xiao",
@@ -2617,6 +2606,17 @@
       "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
       "length": "1:11",
       "filename": "XC581686-20160404 092907-JP-Nanzenji Kyoto-Japanese White-eye (B) song bigamp.mp3"
+    },
+    {
+      "id": "361789",
+      "en": "Crested Myna",
+      "rec": "Anon Torimi",
+      "cnt": "Japan",
+      "url": "//www.xeno-canto.org/361789",
+      "file": "//www.xeno-canto.org/361789/download",
+      "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+      "length": "0:36",
+      "filename": "XC361789 - Crested Myna - Acridotheres cristatellus"
     }
   ],
   "noresult": [
