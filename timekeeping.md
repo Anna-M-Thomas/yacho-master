@@ -13,3 +13,4 @@ March 16, 2021
 30 minutes: Downloading batches of mp3 files.
 30 minutes: Finished downloading all, cleaning up blank files
 30 minutes: Setting up test for helper quiz function
+30 minutes: First helper functions and their tests
