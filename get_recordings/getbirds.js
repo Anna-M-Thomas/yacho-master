@@ -1,13 +1,17 @@
 const axios = require("axios");
 const birds = require("./birdlist");
+const pass1 = require("./remainingbirds");
 const dbJSONyesbird = "http://localhost:3001/birds";
 const dbJSONnobird = "http://localhost:3001/noresult";
 
 const xenoCanto = "https://www.xeno-canto.org/api/2/recordings?query=";
 
-const searchBirds = birds.map((bird) => bird.en);
+//First full list
+//const searchBirds = birds.map((bird) => bird.en);
 
-//errors in console:
+//First pass with missed birds
+const searchBirds = pass1.map((bird) => bird.en);
+
 const getData = async (birdQuery) => {
   try {
     console.log("this is the url", `${xenoCanto}${birdQuery}`);
@@ -23,7 +27,7 @@ const getData = async (birdQuery) => {
       const { id, en, rec, cnt, url, file, lic, length } = ccbird;
       const finalBird = { id, en, rec, cnt, url, file, lic, length, filename };
       saveBird(finalBird);
-    } else noBird(ccbird);
+    } else noBird(birdQuery);
   } catch (error) {
     console.log(error);
   }
@@ -37,6 +41,7 @@ const saveBird = async (birdResult) => {
   }
 };
 
+//This didn't work, I think everything unsuccessful was not null, or caught in catch(error)
 const noBird = async (birdResult) => {
   try {
     await axios.post(dbJSONnobird, birdResult);
@@ -49,4 +54,4 @@ const noBird = async (birdResult) => {
 // getData("Japanese Paradise Flycatcher");
 
 //the whole shebang
-// searchBirds.forEach((bird) => getData(bird));
+searchBirds.forEach((bird) => getData(bird));
