@@ -99,4 +99,7 @@ const pass2 = [
   { en: "Warbling white-eye", jp: "メジロ" },
 ];
 
+//I need to manually get Crested Myna, keep getting Golden Crested Myna instead
+//Eastern Curlew (Far Eastern Curlew) and "warbling white-eye" OK
+
 module.exports = pass2;

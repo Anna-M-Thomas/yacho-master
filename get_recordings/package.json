@@ -13,5 +13,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "node-downloader-helper": "^1.0.17"
-  }
+  },
+  "devDependencies": {}
 }

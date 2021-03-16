@@ -13,4 +13,7 @@
 - Download audacity and figure out how to prevent itunes from automically opening mp3 files.....done, set to audacity for now. Quicktime player resaves file on close? and then mac distrusts file
 - How to download multiple files without being terrible? Whatever, let's do a for loop.
 - OK, I don't know what's wrong with for loops in node but let's do foreach instead in groups of 10
-- Why do I have 239 items when there should be only 238...what I am I missing...DS_Store.....done
+- Why do I have 239 items when there should be only 238...what I am I missing...it's DS_Store!.....done
+- Look at xeno-canto widget--probably can't use.....done
+- Setting up testing for helper function...in progress
+- A function that, given an array, picks a question, and n number of answers including real answer
