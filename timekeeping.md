@@ -11,3 +11,4 @@ March 16, 2021
 30 minutes: Got data for all birds, figuring out how to download mp3s with Node
 30 minutes: Can download mp3 with node, rename file, set default mp3 player to Audacity
 30 minutes: Downloading batches of mp3 files.
+30 minutes: Finished downloading all, cleaning up blank files

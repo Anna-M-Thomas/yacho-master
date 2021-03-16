@@ -11,4 +11,6 @@
 - New file for downloading mp3s. What method? node-downloader-helper is working.....done
 - Can I rename the file to the id instead? Am totally going to screw up file names this long.....done
 - Download audacity and figure out how to prevent itunes from automically opening mp3 files.....done, set to audacity for now. Quicktime player resaves file on close? and then mac distrusts file
-- How to download multiple files without being terrible?
+- How to download multiple files without being terrible? Whatever, let's do a for loop.
+- OK, I don't know what's wrong with for loops in node but let's do foreach instead in groups of 10
+- Why do I have 239 items when there should be only 238...what I am I missing...DS_Store.....done
