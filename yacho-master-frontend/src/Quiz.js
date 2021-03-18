@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { getQuestion, getAnswers } from "./helperfunctions.js";
+import songHandler from "./services/songs";
 
 const testBirds = [
   {
@@ -119,41 +119,78 @@ const testBirds = [
   },
 ];
 
-const Mysterybird = ({ question }) => {
-  return <div>{question.en}</div>;
+const Mysterybird = ({ question, hidden }) => {
+  return (
+    <>
+      <div>{hidden ? "?" : question.en}</div>
+      <audio controls>
+        <source
+          src={`http://localhost:3001/${question.id}.mp3`}
+          type="audio/mpeg"
+        />
+        Your browser does not support the audio element.
+      </audio>
+    </>
+  );
 };
 
-const Answers = ({ answers }) => {
-  return answers.forEach((bird) => <div>Howdy</div>);
+const Answers = ({
+  question,
+  answers,
+  hidden,
+  setHidden,
+  points,
+  setPoints,
+}) => {
+  const handleClick = (e) => {
+    if (hidden) {
+      setHidden(false);
+      if (e.target.dataset.id === question.id) {
+        setPoints(points + 1);
+      }
+    }
+  };
+
+  return answers.map((bird) => (
+    <button key={bird.id} data-id={bird.id} onClick={handleClick}>
+      {bird.en}
+    </button>
+  ));
 };
 
-const Quiz = () => {
+const Quiz = ({ points, setPoints }) => {
   const [question, setQuestion] = useState(getQuestion(testBirds));
   const [answers, setAnswers] = useState(null);
-
-  //   const getAnswers = (length, question, array) => {
-  //     let returnArray = [question];
-  //     while (returnArray.length < length) {
-  //       const randomIndex = Math.floor(Math.random() * array.length);
-  //       const candidate = array[randomIndex];
-  //       const success = returnArray.every((item) => item.id !== candidate.id);
-  //       if (success) {
-  //         returnArray.push(candidate);
-  //       }
-  //     }
-  //     return shuffle(returnArray);
-  //   };
+  const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
-    //why is this returning as null from getAnswers? something's wrong with shuffle
-    const result = getAnswers((4, question, testBirds));
-    console.log("result in useEffect", result);
-    setAnswers(getAnswers(4, question, testBirds));
-  }, []);
+    if (question) {
+      const result = getAnswers(4, question, testBirds);
+      setAnswers(result);
+    }
+  }, [question]);
+
+  const nextQuestion = (e) => {
+    setHidden(true);
+    const newBird = getQuestion(testBirds);
+    setQuestion(newBird);
+  };
+
+  const answerProps = {
+    answers,
+    question,
+    hidden,
+    setHidden,
+    points,
+    setPoints,
+  };
 
   return (
     <>
-      <Mysterybird question={question} />
+      {question && <Mysterybird question={question} hidden={hidden} />}
+      {answers && <Answers {...answerProps} />}
+      <button onClick={nextQuestion}>Next question</button>
+      <div>Points: {points}</div>
     </>
   );
 };

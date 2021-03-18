@@ -24,3 +24,6 @@ March 18, 2021
 - 30 minutes: installed react-i18next, tried it out, looking at Suspense now
 - 30 minutes: language setting buttons, navigation in jp/en, first quiz components
 - 30 minutes: working on displaying random question/answers with text only
+- 30 minutes: question and answers display ok, can hide question
+- 30 minutes: points for guessing right, event listener for buttons work 1x only
+- 30 minutes: started backend, serving static files (mp3) with express.static

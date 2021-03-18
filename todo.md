@@ -27,5 +27,10 @@
 - Three pages (react-router)...done
 - Add languages: react-i18next https://react.i18next.com/latest/using-with-hooks ...done, ish
 - What is suspense...it is annoying I will turn it off...done
-- First quiz components, text-based only, no audio/pics
+- First quiz components, text-based only, no audio/pics...done
+- Add audio...done
 - I need to add a jp name and a romaji name to every bird
+- Let user choose number of answers
+- Save score to state
+- I should probably just have one gitignore file instead of multiple, it's one repository
+- Audio file src doesn't change even when props (question) changes
