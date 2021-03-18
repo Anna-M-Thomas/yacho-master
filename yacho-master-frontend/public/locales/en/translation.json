@@ -1,0 +1,13 @@
+{
+  "title": "My cat is the cutest cat",
+  "description": {
+    "part1": "He goes meow meow meow meow",
+    "part2": "Meow meow meow meow meow"
+  },
+  "menu": {
+    "quiz": "Quiz",
+    "settings": "Settings",
+    "thanks": "Thanks",
+    "login": "Login"
+  }
+}
