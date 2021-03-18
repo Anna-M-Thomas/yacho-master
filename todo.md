@@ -1,3 +1,7 @@
+- \***\*The GOALS\*\***
+- *is not broken *multilingual En/Jp *login with username, password *stored correct answer history and score which allows clearing for logged in users *correct answer history, score for not logged in *accessible (semantic HTML, make sure answers can be selected, OK color scheme, etc) *responsive *annoying theme song (that is off unless otherwise specified) *pictures *acceptable CC license wise
+  \*Three pages? The game, settings, and thanks page (xeno-canto, recordings)
+
 - get rid of create-react app boilerplate.....done
 - write inital readme.....done
 - make file for getting bird recordings.....done
@@ -17,4 +21,5 @@
 - Look at xeno-canto widget--probably can't use.....done
 - Setting up testing for helper function...in progress
 - A function that, given an array, picks a question, and n number of answers including real answer...done
-- The answers need to be in random order, right now answer is always first
+- The answers need to be in random order, right now answer is always first...done!
+- Three pages (react-router)
