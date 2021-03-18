@@ -1,7 +1,8 @@
 - **The GOALS**
 - *is not broken *multilingual En/Jp *login with username, password *stored correct answer history and score which allows clearing for logged in users *correct answer history, score for not logged in *accessible (semantic HTML, make sure answers can be selected, OK color scheme, pic captions) *responsive *annoying theme song (that is off unless otherwise specified) *pictures *acceptable CC license wise
-  Three pages? The game, settings, and thanks page (xeno-canto, recordings). And login, so 4
-  Key commands for selecting bird which can be set to user's preferences
+
+* Three pages? The game, settings, and thanks page (xeno-canto, recordings). And login, so 4
+* Key commands for selecting bird which can be set to user's preferences
 
 - get rid of create-react app boilerplate.....done
 - write inital readme.....done
@@ -27,3 +28,4 @@
 - Add languages: react-i18next https://react.i18next.com/latest/using-with-hooks ...done, ish
 - What is suspense...it is annoying I will turn it off...done
 - First quiz components, text-based only, no audio/pics
+- I need to add a jp name and a romaji name to every bird

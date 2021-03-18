@@ -23,3 +23,4 @@ March 18, 2021
 - 30 minutes: brainstorming goals, fixing dependency tree something something, added separate pages via react-router, looking at languages in Full Stack website
 - 30 minutes: installed react-i18next, tried it out, looking at Suspense now
 - 30 minutes: language setting buttons, navigation in jp/en, first quiz components
+- 30 minutes: working on displaying random question/answers with text only

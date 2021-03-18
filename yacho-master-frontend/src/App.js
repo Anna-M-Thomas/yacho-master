@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
+import Quiz from "./Quiz";
 import { useTranslation } from "react-i18next";
 
 const Testcomponent = () => {
@@ -20,7 +21,7 @@ function App() {
       <Menu />
       <Switch>
         <Route path="/quiz">
-          <div>Lalala I am the quiz</div>
+          <Quiz />
         </Route>
         <Route path="/settings">
           <div>Lalala here are the settings</div>
