@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useEventListener from "@use-it/event-listener";
+import keyMap from "./hotkeys-keymap.js";
 
 const Settings = ({ keys, setKeys, nextKey, setNextkey }) => {
   const [afterButton, setafterButton] = useState(false);

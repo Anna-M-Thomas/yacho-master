@@ -34,9 +34,12 @@
   https://stackoverflow.com/questions/43577182/react-js-audio-src-is-updating-on-setstate-but-the-audio-playing-doesnt-chang
   I can get the audio with useRef, and pass it up. See Full Stack Open 5b !!! It worked!!....done
 - Key commands, not just click buttons...react-hotkeys-hook...done
-- Hotkeys (hardcoded #) now work for checking answer.
+- Hotkeys (hardcoded #) now work for checking answer....done
+- Add hotkey for next button...done
+- How can user set keys?...done kind of
 
-- Add hotkey for next button
+- In quiz, get charcode of keystroke. Check to see if it's anywhere alphabet-y (that # range). If yes, set state with that. Then check to see if it's in hotkeys-keymap, if yes, get value for key and set state with that. If not, ignore.
+- Check caps. If state is set with "A", does "a" work. If state is set with "a," does "A" work.
 - Let user choose number of answers
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
