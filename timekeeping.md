@@ -38,3 +38,4 @@ March 19, 2021
 - 30 minutes: adding hot keys via react-hot-keys
 - 30 minutes: hotkeys successfully work like the buttons do (check answer)
 - 30 minutes: started settings page for hotkeys
+- 30 minutes: can set hotkeys, working on preventing duplicates
