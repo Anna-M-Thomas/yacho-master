@@ -123,11 +123,9 @@ const testBirds = [
 const Mysterybird = React.forwardRef((props, ref) => {
   const { question, hidden } = props;
 
-  // <div>{hidden ? "?" : question.en}</div>
-
   return (
     <>
-      <div>{question.en}</div>
+      <div>{hidden ? "?" : question.en}</div>
       <audio controls ref={ref}>
         <source
           src={`http://localhost:3001/${question.id}.mp3`}
@@ -184,10 +182,14 @@ const Answers = ({
   ));
 };
 
-const Quiz = ({ points, setPoints, keys }) => {
+const Quiz = ({ points, setPoints, keys, nextKey }) => {
   const [question, setQuestion] = useState(getQuestion(testBirds));
   const [answers, setAnswers] = useState(null);
   const [hidden, setHidden] = useState(true);
+
+  useHotkeys(nextKey, () => nextQuestion(), {
+    keydown: true,
+  });
 
   const audioRef = useRef();
 
@@ -198,7 +200,7 @@ const Quiz = ({ points, setPoints, keys }) => {
     }
   }, [question]);
 
-  const nextQuestion = (e) => {
+  const nextQuestion = () => {
     setHidden(true);
     audioRef.current.pause();
     audioRef.current.load();
@@ -214,6 +216,7 @@ const Quiz = ({ points, setPoints, keys }) => {
     points,
     setPoints,
     keys,
+    nextKey,
   };
 
   return (
