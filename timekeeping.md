@@ -36,3 +36,4 @@ March 19, 2021
 - 30 minutes: finished adding Japanese names, looking at recording citation
 - 30 minutes: fixed audio not reloading problem
 - 30 minutes: adding hot keys via react-hot-keys
+- 30 minutes: hotkeys successfully work like the buttons do (check answer)

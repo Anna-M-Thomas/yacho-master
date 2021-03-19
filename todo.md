@@ -33,8 +33,10 @@
 - Audio file src doesn't change even when props (question) changes
   https://stackoverflow.com/questions/43577182/react-js-audio-src-is-updating-on-setstate-but-the-audio-playing-doesnt-chang
   I can get the audio with useRef, and pass it up. See Full Stack Open 5b !!! It worked!!....done
-- Key commands, not just click buttons...react-hotkeys-hook
+- Key commands, not just click buttons...react-hotkeys-hook...done
+- Hotkeys (hardcoded #) now work for checking answer.
 
+- Add hotkey for next button
 - Let user choose number of answers
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository

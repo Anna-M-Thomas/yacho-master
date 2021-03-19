@@ -123,9 +123,11 @@ const testBirds = [
 const Mysterybird = React.forwardRef((props, ref) => {
   const { question, hidden } = props;
 
+  // <div>{hidden ? "?" : question.en}</div>
+
   return (
     <>
-      <div>{hidden ? "?" : question.en}</div>
+      <div>{question.en}</div>
       <audio controls ref={ref}>
         <source
           src={`http://localhost:3001/${question.id}.mp3`}
@@ -146,15 +148,30 @@ const Answers = ({
   points,
   setPoints,
 }) => {
-  useHotkeys("k", (event) => handleAnswer(event), [], { keydown: true });
+  useHotkeys(
+    keys.join(", "),
+    (event) => handleAnswer(event),
+    [question, answers],
+    {
+      keydown: true,
+    }
+  );
 
   const handleAnswer = (event) => {
     if (hidden) {
       setHidden(false);
       if (event.type === "keydown") {
-        console.log("This was a keydown");
+        const index = keys.findIndex((key) => key === event.key);
+        console.log("index", index);
+        console.log("answers", answers);
+        console.log("question", question);
+        if (answers[index].id === question.id) {
+          setPoints(points + 1);
+        }
       }
       if (event.target.dataset.id === question.id) {
+        console.log("answers", answers);
+        console.log("question", question);
         setPoints(points + 1);
       }
     }

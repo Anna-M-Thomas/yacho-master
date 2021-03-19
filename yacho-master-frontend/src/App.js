@@ -5,7 +5,7 @@ import Quiz from "./Quiz";
 
 function App() {
   const [points, setPoints] = useState(0);
-  const [keys, setKeys] = useState(["a", "d", "g", "h"]);
+  const [keys, setKeys] = useState(["a", "d", "g", "j"]);
 
   return (
     <>
