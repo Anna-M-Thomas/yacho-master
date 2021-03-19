@@ -29,8 +29,12 @@
 - What is suspense...it is annoying I will turn it off...done
 - First quiz components, text-based only, no audio/pics...done
 - Add audio...done
-- I need to add a jp name and a romaji name to every bird
+- I need to add a jp name and a romaji name to every bird. Did manually, that was inefficient...done
+
 - Let user choose number of answers
-- Save score to state
+- Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
 - Audio file src doesn't change even when props (question) changes
+- Show citation and license with audio file
+  `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
+  Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.

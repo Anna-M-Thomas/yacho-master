@@ -28,3 +28,9 @@ March 18, 2021
 - 30 minutes: points for guessing right, event listener for buttons work 1x only
 - 30 minutes: starting backend
 - 30 minutes: more backend serving static files (mp3) with express.static
+  Total 4 hours
+
+March 19, 2021
+
+- 30 minutes: adding Japanese names to db.json
+- 30 minutes: finished adding Japanese names, looking at recording citation
