@@ -5,13 +5,14 @@ import Quiz from "./Quiz";
 
 function App() {
   const [points, setPoints] = useState(0);
+  const [keys, setKeys] = useState(["a", "d", "g", "h"]);
 
   return (
     <>
       <Menu />
       <Switch>
         <Route path="/quiz">
-          <Quiz points={points} setPoints={setPoints} />
+          <Quiz points={points} setPoints={setPoints} keys={keys} />
         </Route>
         <Route path="/settings">
           <div>Lalala here are the settings</div>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getQuestion, getAnswers } from "./helperfunctions.js";
 import songHandler from "./services/songs";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const testBirds = [
   {
@@ -119,11 +120,13 @@ const testBirds = [
   },
 ];
 
-const Mysterybird = ({ question, hidden }) => {
+const Mysterybird = React.forwardRef((props, ref) => {
+  const { question, hidden } = props;
+
   return (
     <>
       <div>{hidden ? "?" : question.en}</div>
-      <audio controls>
+      <audio controls ref={ref}>
         <source
           src={`http://localhost:3001/${question.id}.mp3`}
           type="audio/mpeg"
@@ -132,9 +135,10 @@ const Mysterybird = ({ question, hidden }) => {
       </audio>
     </>
   );
-};
+});
 
 const Answers = ({
+  keys,
   question,
   answers,
   hidden,
@@ -142,26 +146,33 @@ const Answers = ({
   points,
   setPoints,
 }) => {
-  const handleClick = (e) => {
+  useHotkeys("k", (event) => handleAnswer(event), [], { keydown: true });
+
+  const handleAnswer = (event) => {
     if (hidden) {
       setHidden(false);
-      if (e.target.dataset.id === question.id) {
+      if (event.type === "keydown") {
+        console.log("This was a keydown");
+      }
+      if (event.target.dataset.id === question.id) {
         setPoints(points + 1);
       }
     }
   };
 
   return answers.map((bird) => (
-    <button key={bird.id} data-id={bird.id} onClick={handleClick}>
+    <button key={bird.id} data-id={bird.id} onClick={handleAnswer}>
       {bird.en}
     </button>
   ));
 };
 
-const Quiz = ({ points, setPoints }) => {
+const Quiz = ({ points, setPoints, keys }) => {
   const [question, setQuestion] = useState(getQuestion(testBirds));
   const [answers, setAnswers] = useState(null);
   const [hidden, setHidden] = useState(true);
+
+  const audioRef = useRef();
 
   useEffect(() => {
     if (question) {
@@ -172,6 +183,8 @@ const Quiz = ({ points, setPoints }) => {
 
   const nextQuestion = (e) => {
     setHidden(true);
+    audioRef.current.pause();
+    audioRef.current.load();
     const newBird = getQuestion(testBirds);
     setQuestion(newBird);
   };
@@ -183,11 +196,14 @@ const Quiz = ({ points, setPoints }) => {
     setHidden,
     points,
     setPoints,
+    keys,
   };
 
   return (
     <>
-      {question && <Mysterybird question={question} hidden={hidden} />}
+      {question && (
+        <Mysterybird question={question} hidden={hidden} ref={audioRef} />
+      )}
       {answers && <Answers {...answerProps} />}
       <button onClick={nextQuestion}>Next question</button>
       <div>Points: {points}</div>
