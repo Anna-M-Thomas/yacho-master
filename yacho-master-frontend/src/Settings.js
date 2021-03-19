@@ -5,13 +5,18 @@ const Settings = ({ keys, setKeys, nextKey, setNextkey }) => {
   const [afterButton, setafterButton] = useState(false);
   const [index, setIndex] = useState(null);
 
+  console.log("nextKey", nextKey);
+  console.log("typeof nextkey", typeof nextKey);
+
+  //hotkeys "right" is not the same as its name, ArrowRight, and it's not the same as charcode agggh
   const handler = (e) => {
     console.log(e.key);
+    console.log("nextKey", nextKey);
     const newKeys = [...keys];
-    //No this is wrong I need true/false
-    const inKeysAlready = newKeys.find((item) => item === e.key);
-    console.log("inKeysAlready", inKeysAlready);
-    if (!inKeysAlready) {
+    const notinKeys = newKeys.every(
+      (item) => item !== e.key && item !== nextKey
+    );
+    if (notinKeys) {
       newKeys[index] = e.key;
       setKeys(newKeys);
       setIndex(null);
