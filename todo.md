@@ -44,7 +44,11 @@
   Avibase has a "listen to recording" button that has a data-concept which is same as avibase id (ex. 6D7A9C93AD1830EB)
   On page reload, a different song from xeno-canto plays.
   It's using a jquery player called jPlayer. jPlayer is getting the audio out of something called sound_item.jsp using id from data-concept
+  I can look at sound_item.jsp ex. https://avibase.bsc-eoc.org/sound_item.jsp?avibaseid=11453A9801F87E9D
+  and see the mp3 audio URL is different each time. And uh oh wait, there's a fileid. There is only one fileid per recording, and the fileid is not from xeno-canto.
+- My conclusion is I think probably avibase is linking to files, not hosting them. I don't need to host the files probably because setting audio src to the xeno-canto file is working....done
 
+- Show what button is being set
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
 - Show citation and license with audio file

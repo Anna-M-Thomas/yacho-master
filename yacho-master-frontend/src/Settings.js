@@ -31,57 +31,86 @@ const Settings = ({
     return alphabetOrNumber || inHotKeysSpecial;
   };
 
-  const keydownHandler = (e) => {
-    console.log("event!");
+  const inOtherKeys = (newKey, ...keys) => {
+    const otherKeys = [...keys];
+    console.log("Other keys", otherKeys);
+    console.log("New key", newKey);
+    return keys.some((item) => item === newKey);
+  };
 
+  const resetButtons = () => {
+    setafterkeysButton(false);
+    setafternextButton(false);
+    setafterplayButton(false);
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => button.classList.remove("clicked"));
+  };
+
+  const keydownHandler = (e) => {
     const key = e.keyCode || e.which || e.charCode;
 
     if (!keysOK(key)) {
-      console.log("NOPE FAILLLL");
+      resetButtons();
       return;
     }
 
     let keyName = keyMap[key] || e.key.toLowerCase();
 
-    if (afterkeysButton === true) {
-      const notinKeys = keys.every((item) => item !== keyName);
-      const notInOtherKeys = nextKey !== keyName && play !== keyName;
-      if (notinKeys && notInOtherKeys) {
-        let newKeys = [...keys];
-        newKeys[index] = keyName;
-        setKeys(newKeys);
-        setIndex(null);
-      } else console.log(`${keyName}is already being used`);
+    if (inOtherKeys(keyName, ...keys, nextKey, play)) {
+      console.log(`${keyName} is already being used`);
+      resetButtons();
+      return;
     }
+
+    //There's so much repetition here, how do I simplify this?
+    //Feed everything else into an array
+    //Feed iterated array and others into helper function which returns true/false
+    if (afterkeysButton === true) {
+      // const notinKeys = keys.every((item) => item !== keyName);
+      // const notInOtherKeys = nextKey !== keyName && play !== keyName;
+      // if (notinKeys && notInOtherKeys) {
+      let newKeys = [...keys];
+      newKeys[index] = keyName;
+      setKeys(newKeys);
+      setIndex(null);
+      // } else console.log(`${keyName} is already being used`);
+    }
+
     if (afternextButton === true) {
-      console.log("inside after next button");
-      const notinKeys = keys.every((item) => item !== keyName);
-      const notInOtherKeys = play !== keyName;
-      if (notinKeys && notInOtherKeys) {
-        setNextkey(keyName);
-      } else console.log(`${keyName}is already being used`);
+      // const notinKeys = keys.every((item) => item !== keyName);
+      // const notInOtherKeys = play !== keyName;
+      // if (notinKeys && notInOtherKeys) {
+      setNextkey(keyName);
+      //   } else console.log(`${keyName} is already being used`);
+      // }
     }
 
     if (afterplayButton === true) {
-      console.log("inside after play button");
-      const notinKeys = keys.every((item) => item !== keyName);
-      const notInOtherKeys = nextKey !== keyName;
-      if (notinKeys && notInOtherKeys) {
-        setPlay(keyName);
-      } else console.log(`${keyName}is already being used`);
+      // const notinKeys = keys.every((item) => item !== keyName);
+      // const notInOtherKeys = nextKey !== keyName;
+      // if (notinKeys && notInOtherKeys) {
+      setPlay(keyName);
+      // } else console.log(`${keyName} is already being used`);
     }
-    setafterkeysButton(false);
-    setafternextButton(false);
-    setafterplayButton(false);
   };
 
   useEventListener("keydown", keydownHandler);
 
   const handlekeysClick = (e) => {
+    e.target.classList.add("clicked");
     //it has to be index, # of choices will change
-    console.log("The index", e.target.dataset.index);
     setIndex(e.target.dataset.index);
     setafterkeysButton(true);
+  };
+
+  const handleNextClick = (e) => {
+    e.target.classList.add("clicked");
+    setafternextButton(true);
+  };
+
+  const handlePlayClick = (e) => {
+    e.target.classList.add("clicked");
+    setafterplayButton(true);
   };
 
   const handleChoicesChange = (event) => {
@@ -104,11 +133,11 @@ const Settings = ({
       ))}
       <div>
         Next button
-        <button onClick={() => setafternextButton(true)}>{nextKey}</button>
+        <button onClick={handleNextClick}>{nextKey}</button>
       </div>
       <div>
         Play button
-        <button onClick={() => setafterplayButton(true)}>{play}</button>
+        <button onClick={handlePlayClick}>{play}</button>
       </div>
       <div>
         {" "}
