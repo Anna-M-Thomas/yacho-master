@@ -629,16 +629,11 @@ const Answers = ({
       setHidden(false);
       if (event.type === "keydown") {
         const index = keys.findIndex((key) => key === event.key);
-        console.log("index", index);
-        console.log("answers", answers);
-        console.log("question", question);
         if (answers[index].id === question.id) {
           setPoints(points + 1);
         }
       }
       if (event.target.dataset.id === question.id) {
-        console.log("answers", answers);
-        console.log("question", question);
         setPoints(points + 1);
       }
     }

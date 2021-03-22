@@ -1,3 +1,6 @@
+//This is a reverse of the hotkeys keymap because hotkeys has its own names for some keys
+//So I can get the names from keycode
+
 const keyMap = {
   8: "backspace",
   9: "tab",

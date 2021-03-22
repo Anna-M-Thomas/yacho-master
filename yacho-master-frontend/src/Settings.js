@@ -6,19 +6,34 @@ const Settings = ({ keys, setKeys, nextKey, setNextkey }) => {
   const [afterButton, setafterButton] = useState(false);
   const [index, setIndex] = useState(null);
 
-  console.log("nextKey", nextKey);
-  console.log("typeof nextkey", typeof nextKey);
+  //both inclusive
+  const inRange = (min, max, number) => {
+    return number >= min && number <= max;
+  };
 
   //hotkeys "right" is not the same as its name, ArrowRight, and it's not the same as charcode agggh
   const handler = (e) => {
-    console.log(e.key);
-    console.log("nextKey", nextKey);
-    const newKeys = [...keys];
-    const notinKeys = newKeys.every(
-      (item) => item !== e.key && item !== nextKey
-    );
-    if (notinKeys) {
-      newKeys[index] = e.key;
+    if (!afterButton) {
+      return;
+    }
+
+    const key = e.keyCode || e.which || e.charCode;
+
+    const alphabetOrNumber =
+      inRange(65, 90, key) || inRange(97, 122, key) || inRange(48, 57, key);
+
+    const inHotKeysSpecial = keyMap.hasOwnProperty(key);
+
+    if (!alphabetOrNumber && !inHotKeysSpecial) {
+      return;
+    }
+
+    const keyName = keyMap[key] || e.key;
+    const notinKeys = keys.every((item) => item !== keyName);
+    const notInOtherKeys = nextKey !== keyName;
+    if (notinKeys && notInOtherKeys) {
+      let newKeys = [...keys];
+      newKeys[index] = keyName;
       setKeys(newKeys);
       setIndex(null);
       setafterButton(false);

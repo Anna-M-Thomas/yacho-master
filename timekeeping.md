@@ -41,3 +41,8 @@ March 19, 2021
 - 30 minutes: can set hotkeys, working on preventing duplicates
 - 30 minutes: made map for special keys, to do for next time
   Total 4 hours
+
+March 22, 2021
+
+- 30 minutes: puzzling over keys
+- 30 minutes: alphabet, #s, special keys in hotkeys keymap OK
