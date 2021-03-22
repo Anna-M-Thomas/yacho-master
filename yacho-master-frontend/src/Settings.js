@@ -12,6 +12,7 @@ const Settings = ({
   choices,
   setChoices,
 }) => {
+  //turn this into an object? {keys: false, next: false, play:false}
   const [afterkeysButton, setafterkeysButton] = useState(false);
   const [afternextButton, setafternextButton] = useState(false);
   const [afterplayButton, setafterplayButton] = useState(false);
@@ -26,17 +27,11 @@ const Settings = ({
   const keysOK = (key) => {
     const alphabetOrNumber =
       inRange(65, 90, key) || inRange(97, 122, key) || inRange(48, 57, key);
-
     const inHotKeysSpecial = keyMap.hasOwnProperty(key);
     return alphabetOrNumber || inHotKeysSpecial;
   };
 
-  const inOtherKeys = (newKey, ...keys) => {
-    const otherKeys = [...keys];
-    console.log("Other keys", otherKeys);
-    console.log("New key", newKey);
-    return keys.some((item) => item === newKey);
-  };
+  const inOtherKeys = (newKey, ...keys) => keys.some((item) => item === newKey);
 
   const resetButtons = () => {
     setafterkeysButton(false);
@@ -54,7 +49,7 @@ const Settings = ({
       return;
     }
 
-    let keyName = keyMap[key] || e.key.toLowerCase();
+    const keyName = keyMap[key] || e.key.toLowerCase();
 
     if (inOtherKeys(keyName, ...keys, nextKey, play)) {
       console.log(`${keyName} is already being used`);
@@ -62,43 +57,23 @@ const Settings = ({
       return;
     }
 
-    //There's so much repetition here, how do I simplify this?
-    //Feed everything else into an array
-    //Feed iterated array and others into helper function which returns true/false
-    if (afterkeysButton === true) {
-      // const notinKeys = keys.every((item) => item !== keyName);
-      // const notInOtherKeys = nextKey !== keyName && play !== keyName;
-      // if (notinKeys && notInOtherKeys) {
+    if (afterkeysButton) {
       let newKeys = [...keys];
       newKeys[index] = keyName;
       setKeys(newKeys);
       setIndex(null);
-      // } else console.log(`${keyName} is already being used`);
-    }
-
-    if (afternextButton === true) {
-      // const notinKeys = keys.every((item) => item !== keyName);
-      // const notInOtherKeys = play !== keyName;
-      // if (notinKeys && notInOtherKeys) {
+    } else if (afternextButton) {
       setNextkey(keyName);
-      //   } else console.log(`${keyName} is already being used`);
-      // }
-    }
-
-    if (afterplayButton === true) {
-      // const notinKeys = keys.every((item) => item !== keyName);
-      // const notInOtherKeys = nextKey !== keyName;
-      // if (notinKeys && notInOtherKeys) {
+    } else if (afterplayButton) {
       setPlay(keyName);
-      // } else console.log(`${keyName} is already being used`);
     }
+    resetButtons();
   };
 
   useEventListener("keydown", keydownHandler);
 
   const handlekeysClick = (e) => {
     e.target.classList.add("clicked");
-    //it has to be index, # of choices will change
     setIndex(e.target.dataset.index);
     setafterkeysButton(true);
   };

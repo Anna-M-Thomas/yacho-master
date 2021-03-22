@@ -47,12 +47,14 @@
   I can look at sound_item.jsp ex. https://avibase.bsc-eoc.org/sound_item.jsp?avibaseid=11453A9801F87E9D
   and see the mp3 audio URL is different each time. And uh oh wait, there's a fileid. There is only one fileid per recording, and the fileid is not from xeno-canto.
 - My conclusion is I think probably avibase is linking to files, not hosting them. I don't need to host the files probably because setting audio src to the xeno-canto file is working....done
+- Show what button is being set...done
+- Move bird objects, get next question and answer to backend....DONE!
 
-- Show what button is being set
+- Change front end so it asks back end for question and answer
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
 - Show citation and license with audio file
   `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
   Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
   (How to do that with react-i18next?)
-- Move bird objects to backend. Add endpoint that gives all the recorders (for thanks)
+  Add endpoint that gives all the recorders (for thanks)
