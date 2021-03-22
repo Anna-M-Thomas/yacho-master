@@ -6,8 +6,11 @@ import Quiz from "./Quiz";
 
 function App() {
   const [points, setPoints] = useState(0);
-  const [keys, setKeys] = useState(["a", "d", "g", "j"]);
+  const [choices, setChoices] = useState(8);
+  const defaultKeys = ["a", "s", "d", "f", "j", "k", "l", ";"];
+  const [keys, setKeys] = useState(defaultKeys.slice(0, choices));
   const [nextKey, setNextkey] = useState("right");
+  const [play, setPlay] = useState("space");
 
   return (
     <>
@@ -19,6 +22,8 @@ function App() {
             setPoints={setPoints}
             keys={keys}
             nextKey={nextKey}
+            play={play}
+            choices={choices}
           />
         </Route>
         <Route path="/settings">
@@ -27,6 +32,10 @@ function App() {
             setKeys={setKeys}
             nextKey={nextKey}
             setNextkey={setNextkey}
+            play={play}
+            setPlay={setPlay}
+            choices={choices}
+            setChoices={setChoices}
           />
         </Route>
         <Route path="/thanks">

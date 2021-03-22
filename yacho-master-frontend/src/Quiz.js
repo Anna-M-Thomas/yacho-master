@@ -592,14 +592,13 @@ const testBirds = [
 const Mysterybird = React.forwardRef((props, ref) => {
   const { question, hidden } = props;
 
+  // src={`http://localhost:3001/${question.id}.mp3`}
+
   return (
     <>
       <div>{hidden ? "?" : `${question.en} ${question.jp}`}</div>
       <audio controls ref={ref}>
-        <source
-          src={`http://localhost:3001/${question.id}.mp3`}
-          type="audio/mpeg"
-        />
+        <source src={question.file} type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </>
@@ -639,14 +638,14 @@ const Answers = ({
     }
   };
 
-  return answers.map((bird) => (
+  return answers.map((bird, index) => (
     <button key={bird.id} data-id={bird.id} onClick={handleAnswer}>
-      {bird.en} {bird.jp}
+      {bird.en} {bird.jp} ({keys[index]})
     </button>
   ));
 };
 
-const Quiz = ({ points, setPoints, keys, nextKey }) => {
+const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
   const [question, setQuestion] = useState(getQuestion(testBirds));
   const [answers, setAnswers] = useState(null);
   const [hidden, setHidden] = useState(true);
@@ -655,14 +654,24 @@ const Quiz = ({ points, setPoints, keys, nextKey }) => {
     keydown: true,
   });
 
+  useHotkeys(play, () => handlePlayButton(), {
+    keydown: true,
+  });
+
   const audioRef = useRef();
 
   useEffect(() => {
     if (question) {
-      const result = getAnswers(4, question, testBirds);
+      const result = getAnswers(choices, question, testBirds);
       setAnswers(result);
     }
   }, [question]);
+
+  const handlePlayButton = () => {
+    audioRef.current.paused
+      ? audioRef.current.play()
+      : audioRef.current.pause();
+  };
 
   const nextQuestion = () => {
     setHidden(true);
@@ -689,8 +698,9 @@ const Quiz = ({ points, setPoints, keys, nextKey }) => {
         <Mysterybird question={question} hidden={hidden} ref={audioRef} />
       )}
       {answers && <Answers {...answerProps} />}
-      <button onClick={nextQuestion}>Next question</button>
+      <button onClick={nextQuestion}>Next question {nextKey}</button>
       <div>Points: {points}</div>
+      <div>Play audio: {play}</div>
     </>
   );
 };

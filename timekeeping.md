@@ -46,3 +46,6 @@ March 22, 2021
 
 - 30 minutes: puzzling over keys
 - 30 minutes: alphabet, #s, special keys in hotkeys keymap OK
+- 30 minutes: setting play button, next button
+- 30 minutes: play button, next button, not broken
+- 30 minutes:

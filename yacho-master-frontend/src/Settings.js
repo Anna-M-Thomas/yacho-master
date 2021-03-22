@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import useEventListener from "@use-it/event-listener";
 import keyMap from "./hotkeys-keymap.js";
 
-const Settings = ({ keys, setKeys, nextKey, setNextkey }) => {
-  const [afterButton, setafterButton] = useState(false);
+const Settings = ({
+  keys,
+  setKeys,
+  nextKey,
+  setNextkey,
+  play,
+  setPlay,
+  choices,
+  setChoices,
+}) => {
+  const [afterkeysButton, setafterkeysButton] = useState(false);
+  const [afternextButton, setafternextButton] = useState(false);
+  const [afterplayButton, setafterplayButton] = useState(false);
   const [index, setIndex] = useState(null);
 
   //both inclusive
@@ -11,42 +22,73 @@ const Settings = ({ keys, setKeys, nextKey, setNextkey }) => {
     return number >= min && number <= max;
   };
 
-  //hotkeys "right" is not the same as its name, ArrowRight, and it's not the same as charcode agggh
-  const handler = (e) => {
-    if (!afterButton) {
-      return;
-    }
-
-    const key = e.keyCode || e.which || e.charCode;
-
+  //Exclude all other keys besides alphabet, #s, in hotkeys keymap
+  const keysOK = (key) => {
     const alphabetOrNumber =
       inRange(65, 90, key) || inRange(97, 122, key) || inRange(48, 57, key);
 
     const inHotKeysSpecial = keyMap.hasOwnProperty(key);
+    return alphabetOrNumber || inHotKeysSpecial;
+  };
 
-    if (!alphabetOrNumber && !inHotKeysSpecial) {
+  const keydownHandler = (e) => {
+    console.log("event!");
+
+    const key = e.keyCode || e.which || e.charCode;
+
+    if (!keysOK(key)) {
+      console.log("NOPE FAILLLL");
       return;
     }
 
-    const keyName = keyMap[key] || e.key;
-    const notinKeys = keys.every((item) => item !== keyName);
-    const notInOtherKeys = nextKey !== keyName;
-    if (notinKeys && notInOtherKeys) {
-      let newKeys = [...keys];
-      newKeys[index] = keyName;
-      setKeys(newKeys);
-      setIndex(null);
-      setafterButton(false);
+    let keyName = keyMap[key] || e.key.toLowerCase();
+
+    if (afterkeysButton === true) {
+      const notinKeys = keys.every((item) => item !== keyName);
+      const notInOtherKeys = nextKey !== keyName && play !== keyName;
+      if (notinKeys && notInOtherKeys) {
+        let newKeys = [...keys];
+        newKeys[index] = keyName;
+        setKeys(newKeys);
+        setIndex(null);
+      } else console.log(`${keyName}is already being used`);
     }
+    if (afternextButton === true) {
+      console.log("inside after next button");
+      const notinKeys = keys.every((item) => item !== keyName);
+      const notInOtherKeys = play !== keyName;
+      if (notinKeys && notInOtherKeys) {
+        setNextkey(keyName);
+      } else console.log(`${keyName}is already being used`);
+    }
+
+    if (afterplayButton === true) {
+      console.log("inside after play button");
+      const notinKeys = keys.every((item) => item !== keyName);
+      const notInOtherKeys = nextKey !== keyName;
+      if (notinKeys && notInOtherKeys) {
+        setPlay(keyName);
+      } else console.log(`${keyName}is already being used`);
+    }
+    setafterkeysButton(false);
+    setafternextButton(false);
+    setafterplayButton(false);
   };
 
-  useEventListener("keydown", handler);
+  useEventListener("keydown", keydownHandler);
 
   const handlekeysClick = (e) => {
     //it has to be index, # of choices will change
-    console.log("The innnnndex", e.target.dataset.index);
+    console.log("The index", e.target.dataset.index);
     setIndex(e.target.dataset.index);
-    setafterButton(true);
+    setafterkeysButton(true);
+  };
+
+  const handleChoicesChange = (event) => {
+    setChoices(event.target.value);
+    const defaultKeys = ["a", "s", "d", "f", "j", "k", "l", ";"];
+    const newKeys = defaultKeys.slice(0, event.target.value);
+    setKeys(newKeys);
   };
 
   return (
@@ -60,6 +102,27 @@ const Settings = ({ keys, setKeys, nextKey, setNextkey }) => {
           </button>
         </div>
       ))}
+      <div>
+        Next button
+        <button onClick={() => setafternextButton(true)}>{nextKey}</button>
+      </div>
+      <div>
+        Play button
+        <button onClick={() => setafterplayButton(true)}>{play}</button>
+      </div>
+      <div>
+        {" "}
+        Number of choices {choices}
+        <input
+          type="range"
+          value={choices}
+          onChange={handleChoicesChange}
+          id="choices"
+          name="answerChoices"
+          min="2"
+          max="8"
+        />
+      </div>
     </div>
   );
 };

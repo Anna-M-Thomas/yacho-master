@@ -37,10 +37,14 @@
 - Hotkeys (hardcoded #) now work for checking answer....done
 - Add hotkey for next button...done
 - How can user set keys?...done kind of
+- In settings, get charcode of keystroke. Check to see if it's anywhere alphabet-y (that # range). If yes, set state with that. Then check to see if it's in hotkeys-keymap, if yes, get value for key and set state with that. If not, ignore....DONEee finally
+- Check caps. If state is set with "A", does "a" work. If state is set with "a," does "A" work...nope, so we need to toLowercase...done
+- Let user choose number of answers...done, phew
+- OK do I actually need to store mp3s? Let's look at avibase!!...
+  Avibase has a "listen to recording" button that has a data-concept which is same as avibase id (ex. 6D7A9C93AD1830EB)
+  On page reload, a different song from xeno-canto plays.
+  It's using a jquery player called jPlayer. jPlayer is getting the audio out of something called sound_item.jsp using id from data-concept
 
-- In settings, get charcode of keystroke. Check to see if it's anywhere alphabet-y (that # range). If yes, set state with that. Then check to see if it's in hotkeys-keymap, if yes, get value for key and set state with that. If not, ignore.
-- Check caps. If state is set with "A", does "a" work. If state is set with "a," does "A" work.
-- Let user choose number of answers
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
 - Show citation and license with audio file
