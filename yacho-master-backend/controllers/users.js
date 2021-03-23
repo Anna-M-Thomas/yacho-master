@@ -5,7 +5,6 @@ const User = require("../models/user");
 usersRouter.post("/", async (request, response, next) => {
   try {
     const body = request.body;
-    console.log("inside usersRoute, body", request.body);
 
     if (body.password.length <= 3) {
       return response
