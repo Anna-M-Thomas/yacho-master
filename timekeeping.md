@@ -16,7 +16,7 @@ March 16, 2021
 - 30 minutes: Finished downloading all, cleaning up blank files
 - 30 minutes: Setting up test for helper quiz function
 - 30 minutes: First helper functions and their tests
-  Total: 3 1/2 hours
+  Total: 3.5 hours
 
 March 18, 2021
 
@@ -57,9 +57,10 @@ March 22, 2021
 March 23, 2021
 
 - 30 minutes: simplified settings state, front end now asking back for questions, answers
-- 30 minutes: Connect to Mongo/mongoose, making user schema
+- 30 minutes: Connect to Mongo, mongoose, making user schema
 - 30 minutes: Testing backend with supertest
 - 30 minutes: Form for making new user/password, failing to post
 - 30 minutes: working on login
 - 30 minutes: login not working, testing
 - 30 minutes: login works, local storage with logged in user
+  Total 3.5 hours

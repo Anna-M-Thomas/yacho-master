@@ -60,11 +60,16 @@
 - "data and hash arguments required"...done
 
 - Forms need to clear after submit
-- Make everybody async
-- Save score to localStorage
-- I should probably just have one gitignore file instead of multiple, it's one repository?
+- Login page should disappear from menu if user?
+- Disable next key in quiz until question is answered
+- Add something that shows if answer was right or not
+- Store correct/incorrect history of bird for unlogged (local storage), logged user
+- Let users delete their accounts
 - Show citation and license with audio file
   `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
   Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
   (How to do that with react-i18next?)
+- Make everything async
+- Save score to localStorage
+- I should probably just have one gitignore file instead of multiple, it's one repository?
   Add endpoint that gives all the recorders (for thanks)
