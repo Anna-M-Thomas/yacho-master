@@ -58,3 +58,4 @@ March 23, 2021
 
 - 30 minutes: simplified settings state, front end now asking back for questions, answers
 - 30 minutes: Connect to Mongo/mongoose, making user schema
+- 30 minutes: Testing backend with supertest

@@ -53,6 +53,7 @@
 - Thwarted by CORS! Oh, also the backend isn't running, that's a problem...done
 - Change front end so it asks back end for question and answer...done
 - Add connection to MongoDB, Mongoose...done
+- Testing to make sure it's not completely broken
 
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
