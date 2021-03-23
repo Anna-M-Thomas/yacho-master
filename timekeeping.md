@@ -62,3 +62,4 @@ March 23, 2021
 - 30 minutes: Form for making new user/password, failing to post
 - 30 minutes: working on login
 - 30 minutes: login not working, testing
+- 30 minutes: login works, local storage with logged in user

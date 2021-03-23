@@ -55,9 +55,11 @@
 - Add connection to MongoDB, Mongoose...done
 - Testing to make sure it's not completely broken...done, so it is only 1/4 broken maybe
 - Add new user submit form...done, works
-- Add login form, and thus tokens and stuff,, and also loginrouter for backend
-- Wheres the bit that expires the token? Part 4d
+- Add login form, and thus tokens and stuff,, and also loginrouter for backend...done
+- Wheres the bit that expires the token? Part 4d ...done
+- "data and hash arguments required"...done
 
+- Forms need to clear after submit
 - Make everybody async
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository?

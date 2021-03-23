@@ -9,8 +9,8 @@ const URL = "/api/login";
 
 beforeEach(async () => {
   await User.deleteMany({});
-  const userOne = new User({ username: "tsugumi", password: "wormsplz" });
-  await userOne.save();
+  const userOne = { username: "tsugumi", password: "wormsplz" };
+  await api.post("/api/users").send(userOne);
 });
 
 test.only("Can login with legit info", async () => {

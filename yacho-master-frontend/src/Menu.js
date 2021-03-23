@@ -12,7 +12,7 @@ const Languageselect = () => {
   );
 };
 
-const Menu = ({ user }) => {
+const Menu = ({ user, setUser }) => {
   const { t } = useTranslation();
 
   const style = {
@@ -34,7 +34,14 @@ const Menu = ({ user }) => {
         <Link to="/login" style={style}>
           {t("menu.login")}
         </Link>
-        {user ? <span>{user.userName} logged in</span> : ""}
+        {user ? (
+          <span>
+            {user.username} logged in
+            <button onClick={() => setUser("")}>logout</button>
+          </span>
+        ) : (
+          ""
+        )}
       </nav>
       <Languageselect />
     </>
