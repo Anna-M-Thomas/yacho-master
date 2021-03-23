@@ -1,2 +1,4 @@
 yacho-master-backend/files
 yacho-master-backend/node_modules
+
+yacho-master-backend/.env

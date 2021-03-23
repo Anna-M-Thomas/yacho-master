@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
 import Settings from "./Settings";
+import Loginform from "./Loginform";
 import Quiz from "./Quiz";
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
           <div>Lalala these are the thanks</div>
         </Route>
         <Route path="/login">
-          <div>Lalala login here</div>
+          <Loginform />
         </Route>
       </Switch>
     </>

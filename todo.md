@@ -50,9 +50,10 @@
 - Show what button is being set...done
 - Move bird objects, get next question and answer to backend....DONE!
 - Simplify that part of Settings state to a string/null!...done, that's a little better
-- Thwarted by CORS! Oh, also the backend isn't running, that's a problem...
+- Thwarted by CORS! Oh, also the backend isn't running, that's a problem...done
+- Change front end so it asks back end for question and answer...done
+- Add connection to MongoDB, Mongoose...done
 
-- Change front end so it asks back end for question and answer
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository
 - Show citation and license with audio file
