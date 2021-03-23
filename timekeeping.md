@@ -52,3 +52,8 @@ March 22, 2021
 - 30 minutes: adding styling to button being set, editing code
 - 30 minutes: trying to simplify code
 - 30 minutes: Put get answer & get question in back end. Successfully!!!
+  Total 4 hours
+
+March 23, 2021
+
+- 30 minutes: simplified settings state, front end now asking back for questions, answers

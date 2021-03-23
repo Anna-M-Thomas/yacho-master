@@ -12,10 +12,7 @@ const Settings = ({
   choices,
   setChoices,
 }) => {
-  //turn this into an object? {keys: false, next: false, play:false}
-  const [afterkeysButton, setafterkeysButton] = useState(false);
-  const [afternextButton, setafternextButton] = useState(false);
-  const [afterplayButton, setafterplayButton] = useState(false);
+  const [settingNow, setSettingNow] = useState(null);
   const [index, setIndex] = useState(null);
 
   //both inclusive
@@ -34,58 +31,56 @@ const Settings = ({
   const inOtherKeys = (newKey, ...keys) => keys.some((item) => item === newKey);
 
   const resetButtons = () => {
-    setafterkeysButton(false);
-    setafternextButton(false);
-    setafterplayButton(false);
+    setSettingNow(null);
     const buttons = document.querySelectorAll("button");
     buttons.forEach((button) => button.classList.remove("clicked"));
   };
 
   const keydownHandler = (e) => {
-    const key = e.keyCode || e.which || e.charCode;
+    if (settingNow) {
+      const key = e.keyCode || e.which || e.charCode;
 
-    if (!keysOK(key)) {
+      if (!keysOK(key)) {
+        resetButtons();
+        return;
+      }
+
+      const keyName = keyMap[key] || e.key.toLowerCase();
+
+      if (inOtherKeys(keyName, ...keys, nextKey, play)) {
+        console.log(`Sorry, ${keyName} is already being used`);
+        resetButtons();
+        return;
+      }
+
+      switch (settingNow) {
+        case "keys":
+          let newKeys = [...keys];
+          newKeys[index] = keyName;
+          setKeys(newKeys);
+          setIndex(null);
+          break;
+        case "next":
+          setNextkey(keyName);
+          break;
+        case "play":
+          setPlay(keyName);
+          break;
+        default:
+          break;
+      }
       resetButtons();
-      return;
     }
-
-    const keyName = keyMap[key] || e.key.toLowerCase();
-
-    if (inOtherKeys(keyName, ...keys, nextKey, play)) {
-      console.log(`${keyName} is already being used`);
-      resetButtons();
-      return;
-    }
-
-    if (afterkeysButton) {
-      let newKeys = [...keys];
-      newKeys[index] = keyName;
-      setKeys(newKeys);
-      setIndex(null);
-    } else if (afternextButton) {
-      setNextkey(keyName);
-    } else if (afterplayButton) {
-      setPlay(keyName);
-    }
-    resetButtons();
   };
 
   useEventListener("keydown", keydownHandler);
 
-  const handlekeysClick = (e) => {
+  const handleClick = (e) => {
     e.target.classList.add("clicked");
-    setIndex(e.target.dataset.index);
-    setafterkeysButton(true);
-  };
-
-  const handleNextClick = (e) => {
-    e.target.classList.add("clicked");
-    setafternextButton(true);
-  };
-
-  const handlePlayClick = (e) => {
-    e.target.classList.add("clicked");
-    setafterplayButton(true);
+    if (e.target.dataset.index) {
+      setIndex(e.target.dataset.index);
+    }
+    setSettingNow(e.target.dataset.category);
   };
 
   const handleChoicesChange = (event) => {
@@ -101,18 +96,22 @@ const Settings = ({
       {keys.map((item, index) => (
         <div key={item.charAt(0)}>
           Answer {index + 1}{" "}
-          <button data-index={index} onClick={handlekeysClick}>
+          <button data-index={index} data-category="keys" onClick={handleClick}>
             {item}
           </button>
         </div>
       ))}
       <div>
         Next button
-        <button onClick={handleNextClick}>{nextKey}</button>
+        <button data-category="next" onClick={handleClick}>
+          {nextKey}
+        </button>
       </div>
       <div>
         Play button
-        <button onClick={handlePlayClick}>{play}</button>
+        <button data-category="play" onClick={handleClick}>
+          {play}
+        </button>
       </div>
       <div>
         {" "}

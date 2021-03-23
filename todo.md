@@ -49,6 +49,8 @@
 - My conclusion is I think probably avibase is linking to files, not hosting them. I don't need to host the files probably because setting audio src to the xeno-canto file is working....done
 - Show what button is being set...done
 - Move bird objects, get next question and answer to backend....DONE!
+- Simplify that part of Settings state to a string/null!...done, that's a little better
+- Thwarted by CORS! Oh, also the backend isn't running, that's a problem...
 
 - Change front end so it asks back end for question and answer
 - Save score to localStorage

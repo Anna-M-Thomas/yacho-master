@@ -2379,6 +2379,7 @@
     {
       "id": "488318",
       "en": "Eyebrowed Thrush",
+      "jp": "マミチャジナイ",
       "rec": "Stanislas Wroza",
       "cnt": "Russian Federation",
       "url": "//www.xeno-canto.org/488318",
