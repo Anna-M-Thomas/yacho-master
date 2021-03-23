@@ -5,7 +5,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 //<div>{hidden ? "?" : `${question.en} ${question.jp}`}</div>
 
 const Mysterybird = React.forwardRef((props, ref) => {
-  const { question, hidden } = props;
+  const { question } = props;
 
   return (
     <>

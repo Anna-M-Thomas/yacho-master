@@ -12,7 +12,7 @@ const Languageselect = () => {
   );
 };
 
-const Menu = () => {
+const Menu = ({ user }) => {
   const { t } = useTranslation();
 
   const style = {
@@ -34,6 +34,7 @@ const Menu = () => {
         <Link to="/login" style={style}>
           {t("menu.login")}
         </Link>
+        {user ? <span>{user.userName} logged in</span> : ""}
       </nav>
       <Languageselect />
     </>

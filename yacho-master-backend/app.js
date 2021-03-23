@@ -4,6 +4,7 @@ const config = require("./utils/config");
 const cors = require("cors");
 const usersRouter = require("./controllers/users");
 const questionsRouter = require("./controllers/questions");
+const loginRouter = require("./controllers/login");
 const app = express();
 const middleware = require("./utils/middleware");
 
@@ -26,6 +27,7 @@ app.use(express.static("files"));
 
 app.use("/api/users", usersRouter);
 app.use("/api/nextquestion", questionsRouter);
+app.use("/api/login", loginRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

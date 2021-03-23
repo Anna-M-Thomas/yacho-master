@@ -54,9 +54,13 @@
 - Change front end so it asks back end for question and answer...done
 - Add connection to MongoDB, Mongoose...done
 - Testing to make sure it's not completely broken...done, so it is only 1/4 broken maybe
+- Add new user submit form...done, works
+- Add login form, and thus tokens and stuff,, and also loginrouter for backend
+- Wheres the bit that expires the token? Part 4d
 
+- Make everybody async
 - Save score to localStorage
-- I should probably just have one gitignore file instead of multiple, it's one repository
+- I should probably just have one gitignore file instead of multiple, it's one repository?
 - Show citation and license with audio file
   `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
   Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
