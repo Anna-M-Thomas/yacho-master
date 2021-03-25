@@ -13,7 +13,7 @@ beforeEach(async () => {
   await api.post("/api/users").send(userOne);
 });
 
-test.only("Can login with legit info", async () => {
+test("Can login with legit info", async () => {
   const legitUser = {
     username: "tsugumi",
     password: "wormsplz",

@@ -34,13 +34,30 @@ test("Won't allow duplicate usernames", async () => {
   expect(response.body.error).toContain("`username` to be unique");
 });
 
-test.only("Won't allow too short password", async () => {
+test("Won't allow too short password", async () => {
   const dupeUser = {
     username: "George",
     password: "4",
   };
   const response = await api.post(URL).send(dupeUser).expect(400);
   expect(response.body.error).toContain("longer than 3");
+});
+
+test.only("Saves an id in user array", async () => {
+  const newUser = {
+    username: "Satsuki",
+    password: "meow",
+  };
+  const response = await api.post(URL).send(newUser);
+  const id = response.body.id;
+  console.log("Id inside the test", id);
+
+  const answer = {
+    birdId: "123456",
+  };
+
+  const response2 = await api.post(`${URL}/${id}`).send(answer).expect(200);
+  expect(response2.body.answers).toContain("123456");
 });
 
 afterAll(() => {

@@ -29,10 +29,17 @@ usersRouter.post("/", async (request, response, next) => {
 
 // const answerInfo = { birdId, wasCorrect };
 
-usersRouter.post("/:id", async (resquest, response, next) => {
+usersRouter.post("/:id", async (request, response, next) => {
   try {
     const body = request.body;
-    const user = await Blog.findById(body.params.id);
+    console.log("body inside usersRouter", body);
+    console.log("id inside usersRouter", request.params.id);
+    const user = await User.findByIdAndUpdate(
+      { _id: `${request.params.id}` },
+      { $addToSet: { answers: body.birdId } },
+      { new: true }
+    );
+    response.json(user);
   } catch (error) {
     next(error);
   }
