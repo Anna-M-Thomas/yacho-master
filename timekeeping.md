@@ -51,16 +51,20 @@ March 22, 2021
 - 30 minutes: looking at avibase
 - 30 minutes: adding styling to button being set, editing code
 - 30 minutes: trying to simplify code
-- 30 minutes: Put get answer & get question in back end. Successfully!!!
+- 30 minutes: Put get answer & get question in back end. Success!!!
   Total 4 hours
 
 March 23, 2021
 
-- 30 minutes: simplified settings state, front end now asking back for questions, answers
+- 30 minutes: simplified settings state, front end now asking back end for questions, answers
 - 30 minutes: Connect to Mongo, mongoose, making user schema
 - 30 minutes: Testing backend with supertest
 - 30 minutes: Form for making new user/password, failing to post
-- 30 minutes: working on login
+- 30 minutes: New user form works, working on login
 - 30 minutes: login not working, testing
 - 30 minutes: login works, local storage with logged in user
   Total 3.5 hours
+
+March 25, 2021
+
+- 30 minutes: trying to fix audio source issue

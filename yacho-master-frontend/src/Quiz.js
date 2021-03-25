@@ -9,11 +9,8 @@ const Mysterybird = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <div>{`${question.en} ${question.jp}`}</div>
-      <audio controls ref={ref}>
-        <source src={question.file} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <div>{`${question.en} ${question.jp}, should be ${question.file}`}</div>
+      <audio ref={ref} src={question.file} controls />
     </>
   );
 });
@@ -85,12 +82,20 @@ const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
 
   const nextQuestion = () => {
     setHidden(true);
+    console.log(
+      "Inside next question, here is audioRef.current before reload",
+      audioRef.current
+    );
+    audioRef.current.pause();
     questionHandler.getQuestion().then((result) => {
       setQuestion(result.question);
       setAnswers(result.answers);
     });
-    audioRef.current.pause();
     audioRef.current.load();
+    console.log(
+      "Inside next question, here is audioRef.current after load",
+      audioRef.current
+    );
   };
 
   const answerProps = {

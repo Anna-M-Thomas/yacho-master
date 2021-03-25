@@ -59,6 +59,7 @@
 - Wheres the bit that expires the token? Part 4d ...done
 - "data and hash arguments required"...done
 
+- The audio is not actually reloading still, whyyy~ do I need to useRef harder or what
 - Forms need to clear after submit
 - Login page should disappear from menu if user?
 - Disable next key in quiz until question is answered
