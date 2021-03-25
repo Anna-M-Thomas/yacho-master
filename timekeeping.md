@@ -70,3 +70,5 @@ March 25, 2021
 - 30 minutes: trying to fix audio source issue
 - 30 minutes: looking up safari slowness issue
 - 30 minutes: clear forms after submit, hide login page after login, working on preventing next question without answering
+- 30 minutes: Finally won't go to next question without answer
+- 30 minutes: setting up an array in user for saving correct/incorrect answer

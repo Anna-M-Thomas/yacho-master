@@ -27,4 +27,15 @@ usersRouter.post("/", async (request, response, next) => {
   }
 });
 
+// const answerInfo = { birdId, wasCorrect };
+
+usersRouter.post("/:id", async (resquest, response, next) => {
+  try {
+    const body = request.body;
+    const user = await Blog.findById(body.params.id);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = usersRouter;

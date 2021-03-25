@@ -29,7 +29,12 @@ loginRouter.post("/", async (request, response, next) => {
 
     return response
       .status(200)
-      .send({ token, username: user.username, id: user._id });
+      .send({
+        token,
+        username: user.username,
+        id: user._id,
+        answers: user.answers,
+      });
   } catch (error) {
     next(error);
   }

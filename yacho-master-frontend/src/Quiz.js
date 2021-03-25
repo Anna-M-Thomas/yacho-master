@@ -7,11 +7,20 @@ const Mysterybird = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <div>
-        {hasAnswered
-          ? `${question.en} ${question.jp}, should be ${question.file}`
-          : "?"}
-      </div>
+      {hasAnswered ? (
+        <>
+          <div>
+            {question.en} {question.jp}
+          </div>
+          <div>
+            <a href={`${question.lic}`}>CC</a> {question.rec}, XC{question.id}.
+            Accessible at {question.url}.
+          </div>
+        </>
+      ) : (
+        <div>?</div>
+      )}
+
       <audio ref={ref} src={question.file} controls preload="auto" />
     </>
   );
@@ -29,26 +38,32 @@ const Answers = ({
   useHotkeys(
     keys.join(", "),
     (event) => handleAnswer(event),
-    [question, answers],
+    [question, answers, hasAnswered],
     {
       keydown: true,
     }
   );
 
+  const handleCorrect = () => {
+    setPoints(points + 1);
+    console.log("Correct!");
+  };
+
+  const handleIncorrect = () => {
+    console.log("incorrect!");
+  };
+
   const handleAnswer = (event) => {
-    setHasAnswered(true);
-    console.log(
-      "hasAnswered inside handleAnswer, Answers, should be true",
-      hasAnswered
-    );
-    if (event.type === "keydown") {
-      const index = keys.findIndex((key) => key === event.key);
-      if (answers[index].id === question.id) {
-        setPoints(points + 1);
+    if (!hasAnswered) {
+      if (event.type === "keydown") {
+        const index = keys.findIndex((key) => key === event.key);
+        answers[index].id === question.id ? handleCorrect() : handleIncorrect();
+      } else {
+        event.target.dataset.id === question.id
+          ? handleCorrect()
+          : handleIncorrect();
       }
-    }
-    if (event.target.dataset.id === question.id) {
-      setPoints(points + 1);
+      setHasAnswered(true);
     }
   };
 
@@ -59,13 +74,12 @@ const Answers = ({
   ));
 };
 
-const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
+const Quiz = ({ points, setPoints, keys, nextKey, play }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
 
-  useHotkeys(nextKey, () => nextQuestion(), { keydown: true });
-
+  useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
   useHotkeys(play, () => handlePlayButton(), { keydown: true });
 
   const audioRef = useRef();
@@ -79,12 +93,11 @@ const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
 
   const handlePlayButton = () => {
     audioRef.current.paused
-      ? audioRef.current.play()
+      ? audioRef.current.play().catch((error) => console.log(error))
       : audioRef.current.pause();
   };
 
   const nextQuestion = () => {
-    console.log("has answered inside nextQuestion inside Quiz", hasAnswered);
     if (hasAnswered) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -121,7 +134,7 @@ const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
       {answers && <Answers {...answerProps} />}
       <button onClick={nextQuestion}>Next question {nextKey}</button>
       <div>Points: {points}</div>
-      <div>Play audio: {play}</div>
+      <div>Play/stop audio: {play}</div>
     </>
   );
 };

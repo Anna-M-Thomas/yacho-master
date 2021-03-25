@@ -58,11 +58,14 @@
 - Add login form, and thus tokens and stuff,, and also loginrouter for backend...done
 - Wheres the bit that expires the token? Part 4d ...done
 - "data and hash arguments required"...done
-
 - The audio is not actually reloading still, whyyy~ do I need to useRef harder or what
-- Forms need to clear after submit
-- Login page should disappear from menu if user?
-- Disable next key in quiz until question is answered
+  WTF firstchild source= is right, but currentSource is wrong???...DONE
+- Forms need to clear after submit...done
+- Login page should disappear from menu if user?...done
+- The next arrow key, specifically, is showing hasAnswered as false. Why? Answer: you forgot that dependency array thing again!...done
+- Disable next key in quiz until question is answered...done
+
+- Add some kind of message/alert component
 - Add something that shows if answer was right or not
 - Store correct/incorrect history of bird for unlogged (local storage), logged user
 - Let users delete their accounts
@@ -74,3 +77,4 @@
 - Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository?
   Add endpoint that gives all the recorders (for thanks)
+- Safari is super slow with audio, but this seems to be just "the nature of safari"
