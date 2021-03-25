@@ -7,11 +7,15 @@ const Newuserform = () => {
 
   const handleNewUser = (event) => {
     event.preventDefault();
-    const newUser = { username: newUserName, password: newPassword };
-    userHandler
-      .makeUser(newUser)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+    if (newUserName.length > 0 && newPassword.length > 0) {
+      const newUser = { username: newUserName, password: newPassword };
+      userHandler
+        .makeUser(newUser)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+      setNewUserName("");
+      setNewPassword("");
+    }
   };
 
   return (

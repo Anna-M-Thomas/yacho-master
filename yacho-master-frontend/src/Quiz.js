@@ -2,15 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import questionHandler from "./services/nextquestion";
 import { useHotkeys } from "react-hotkeys-hook";
 
-//<div>{hidden ? "?" : `${question.en} ${question.jp}`}</div>
-
 const Mysterybird = React.forwardRef((props, ref) => {
-  const { question } = props;
+  const { question, hasAnswered } = props;
 
   return (
     <>
-      <div>{`${question.en} ${question.jp}, should be ${question.file}`}</div>
-      <audio ref={ref} src={question.file} controls />
+      <div>
+        {hasAnswered
+          ? `${question.en} ${question.jp}, should be ${question.file}`
+          : "?"}
+      </div>
+      <audio ref={ref} src={question.file} controls preload="auto" />
     </>
   );
 });
@@ -19,8 +21,8 @@ const Answers = ({
   keys,
   question,
   answers,
-  hidden,
-  setHidden,
+  hasAnswered,
+  setHasAnswered,
   points,
   setPoints,
 }) => {
@@ -34,17 +36,19 @@ const Answers = ({
   );
 
   const handleAnswer = (event) => {
-    if (hidden) {
-      setHidden(false);
-      if (event.type === "keydown") {
-        const index = keys.findIndex((key) => key === event.key);
-        if (answers[index].id === question.id) {
-          setPoints(points + 1);
-        }
-      }
-      if (event.target.dataset.id === question.id) {
+    setHasAnswered(true);
+    console.log(
+      "hasAnswered inside handleAnswer, Answers, should be true",
+      hasAnswered
+    );
+    if (event.type === "keydown") {
+      const index = keys.findIndex((key) => key === event.key);
+      if (answers[index].id === question.id) {
         setPoints(points + 1);
       }
+    }
+    if (event.target.dataset.id === question.id) {
+      setPoints(points + 1);
     }
   };
 
@@ -58,7 +62,7 @@ const Answers = ({
 const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
-  const [hidden, setHidden] = useState(true);
+  const [hasAnswered, setHasAnswered] = useState(false);
 
   useHotkeys(nextKey, () => nextQuestion(), { keydown: true });
 
@@ -66,7 +70,6 @@ const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
 
   const audioRef = useRef();
 
-  //This will disappear, we'll be getting both from backend!
   useEffect(() => {
     questionHandler.getQuestion().then((result) => {
       setQuestion(result.question);
@@ -81,28 +84,25 @@ const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
   };
 
   const nextQuestion = () => {
-    setHidden(true);
-    console.log(
-      "Inside next question, here is audioRef.current before reload",
-      audioRef.current
-    );
-    audioRef.current.pause();
-    questionHandler.getQuestion().then((result) => {
-      setQuestion(result.question);
-      setAnswers(result.answers);
-    });
-    audioRef.current.load();
-    console.log(
-      "Inside next question, here is audioRef.current after load",
-      audioRef.current
-    );
+    console.log("has answered inside nextQuestion inside Quiz", hasAnswered);
+    if (hasAnswered) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+
+      questionHandler.getQuestion().then((result) => {
+        setQuestion(result.question);
+        setAnswers(result.answers);
+      });
+      audioRef.current.load();
+      setHasAnswered(false);
+    }
   };
 
   const answerProps = {
     answers,
     question,
-    hidden,
-    setHidden,
+    hasAnswered,
+    setHasAnswered,
     points,
     setPoints,
     keys,
@@ -112,7 +112,11 @@ const Quiz = ({ points, setPoints, keys, nextKey, play, choices }) => {
   return (
     <>
       {question && (
-        <Mysterybird question={question} hidden={hidden} ref={audioRef} />
+        <Mysterybird
+          question={question}
+          hasAnswered={hasAnswered}
+          ref={audioRef}
+        />
       )}
       {answers && <Answers {...answerProps} />}
       <button onClick={nextQuestion}>Next question {nextKey}</button>

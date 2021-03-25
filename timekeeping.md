@@ -68,3 +68,5 @@ March 23, 2021
 March 25, 2021
 
 - 30 minutes: trying to fix audio source issue
+- 30 minutes: looking up safari slowness issue
+- 30 minutes: clear forms after submit, hide login page after login, working on preventing next question without answering

@@ -6,8 +6,12 @@ const Loginform = ({ handleLogin }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const loginInfo = { username: userName, password };
-    handleLogin(loginInfo);
+    if (userName.length > 0 && password.length > 0) {
+      const loginInfo = { username: userName, password };
+      handleLogin(loginInfo);
+      setUserName("");
+      setPassword("");
+    }
   };
 
   return (

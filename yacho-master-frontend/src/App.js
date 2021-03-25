@@ -58,8 +58,12 @@ function App() {
           <div>Lalala these are the thanks</div>
         </Route>
         <Route path="/login">
-          <Newuserform />
-          <Loginform setUser={setUser} handleLogin={handleLogin} />
+          {!user && (
+            <>
+              <Loginform setUser={setUser} handleLogin={handleLogin} />
+              <Newuserform />
+            </>
+          )}
         </Route>
       </Switch>
     </>
