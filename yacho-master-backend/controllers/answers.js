@@ -6,8 +6,8 @@ answersRouter.post("/", async (request, response, next) => {
   try {
     const answer = new Answer({
       bird: request.body.bird,
-      right: "0",
-      wrong: "0",
+      right: request.body.right,
+      wrong: request.body.wrong,
     });
 
     //I don't need to return user, I just need answer to add to user's answers array in front end

@@ -44,16 +44,28 @@ const Answers = ({
   );
 
   //first answer needs an object with bird: question.id and user: user.id
-  const handleAnswer = async (correctOrNot) => {
+  const handleAnswer = async (wasCorrect) => {
     if (user.answers) {
       const found = user.answers.find((answer) => answer.bird === question.id);
       if (!found) {
         const returnedAnswer = await answerHandler.answerFirstTime({
           bird: question.id,
           user: user.id,
+          right: wasCorrect ? 1 : 0,
+          wrong: wasCorrect ? 0 : 1,
         });
         const newAnswers = user.answers.concat(returnedAnswer);
-        console.log(newAnswers);
+        setUser({ ...user, answers: newAnswers });
+      } else {
+        const { id, right, wrong } = found;
+        const returnedAnswer = await answerHandler.answerAgain(id, {
+          right: wasCorrect ? right + 1 : right,
+          wrong: wasCorrect ? wrong : wrong + 1,
+        });
+        const newAnswers = user.answers.map((answer) =>
+          answer.id === id ? returnedAnswer : answer
+        );
+        setUser({ ...user, answers: newAnswers });
       }
     }
   };
@@ -63,12 +75,12 @@ const Answers = ({
       if (event.type === "keydown") {
         const index = keys.findIndex((key) => key === event.key);
         answers[index].id === question.id
-          ? handleAnswer("correct")
-          : handleAnswer("incorrect");
+          ? handleAnswer(true)
+          : handleAnswer(false);
       } else {
         event.target.dataset.id === question.id
-          ? handleAnswer("correct")
-          : handleAnswer("incorrect");
+          ? handleAnswer(true)
+          : handleAnswer(false);
       }
       setHasAnswered(true);
     }

@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const answerSchema = new mongoose.Schema({
   bird: String,
-  right: String,
-  wrong: String,
+  right: Number,
+  wrong: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
