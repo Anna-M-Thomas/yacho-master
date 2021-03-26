@@ -28,27 +28,4 @@ usersRouter.post("/", async (request, response, next) => {
   }
 });
 
-usersRouter.post("/:id", async (request, response, next) => {
-  try {
-    const answer = new Answer(request.body);
-
-    const user = await User.findByIdAndUpdate(
-      { _id: `${request.params.id}` },
-      {
-        $addToSet: {
-          answers: answer,
-        },
-      },
-      { new: true }
-    );
-
-    answer.user = user;
-    await answer.save();
-
-    response.json(user);
-  } catch (error) {
-    next(error);
-  }
-});
-
 module.exports = usersRouter;

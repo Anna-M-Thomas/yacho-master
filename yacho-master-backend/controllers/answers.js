@@ -4,6 +4,7 @@ const Answer = require("../models/answer");
 
 answersRouter.post("/", async (request, response, next) => {
   try {
+    console.log("request.body inside answersRouter", request.body);
     const answer = new Answer({
       bird: request.body.bird,
       right: "0",
@@ -11,17 +12,16 @@ answersRouter.post("/", async (request, response, next) => {
     });
 
     //I don't need to return user, I just need answer to add to user's answers array in front end
-    const user = await User.findByIdAndUpdate(
-      { _id: `${request.params.id}` },
-      {
-        $addToSet: {
-          answers: answer,
-        },
-      }
-    );
+    const user = await User.findByIdAndUpdate(request.body.user, {
+      $addToSet: {
+        answers: answer,
+      },
+    });
 
-    answer.user = user;
+    answer.user = user.id;
     await answer.save();
+    console.log("user", user);
+    console.log("answer", answer);
 
     response.json(answer);
   } catch (error) {

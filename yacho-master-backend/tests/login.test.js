@@ -24,3 +24,7 @@ test("Can login with legit info", async () => {
   expect(response.body.username).toBe("tsugumi");
   expect(response.body.__v).not.toBeDefined();
 });
+
+afterAll(() => {
+  mongoose.connection.close();
+});

@@ -80,3 +80,4 @@ March 26, 2021
 -30 minutes: answer model, testing
 -30 minutes: still thinking about collection, structure.
 -30 minutes: making new router for answers
+-30 minutes: test works for posting a new answer
