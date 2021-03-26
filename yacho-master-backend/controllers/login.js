@@ -27,14 +27,12 @@ loginRouter.post("/", async (request, response, next) => {
       expiresIn: "24h",
     });
 
-    return response
-      .status(200)
-      .send({
-        token,
-        username: user.username,
-        id: user._id,
-        answers: user.answers,
-      });
+    return response.status(200).send({
+      token,
+      username: user.username,
+      id: user._id,
+      answers: user.answers,
+    });
   } catch (error) {
     next(error);
   }

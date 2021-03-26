@@ -64,6 +64,32 @@
 - Login page should disappear from menu if user?...done
 - The next arrow key, specifically, is showing hasAnswered as false. Why? Answer: you forgot that dependency array thing again!...done
 - Disable next key in quiz until question is answered...done
+- Change array to hold objects {bird id, correct: number, incorrect:number} or something?
+  "The $addToSet operator adds a value to an array unless the value is already present, in which case $addToSet does nothing to that array. To specify a <field> in an embedded document or in an array, use dot notation."
+  An array like answers = [{id: "1234", right: 2, wrong: 3},{id: "1234", right: 2, wrong: 3}] would use the index
+  eg. answers.0, so I'd need to keep track of the index, which I don't want to do.
+  answers = [{id: "1234", history: [{right: 2, wrong: 3}]}]
+  "answers.1234"
+
+  - For example, comments in the example blog models is comments: [ String ]
+    I want answers : [Object]
+    You know what, making another schema and storing documents inside the array makes more sense.
+    If answered bird is NOT in user array of answers post to api/answers, make a new answer with 0 right and wrong, save user in its user field or whatever, add it to user, return user.
+    If answered bird IS in user array of answers, put to api/answers/:id (meaning Mongo \_id!) with full updated object and incremented right or wrong
+
+  1. An endpoint that goes to api/answers/
+  2. A new schema for birds
+  3. set \_id to bird id. Each bird gets an array of answerSchemas
+  4. No, but I need to update the answer. Agggggghh
+     Answer
+     \_id:
+     bird: String
+     user: {
+     type: mongoose.Schema.Types.ObjectId,
+     ref: "User",
+     },
+     right: Number,
+     wrong: Number
 
 - Add some kind of message/alert component
 - Add something that shows if answer was right or not

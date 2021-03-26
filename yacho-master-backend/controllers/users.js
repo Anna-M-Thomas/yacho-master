@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
+const Answer = require("../models/answer");
 
 usersRouter.post("/", async (request, response, next) => {
   try {
@@ -27,18 +28,23 @@ usersRouter.post("/", async (request, response, next) => {
   }
 });
 
-// const answerInfo = { birdId, wasCorrect };
-
 usersRouter.post("/:id", async (request, response, next) => {
   try {
-    const body = request.body;
-    console.log("body inside usersRouter", body);
-    console.log("id inside usersRouter", request.params.id);
+    const answer = new Answer(request.body);
+
     const user = await User.findByIdAndUpdate(
       { _id: `${request.params.id}` },
-      { $addToSet: { answers: body.birdId } },
+      {
+        $addToSet: {
+          answers: answer,
+        },
+      },
       { new: true }
     );
+
+    answer.user = user;
+    await answer.save();
+
     response.json(user);
   } catch (error) {
     next(error);

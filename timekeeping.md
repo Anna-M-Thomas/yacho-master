@@ -74,3 +74,9 @@ March 25, 2021
 - 30 minutes: setting up an array in user for saving correct/incorrect answer
 - 30 minutes: test for array in user passed
   Total 3 hours
+
+March 26, 2021
+-30 minutes: working on restructuring User
+-30 minutes: answer model, testing
+-30 minutes: still thinking about collection, structure.
+-30 minutes: making new router for answers
