@@ -4,7 +4,6 @@ const Answer = require("../models/answer");
 
 answersRouter.post("/", async (request, response, next) => {
   try {
-    console.log("request.body inside answersRouter", request.body);
     const answer = new Answer({
       bird: request.body.bird,
       right: "0",
@@ -20,9 +19,6 @@ answersRouter.post("/", async (request, response, next) => {
 
     answer.user = user.id;
     await answer.save();
-    console.log("user", user);
-    console.log("answer", answer);
-
     response.json(answer);
   } catch (error) {
     next(error);
@@ -30,12 +26,14 @@ answersRouter.post("/", async (request, response, next) => {
 });
 
 answersRouter.post("/:id", async (request, response, next) => {
+  console.log("request.body inside answersRouter", request.body);
+  console.log("Parameter inside answersrouter", request.params.id);
   try {
     const right = request.body.right;
     const wrong = request.body.wrong;
 
     const answer = await Answer.findByIdAndUpdate(
-      { _id: `${request.params.id}` },
+      request.params.id,
       { right, wrong },
       { new: true }
     );

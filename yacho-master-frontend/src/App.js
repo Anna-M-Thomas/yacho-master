@@ -9,7 +9,6 @@ import Loginform from "./Loginform";
 import Quiz from "./Quiz";
 
 function App() {
-  const [points, setPoints] = useState(0);
   const [choices, setChoices] = useState(8);
   const defaultKeys = ["a", "s", "d", "f", "j", "k", "l", ";"];
   const savedUser = JSON.parse(window.localStorage.getItem("loggedInUser"));
@@ -34,12 +33,12 @@ function App() {
       <Switch>
         <Route path="/quiz">
           <Quiz
-            points={points}
-            setPoints={setPoints}
             keys={keys}
             nextKey={nextKey}
             play={play}
             choices={choices}
+            user={user}
+            setUser={setUser}
           />
         </Route>
         <Route path="/settings">

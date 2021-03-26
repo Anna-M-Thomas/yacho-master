@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import questionHandler from "./services/nextquestion";
+import answerHandler from "./services/answer";
 import { useHotkeys } from "react-hotkeys-hook";
 
 const Mysterybird = React.forwardRef((props, ref) => {
@@ -32,49 +33,55 @@ const Answers = ({
   answers,
   hasAnswered,
   setHasAnswered,
-  points,
-  setPoints,
+  user,
+  setUser,
 }) => {
   useHotkeys(
     keys.join(", "),
-    (event) => handleAnswer(event),
+    (event) => handlePress(event),
     [question, answers, hasAnswered],
-    {
-      keydown: true,
-    }
+    { keydown: true }
   );
 
-  const handleCorrect = () => {
-    setPoints(points + 1);
-    console.log("Correct!");
+  //first answer needs an object with bird: question.id and user: user.id
+  const handleAnswer = async (correctOrNot) => {
+    if (user.answers) {
+      const found = user.answers.find((answer) => answer.bird === question.id);
+      if (!found) {
+        const returnedAnswer = await answerHandler.answerFirstTime({
+          bird: question.id,
+          user: user.id,
+        });
+        const newAnswers = user.answers.concat(returnedAnswer);
+        console.log(newAnswers);
+      }
+    }
   };
 
-  const handleIncorrect = () => {
-    console.log("incorrect!");
-  };
-
-  const handleAnswer = (event) => {
+  const handlePress = (event) => {
     if (!hasAnswered) {
       if (event.type === "keydown") {
         const index = keys.findIndex((key) => key === event.key);
-        answers[index].id === question.id ? handleCorrect() : handleIncorrect();
+        answers[index].id === question.id
+          ? handleAnswer("correct")
+          : handleAnswer("incorrect");
       } else {
         event.target.dataset.id === question.id
-          ? handleCorrect()
-          : handleIncorrect();
+          ? handleAnswer("correct")
+          : handleAnswer("incorrect");
       }
       setHasAnswered(true);
     }
   };
 
   return answers.map((bird, index) => (
-    <button key={bird.id} data-id={bird.id} onClick={handleAnswer}>
+    <button key={bird.id} data-id={bird.id} onClick={handlePress}>
       {bird.en} {bird.jp} ({keys[index]})
     </button>
   ));
 };
 
-const Quiz = ({ points, setPoints, keys, nextKey, play }) => {
+const Quiz = ({ keys, nextKey, play, user, setUser }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
@@ -116,8 +123,8 @@ const Quiz = ({ points, setPoints, keys, nextKey, play }) => {
     question,
     hasAnswered,
     setHasAnswered,
-    points,
-    setPoints,
+    user,
+    setUser,
     keys,
     nextKey,
   };
@@ -133,7 +140,6 @@ const Quiz = ({ points, setPoints, keys, nextKey, play }) => {
       )}
       {answers && <Answers {...answerProps} />}
       <button onClick={nextQuestion}>Next question {nextKey}</button>
-      <div>Points: {points}</div>
       <div>Play/stop audio: {play}</div>
     </>
   );
