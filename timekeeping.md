@@ -89,4 +89,4 @@ Total 4 hours
 March 30, 2021
 -30 minutes: # of choices now reflected in request to back end
 -30 minutes: fixed another # of choices problem, restructuring quiz
--30 minutes: More (thinking about) restructuring quiz
+-30 minutes: Combined question, answers into one component

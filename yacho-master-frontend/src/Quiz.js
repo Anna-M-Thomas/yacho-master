@@ -4,7 +4,14 @@ import answerHandler from "./services/answer";
 import { useHotkeys } from "react-hotkeys-hook";
 
 const Question = React.forwardRef((props, ref) => {
-  const { keys, answers, handlePress, question, hasAnswered } = props;
+  const {
+    keys,
+    answers,
+    handlePress,
+    question,
+    hasAnswered,
+    answerHistory,
+  } = props;
 
   return (
     <>
@@ -12,7 +19,9 @@ const Question = React.forwardRef((props, ref) => {
         {hasAnswered ? (
           <>
             <div>
-              {question.en} {question.jp}
+              {question.en} {question.jp}{" "}
+              {answerHistory &&
+                `right: ${answerHistory.right} wrong: ${answerHistory.wrong}`}
             </div>
             <div>
               {" "}
@@ -37,8 +46,8 @@ const Question = React.forwardRef((props, ref) => {
 const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
-  const [isCorrect, setIsCorrect] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
+  const [answerHistory, setAnswerHistory] = useState(null);
 
   useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
   useHotkeys(play, () => handlePlayButton(), { keydown: true });
@@ -57,6 +66,13 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
       setAnswers(result.answers);
     });
   }, [choices]);
+
+  useEffect(() => {
+    if (user && question) {
+      const found = user.answers.find((answer) => answer.bird === question.id);
+      setAnswerHistory(found);
+    }
+  }, [question]);
 
   const handlePlayButton = () => {
     audioRef.current.paused
@@ -129,6 +145,7 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
           ref={audioRef}
           keys={keys}
           answers={answers}
+          answerHistory={answerHistory}
           handlePress={handlePress}
         />
       )}

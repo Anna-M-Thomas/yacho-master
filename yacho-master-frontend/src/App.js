@@ -39,7 +39,6 @@ function App() {
             choices={choices}
             user={user}
             setUser={setUser}
-            choices={choices}
           />
         </Route>
         <Route path="/settings">

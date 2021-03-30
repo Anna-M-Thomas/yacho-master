@@ -6,9 +6,4 @@ const makeUser = async (user) => {
   return response.data;
 };
 
-const addAnswer = async (userId, birdId, wasCorrect) => {
-  const answerInfo = { birdId, wasCorrect };
-  const response = await axios.post(`${baseUrl}/${userId}`, answerInfo);
-};
-
 export default { makeUser };
