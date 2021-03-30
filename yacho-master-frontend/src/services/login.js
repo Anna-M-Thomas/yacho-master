@@ -7,4 +7,9 @@ const loginUser = async (user) => {
   return response.data;
 };
 
-export default { loginUser };
+const checkUser = async (token) => {
+  const response = await axios.post(`${baseUrl}/check`, { token });
+  return response.data;
+};
+
+export default { loginUser, checkUser };

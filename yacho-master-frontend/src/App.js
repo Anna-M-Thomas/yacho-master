@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import loginHandler from "./services/login";
-
 import Menu from "./Menu";
 import Settings from "./Settings";
 import Newuserform from "./Newuserform";
@@ -13,15 +12,33 @@ function App() {
   const defaultKeys = ["a", "s", "d", "f", "j", "k", "l", ";"];
   const savedUser = JSON.parse(window.localStorage.getItem("loggedInUser"));
   const [user, setUser] = useState(savedUser || "");
+  const [answerHistory, setAnswerHistory] = useState([]);
   const [keys, setKeys] = useState(defaultKeys.slice(0, choices));
   const [nextKey, setNextkey] = useState("right");
   const [play, setPlay] = useState("space");
 
+  useEffect(() => {
+    if (user)
+      loginHandler
+        .checkUser(user.token)
+        .then((response) => console.log(response))
+        .catch((error) => {
+          console.log("error", error);
+          setUser("");
+          setAnswerHistory([]);
+          window.localStorage.setItem("loggedInUser", JSON.stringify(null));
+        });
+  }, []);
+
   const handleLogin = async (login) => {
     try {
-      const loggedInUser = await loginHandler.loginUser(login);
+      const { token, username, id, answers } = await loginHandler.loginUser(
+        login
+      );
+      const loggedInUser = { token, username, id };
       window.localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       setUser(loggedInUser);
+      setAnswerHistory(answers);
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +56,8 @@ function App() {
             choices={choices}
             user={user}
             setUser={setUser}
+            answerHistory={answerHistory}
+            setAnswerHistory={setAnswerHistory}
           />
         </Route>
         <Route path="/settings">

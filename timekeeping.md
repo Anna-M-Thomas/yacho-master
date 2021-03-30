@@ -90,3 +90,8 @@ March 30, 2021
 -30 minutes: # of choices now reflected in request to back end
 -30 minutes: fixed another # of choices problem, restructuring quiz
 -30 minutes: Combined question, answers into one component
+-30 minutes: Getting answer history to display in question, thinking how to deal with local storage & answer history
+-30 minutes: More struggles with answer history
+-30 minutes: Trying to set answer history after answer
+-30 minutes: UseEffect to either get or reset user by checking token
+-30 minutes: Working on handling expired tokens by logging out, token needed for posting answer history

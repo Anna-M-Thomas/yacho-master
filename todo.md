@@ -99,19 +99,32 @@
 - How many documents can these things hold? Is it really OK to have 200 something bird answers per user? 100 users answer all => 23,700 1000 users =>237,000
   ....Yeah, it's ok. https://docs.mongodb.com/manual/reference/limits/ under data "there is not limit on # of documents...done
 - Now why is only loading one answer on next?...done
-
 - Show # right and wrong after answered if signed in...done
-- Check for token for posting answers
+- Why am I not getting answers array from backend? Backend has an array of 281 something objects. I am receiving that just fine on login. I need to get user upon reload, not rely on localStorage, or answers could be out of date. In Full Stack Open example,
+  const user = storage.loadUser()
+  if (user) {
+  dispatch(login(user))
+  }
+  }, [dispatch])
+  I want to store user, as in token, username, and id. Separately, I want to store answerhistory, which is loaded with useEffect.
+  -api/answers isn't working? Why?...done
+- Check for token for posting answers...done, badly
+
+-Remember you set token to 1 minute, set it back to an hour when figure things out
+-Add try and catch to answerHandler.answerAgain in Quiz
+-Make new function for clearing logged in user to pass down into quiz, and also make logout stick
+-Figure out how to omit user in answerFirstTime, right, wrong and user in answerAgain. You should be able to get user from token and increment on backend based on wasCorrect.
+-Change from getting mp3s from xeno canto back to stored on backend unless we can figure out cross origin cookie issue
+-is questionHistory really storing anything right now, or is it always null because there's no question yet inside useEffect?
+
 - Add some kind of message/alert component
 - Add something that shows if answer was right or not
-- Store correct/incorrect history of bird for unlogged (local storage), logged user
 - Let users delete their accounts
 - Show citation and license with audio file
   `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
   Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
   (How to do that with react-i18next?)
 - Make everything async
-- Save score to localStorage
 - I should probably just have one gitignore file instead of multiple, it's one repository?
   Add endpoint that gives all the recorders (for thanks)
 - Safari is super slow with audio, but this seems to be just "the nature of safari"

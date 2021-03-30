@@ -1,9 +1,14 @@
+const jwt = require("jsonwebtoken");
 const answersRouter = require("express").Router();
 const User = require("../models/user");
 const Answer = require("../models/answer");
 
 answersRouter.post("/", async (request, response, next) => {
   try {
+    const token = request.token;
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    console.log("decoded token", decodedToken);
+
     const answer = new Answer({
       bird: request.body.bird,
       right: request.body.right,
@@ -26,8 +31,6 @@ answersRouter.post("/", async (request, response, next) => {
 });
 
 answersRouter.post("/:id", async (request, response, next) => {
-  console.log("request.body inside answersRouter", request.body);
-  console.log("Parameter inside answersrouter", request.params.id);
   try {
     const right = request.body.right;
     const wrong = request.body.wrong;

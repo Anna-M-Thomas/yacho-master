@@ -10,7 +10,7 @@ const Question = React.forwardRef((props, ref) => {
     handlePress,
     question,
     hasAnswered,
-    answerHistory,
+    questionHistory,
   } = props;
 
   return (
@@ -20,8 +20,8 @@ const Question = React.forwardRef((props, ref) => {
           <>
             <div>
               {question.en} {question.jp}{" "}
-              {answerHistory &&
-                `right: ${answerHistory.right} wrong: ${answerHistory.wrong}`}
+              {questionHistory &&
+                `right: ${questionHistory.right} wrong: ${questionHistory.wrong}`}
             </div>
             <div>
               {" "}
@@ -43,11 +43,19 @@ const Question = React.forwardRef((props, ref) => {
   );
 });
 
-const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
+const Quiz = ({
+  keys,
+  nextKey,
+  play,
+  user,
+  choices,
+  answerHistory,
+  setAnswerHistory,
+}) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
-  const [answerHistory, setAnswerHistory] = useState(null);
+  const [questionHistory, setquestionHistory] = useState(null);
 
   useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
   useHotkeys(play, () => handlePlayButton(), { keydown: true });
@@ -65,14 +73,13 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
       setQuestion(result.question);
       setAnswers(result.answers);
     });
-  }, [choices]);
-
-  useEffect(() => {
     if (user && question) {
-      const found = user.answers.find((answer) => answer.bird === question.id);
-      setAnswerHistory(found);
+      const found = answerHistory.find((answer) => answer.bird === question.id);
+      if (found) {
+        setquestionHistory(found);
+      }
     }
-  }, [question]);
+  }, []);
 
   const handlePlayButton = () => {
     audioRef.current.paused
@@ -95,27 +102,36 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
 
   //After click or keydown (handlePress above), but this is all saved user logic
   const handleAnswer = async (wasCorrect) => {
-    if (user.answers) {
-      const found = user.answers.find((answer) => answer.bird === question.id);
+    if (answerHistory) {
+      const found = answerHistory.find((answer) => answer.bird === question.id);
       if (!found) {
-        const returnedAnswer = await answerHandler.answerFirstTime(
-          user,
-          question,
-          wasCorrect
-        );
-        setUser({ ...user, answers: user.answers.concat(returnedAnswer) });
+        try {
+          const returnedAnswer = await answerHandler.answerFirstTime(
+            user,
+            question,
+            wasCorrect
+          );
+          const newHistory = answerHistory.concat(returnedAnswer);
+          setAnswerHistory(newHistory);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
+        const found = answerHistory.find(
+          (answer) => answer.bird === question.id
+        );
         const { id, right, wrong } = found;
         const returnedAnswer = await answerHandler.answerAgain(
           id,
           right,
           wrong,
-          wasCorrect
+          wasCorrect,
+          user
         );
-        const newAnswers = user.answers.map((answer) =>
+        const newAnswerHistory = answerHistory.map((answer) =>
           answer.id === id ? returnedAnswer : answer
         );
-        setUser({ ...user, answers: newAnswers });
+        setAnswerHistory(newAnswerHistory);
       }
     }
   };
@@ -127,7 +143,6 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
       audioRef.current.currentTime = 0;
 
       questionHandler.getQuestion(choices).then((result) => {
-        console.log("result", result);
         setQuestion(result.question);
         setAnswers(result.answers);
       });
@@ -146,7 +161,9 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
           keys={keys}
           answers={answers}
           answerHistory={answerHistory}
+          setAnswerHistory={setAnswerHistory}
           handlePress={handlePress}
+          questionHistory={questionHistory}
         />
       )}
       <button onClick={nextQuestion}>Next question {nextKey}</button>

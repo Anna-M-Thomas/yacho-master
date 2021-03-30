@@ -3,6 +3,19 @@ const bcrypt = require("bcrypt");
 const loginRouter = require("express").Router();
 const User = require("../models/user");
 
+loginRouter.post("/check", async (request, response, next) => {
+  try {
+    const token = request.body.token;
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    console.log("decoded token", decodedToken);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 loginRouter.post("/", async (request, response, next) => {
   try {
     const body = request.body;
@@ -24,7 +37,8 @@ loginRouter.post("/", async (request, response, next) => {
     };
 
     const token = jwt.sign(userForToken, process.env.SECRET, {
-      expiresIn: "24h",
+      // expiresIn: "24h",
+      expiresIn: "1m",
     });
 
     return response.status(200).send({
