@@ -84,3 +84,8 @@ March 26, 2021
 -30 minutes: can update an answer
 -30 minutes: can post a new answer from front end
 -30 minutes: can update right/wrong from front end
+Total 4 hours
+
+March 30, 2021
+-30 minutes: # of choices now reflected in request to back end
+-30 minutes: fixed anothe # of choices problem, restructuring quiz

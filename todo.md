@@ -94,9 +94,11 @@
 
 - Guess what, right and wrong have to be numbers or you can't increment them....done
 - Put answers in a separate state...no I don't want to, that's a pain. OK. I figured out how to alter user's answer array in state....done
-
 - Reducing number of answers doesn't limit number of answers in Quiz, like the elements are still there
+  This is # of choices not fed to api call yet. Changed get to post to send data...done
 - How many documents can these things hold? Is it really OK to have 200 something bird answers per user? 100 users answer all => 23,700 1000 users =>237,000
+  ....Yeah, it's ok. https://docs.mongodb.com/manual/reference/limits/ under data "there is not limit on # of documents
+
 - Show # right and wrong after answered if signed in
 - Check for token for posting answers
 - Add some kind of message/alert component

@@ -8,34 +8,43 @@ const Mysterybird = React.forwardRef((props, ref) => {
 
   return (
     <>
-      {hasAnswered ? (
-        <>
-          <div>
-            {question.en} {question.jp}
-          </div>
-          <div>
-            <a href={`${question.lic}`}>CC</a> {question.rec}, XC{question.id}.
-            Accessible at {question.url}.
-          </div>
-        </>
-      ) : (
-        <div>?</div>
-      )}
-
+      <div>
+        {hasAnswered ? (
+          <>
+            <div>
+              {question.en} {question.jp}
+            </div>
+            <div>
+              {" "}
+              <a href={`${question.lic}`}>CC</a> {question.rec}, XC{question.id}
+              . Accessible at {question.url}.
+            </div>
+          </>
+        ) : (
+          "?"
+        )}
+      </div>
       <audio ref={ref} src={question.file} controls preload="auto" />
     </>
   );
 });
 
-const Answers = ({
-  keys,
-  question,
-  answers,
-  hasAnswered,
-  setHasAnswered,
-  user,
-  setUser,
-}) => {
+const Answers = ({ keys, answers, handlePress }) => {
+  return answers.map((bird, index) => (
+    <button key={bird.id} data-id={bird.id} onClick={handlePress}>
+      {bird.en} {bird.jp} ({keys[index]})
+    </button>
+  ));
+};
+
+const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
+  const [question, setQuestion] = useState(null);
+  const [answers, setAnswers] = useState(null);
+  const [hasAnswered, setHasAnswered] = useState(false);
+
+  useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
+  useHotkeys(play, () => handlePlayButton(), { keydown: true });
+
   useHotkeys(
     keys.join(", "),
     (event) => handlePress(event),
@@ -43,7 +52,49 @@ const Answers = ({
     { keydown: true }
   );
 
-  //first answer needs an object with bird: question.id and user: user.id
+  const audioRef = useRef();
+
+  useEffect(() => {
+    questionHandler.getQuestion(choices).then((result) => {
+      setQuestion(result.question);
+      setAnswers(result.answers);
+    });
+  }, [choices]);
+
+  const handlePress = (event) => {
+    if (!hasAnswered) {
+      if (event.type === "keydown") {
+        const index = keys.findIndex((key) => key === event.key);
+        handleAnswer(answers[index].id === question.id);
+      } else {
+        handleAnswer(event.target.dataset.id === question.id);
+      }
+      setHasAnswered(true);
+    }
+  };
+
+  const handlePlayButton = () => {
+    audioRef.current.paused
+      ? audioRef.current.play().catch((error) => console.log(error))
+      : audioRef.current.pause();
+  };
+
+  //handles next question click or keyright
+  const nextQuestion = () => {
+    if (hasAnswered) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+
+      questionHandler.getQuestion(choices).then((result) => {
+        setQuestion(result.question);
+        setAnswers(result.answers);
+      });
+      audioRef.current.load();
+      setHasAnswered(false);
+    }
+  };
+
+  //After click or keydown (handlePress above)
   const handleAnswer = async (wasCorrect) => {
     if (user.answers) {
       const found = user.answers.find((answer) => answer.bird === question.id);
@@ -70,77 +121,6 @@ const Answers = ({
     }
   };
 
-  const handlePress = (event) => {
-    if (!hasAnswered) {
-      if (event.type === "keydown") {
-        const index = keys.findIndex((key) => key === event.key);
-        answers[index].id === question.id
-          ? handleAnswer(true)
-          : handleAnswer(false);
-      } else {
-        event.target.dataset.id === question.id
-          ? handleAnswer(true)
-          : handleAnswer(false);
-      }
-      setHasAnswered(true);
-    }
-  };
-
-  return answers.map((bird, index) => (
-    <button key={bird.id} data-id={bird.id} onClick={handlePress}>
-      {bird.en} {bird.jp} ({keys[index]})
-    </button>
-  ));
-};
-
-const Quiz = ({ keys, nextKey, play, user, setUser }) => {
-  const [question, setQuestion] = useState(null);
-  const [answers, setAnswers] = useState(null);
-  const [hasAnswered, setHasAnswered] = useState(false);
-
-  useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
-  useHotkeys(play, () => handlePlayButton(), { keydown: true });
-
-  const audioRef = useRef();
-
-  useEffect(() => {
-    questionHandler.getQuestion().then((result) => {
-      setQuestion(result.question);
-      setAnswers(result.answers);
-    });
-  }, []);
-
-  const handlePlayButton = () => {
-    audioRef.current.paused
-      ? audioRef.current.play().catch((error) => console.log(error))
-      : audioRef.current.pause();
-  };
-
-  const nextQuestion = () => {
-    if (hasAnswered) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-
-      questionHandler.getQuestion().then((result) => {
-        setQuestion(result.question);
-        setAnswers(result.answers);
-      });
-      audioRef.current.load();
-      setHasAnswered(false);
-    }
-  };
-
-  const answerProps = {
-    answers,
-    question,
-    hasAnswered,
-    setHasAnswered,
-    user,
-    setUser,
-    keys,
-    nextKey,
-  };
-
   return (
     <>
       {question && (
@@ -150,7 +130,9 @@ const Quiz = ({ keys, nextKey, play, user, setUser }) => {
           ref={audioRef}
         />
       )}
-      {answers && <Answers {...answerProps} />}
+      {answers && (
+        <Answers keys={keys} answers={answers} handlePress={handlePress} />
+      )}
       <button onClick={nextQuestion}>Next question {nextKey}</button>
       <div>Play/stop audio: {play}</div>
     </>
