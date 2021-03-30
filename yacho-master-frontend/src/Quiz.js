@@ -3,8 +3,8 @@ import questionHandler from "./services/nextquestion";
 import answerHandler from "./services/answer";
 import { useHotkeys } from "react-hotkeys-hook";
 
-const Mysterybird = React.forwardRef((props, ref) => {
-  const { question, hasAnswered } = props;
+const Question = React.forwardRef((props, ref) => {
+  const { keys, answers, handlePress, question, hasAnswered } = props;
 
   return (
     <>
@@ -25,26 +25,23 @@ const Mysterybird = React.forwardRef((props, ref) => {
         )}
       </div>
       <audio ref={ref} src={question.file} controls preload="auto" />
+      {answers.map((bird, index) => (
+        <button key={bird.id} data-id={bird.id} onClick={handlePress}>
+          {bird.en} {bird.jp} ({keys[index]})
+        </button>
+      ))}
     </>
   );
 });
 
-const Answers = ({ keys, answers, handlePress }) => {
-  return answers.map((bird, index) => (
-    <button key={bird.id} data-id={bird.id} onClick={handlePress}>
-      {bird.en} {bird.jp} ({keys[index]})
-    </button>
-  ));
-};
-
 const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
+  const [isCorrect, setIsCorrect] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
 
   useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
   useHotkeys(play, () => handlePlayButton(), { keydown: true });
-
   useHotkeys(
     keys.join(", "),
     (event) => handlePress(event),
@@ -61,6 +58,13 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
     });
   }, [choices]);
 
+  const handlePlayButton = () => {
+    audioRef.current.paused
+      ? audioRef.current.play().catch((error) => console.log(error))
+      : audioRef.current.pause();
+  };
+
+  //handles button click/keydown press for answer
   const handlePress = (event) => {
     if (!hasAnswered) {
       if (event.type === "keydown") {
@@ -73,10 +77,31 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
     }
   };
 
-  const handlePlayButton = () => {
-    audioRef.current.paused
-      ? audioRef.current.play().catch((error) => console.log(error))
-      : audioRef.current.pause();
+  //After click or keydown (handlePress above), but this is all saved user logic
+  const handleAnswer = async (wasCorrect) => {
+    if (user.answers) {
+      const found = user.answers.find((answer) => answer.bird === question.id);
+      if (!found) {
+        const returnedAnswer = await answerHandler.answerFirstTime(
+          user,
+          question,
+          wasCorrect
+        );
+        setUser({ ...user, answers: user.answers.concat(returnedAnswer) });
+      } else {
+        const { id, right, wrong } = found;
+        const returnedAnswer = await answerHandler.answerAgain(
+          id,
+          right,
+          wrong,
+          wasCorrect
+        );
+        const newAnswers = user.answers.map((answer) =>
+          answer.id === id ? returnedAnswer : answer
+        );
+        setUser({ ...user, answers: newAnswers });
+      }
+    }
   };
 
   //handles next question click or keyright
@@ -86,6 +111,7 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
       audioRef.current.currentTime = 0;
 
       questionHandler.getQuestion(choices).then((result) => {
+        console.log("result", result);
         setQuestion(result.question);
         setAnswers(result.answers);
       });
@@ -94,44 +120,17 @@ const Quiz = ({ keys, nextKey, play, user, setUser, choices }) => {
     }
   };
 
-  //After click or keydown (handlePress above)
-  const handleAnswer = async (wasCorrect) => {
-    if (user.answers) {
-      const found = user.answers.find((answer) => answer.bird === question.id);
-      if (!found) {
-        const returnedAnswer = await answerHandler.answerFirstTime({
-          bird: question.id,
-          user: user.id,
-          right: wasCorrect ? 1 : 0,
-          wrong: wasCorrect ? 0 : 1,
-        });
-        const newAnswers = user.answers.concat(returnedAnswer);
-        setUser({ ...user, answers: newAnswers });
-      } else {
-        const { id, right, wrong } = found;
-        const returnedAnswer = await answerHandler.answerAgain(id, {
-          right: wasCorrect ? right + 1 : right,
-          wrong: wasCorrect ? wrong : wrong + 1,
-        });
-        const newAnswers = user.answers.map((answer) =>
-          answer.id === id ? returnedAnswer : answer
-        );
-        setUser({ ...user, answers: newAnswers });
-      }
-    }
-  };
-
   return (
     <>
-      {question && (
-        <Mysterybird
+      {question && answers && (
+        <Question
           question={question}
           hasAnswered={hasAnswered}
           ref={audioRef}
+          keys={keys}
+          answers={answers}
+          handlePress={handlePress}
         />
-      )}
-      {answers && (
-        <Answers keys={keys} answers={answers} handlePress={handlePress} />
       )}
       <button onClick={nextQuestion}>Next question {nextKey}</button>
       <div>Play/stop audio: {play}</div>
