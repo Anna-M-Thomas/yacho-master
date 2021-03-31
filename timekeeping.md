@@ -102,4 +102,7 @@ March 31, 2021
 -30 minutes: backend answer logic written
 -30 minutes: more work on token, update answer
 -30 minutes: checking incrementing
--30 minutes: working on checking token problem and getting answers from backend on reload
+-30 minutes: working on checking token problems and getting answers from backend on reload
+-30 minutes: saving answers in user problems
+-30 minutes: saving answers ok even when answering quickly (mongo version problems), working on login check and returning answers
+-30 minutes: can display right/wrong history, logout function OK, changed mp3 files back to access from backend

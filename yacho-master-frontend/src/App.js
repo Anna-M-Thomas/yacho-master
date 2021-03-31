@@ -17,36 +17,40 @@ function App() {
   const [nextKey, setNextkey] = useState("right");
   const [play, setPlay] = useState("space");
 
+  console.log("answerHistory", answerHistory);
+
   useEffect(() => {
     if (user)
       loginHandler
         .checkUser(user.token)
-        .then((response) => console.log(response))
+        .then((response) => setAnswerHistory(response.answers))
         .catch((error) => {
           console.log("error", error);
-          setUser("");
-          setAnswerHistory([]);
-          window.localStorage.setItem("loggedInUser", JSON.stringify(null));
+          handleLogout();
         });
   }, []);
 
   const handleLogin = async (login) => {
     try {
-      const { token, username, id, answers } = await loginHandler.loginUser(
-        login
-      );
-      const loggedInUser = { token, username, id };
+      const { token, user } = await loginHandler.loginUser(login);
+      const loggedInUser = { token, username: user.username, id: user.id };
       window.localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       setUser(loggedInUser);
-      setAnswerHistory(answers);
+      setAnswerHistory(user.answers);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleLogout = () => {
+    setUser("");
+    setAnswerHistory([]);
+    window.localStorage.setItem("loggedInUser", JSON.stringify(null));
+  };
+
   return (
     <>
-      <Menu user={user} setUser={setUser} />
+      <Menu user={user} handleLogout={handleLogout} />
       <Switch>
         <Route path="/quiz">
           <Quiz

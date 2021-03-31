@@ -10,7 +10,7 @@ const Question = React.forwardRef((props, ref) => {
     handlePress,
     question,
     hasAnswered,
-    questionHistory,
+    displayHistory,
   } = props;
 
   return (
@@ -20,8 +20,8 @@ const Question = React.forwardRef((props, ref) => {
           <>
             <div>
               {question.en} {question.jp}{" "}
-              {questionHistory &&
-                `right: ${questionHistory.right} wrong: ${questionHistory.wrong}`}
+              {displayHistory &&
+                `right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
             </div>
             <div>
               {" "}
@@ -33,7 +33,12 @@ const Question = React.forwardRef((props, ref) => {
           "?"
         )}
       </div>
-      <audio ref={ref} src={question.file} controls preload="auto" />
+      <audio
+        ref={ref}
+        src={`http://localhost:3001/${question.id}.mp3`}
+        controls
+        preload="auto"
+      />
       {answers.map((bird, index) => (
         <button key={bird.id} data-id={bird.id} onClick={handlePress}>
           {bird.en} {bird.jp} ({keys[index]})
@@ -55,7 +60,7 @@ const Quiz = ({
   const [question, setQuestion] = useState(null);
   const [answers, setAnswers] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
-  const [questionHistory, setquestionHistory] = useState(null);
+  const [displayHistory, setdisplayHistory] = useState(null);
 
   useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
   useHotkeys(play, () => handlePlayButton(), { keydown: true });
@@ -73,12 +78,6 @@ const Quiz = ({
       setQuestion(result.question);
       setAnswers(result.answers);
     });
-    if (user && question) {
-      const found = answerHistory.find((answer) => answer.bird === question.id);
-      if (found) {
-        setquestionHistory(found);
-      }
-    }
   }, []);
 
   const handlePlayButton = () => {
@@ -109,6 +108,7 @@ const Quiz = ({
           question,
           wasCorrect
         );
+        setdisplayHistory(returnedAnswer);
         const found = answerHistory.find(
           (answer) => answer.id === returnedAnswer.id
         );
@@ -139,6 +139,7 @@ const Quiz = ({
       });
       audioRef.current.load();
       setHasAnswered(false);
+      setdisplayHistory(null);
     }
   };
 
@@ -154,7 +155,7 @@ const Quiz = ({
           answerHistory={answerHistory}
           setAnswerHistory={setAnswerHistory}
           handlePress={handlePress}
-          questionHistory={questionHistory}
+          displayHistory={displayHistory}
         />
       )}
       <button onClick={nextQuestion}>Next question {nextKey}</button>

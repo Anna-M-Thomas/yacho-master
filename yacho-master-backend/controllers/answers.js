@@ -16,7 +16,6 @@ answersRouter.post("/", async (request, response, next) => {
   try {
     const token = getToken(request);
     const decodedToken = jwt.verify(token, process.env.SECRET);
-
     const requestBird = request.body.bird;
     const wasCorrect = request.body.wasCorrect;
 
@@ -43,7 +42,12 @@ answersRouter.post("/", async (request, response, next) => {
         user: decodedToken.id,
       });
       await answer.save();
-      // console.log("new bird after first answer", answer);
+
+      const user = await User.findOneAndUpdate(
+        { _id: decodedToken.id },
+        { $push: { answers: answer._id } },
+        { new: true }
+      );
 
       response.json(answer);
     } else
@@ -54,22 +58,5 @@ answersRouter.post("/", async (request, response, next) => {
     next(error);
   }
 });
-
-// answersRouter.post("/:id", async (request, response, next) => {
-//   try {
-//     const right = request.body.right;
-//     const wrong = request.body.wrong;
-
-//     const answer = await Answer.findByIdAndUpdate(
-//       request.params.id,
-//       { right, wrong },
-//       { new: true }
-//     );
-
-//     response.json(answer);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 module.exports = answersRouter;
