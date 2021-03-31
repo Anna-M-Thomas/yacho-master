@@ -14,7 +14,7 @@ const answerFirstTime = async (user, question, wasCorrect) => {
   };
 
   const config = getConfig(user.token);
-
+  console.log("config", config);
   const response = await axios.post(baseUrl, answerObject, config);
   return response.data;
 };

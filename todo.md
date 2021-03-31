@@ -109,13 +109,16 @@
   I want to store user, as in token, username, and id. Separately, I want to store answerhistory, which is loaded with useEffect.
   -api/answers isn't working? Why?...done
 - Check for token for posting answers...done, badly
+  -Add try and catch to answerHandler.answerAgain in Quiz...done
+  -Now successfully verifying token for answersRouter, though it does't prompt a logout yet...done
+  -Send answer id and right/wrong with token header (which contains user) to backend
+  ==> backend 1. gets user 2. Checks user's answer set for answer 3. if no answer, makes new Answer, adds to set, and saves answer 4. If answer, find and update answer by Mongo id
 
--Remember you set token to 1 minute, set it back to an hour when figure things out
--Add try and catch to answerHandler.answerAgain in Quiz
 -Make new function for clearing logged in user to pass down into quiz, and also make logout stick
 -Figure out how to omit user in answerFirstTime, right, wrong and user in answerAgain. You should be able to get user from token and increment on backend based on wasCorrect.
 -Change from getting mp3s from xeno canto back to stored on backend unless we can figure out cross origin cookie issue
 -is questionHistory really storing anything right now, or is it always null because there's no question yet inside useEffect?
+-Remember you set token to 1 minute, set it back to an hour when figure things out
 
 - Add some kind of message/alert component
 - Add something that shows if answer was right or not

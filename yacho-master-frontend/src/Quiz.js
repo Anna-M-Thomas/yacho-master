@@ -117,21 +117,25 @@ const Quiz = ({
           console.log(error);
         }
       } else {
-        const found = answerHistory.find(
-          (answer) => answer.bird === question.id
-        );
-        const { id, right, wrong } = found;
-        const returnedAnswer = await answerHandler.answerAgain(
-          id,
-          right,
-          wrong,
-          wasCorrect,
-          user
-        );
-        const newAnswerHistory = answerHistory.map((answer) =>
-          answer.id === id ? returnedAnswer : answer
-        );
-        setAnswerHistory(newAnswerHistory);
+        try {
+          const found = answerHistory.find(
+            (answer) => answer.bird === question.id
+          );
+          const { id, right, wrong } = found;
+          const returnedAnswer = await answerHandler.answerAgain(
+            id,
+            right,
+            wrong,
+            wasCorrect,
+            user
+          );
+          const newAnswerHistory = answerHistory.map((answer) =>
+            answer.id === id ? returnedAnswer : answer
+          );
+          setAnswerHistory(newAnswerHistory);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };

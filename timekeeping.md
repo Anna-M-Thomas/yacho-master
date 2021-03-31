@@ -95,3 +95,7 @@ March 30, 2021
 -30 minutes: Trying to set answer history after answer
 -30 minutes: UseEffect to either get or reset user by checking token
 -30 minutes: Working on handling expired tokens by logging out, token needed for posting answer history
+Total 4 hours
+
+March 31, 2021
+-30 minutes: Token checking OK (actually receiving token), groundwork for moving update answer logic to backend and combining into one endpoint
