@@ -16,43 +16,60 @@ answersRouter.post("/", async (request, response, next) => {
   try {
     const token = getToken(request);
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    console.log("decoded token", decodedToken);
-    const answer = new Answer({
-      bird: request.body.bird,
-      right: request.body.right,
-      wrong: request.body.wrong,
+
+    const requestBird = request.body.bird;
+    const wasCorrect = request.body.wasCorrect;
+
+    const found = await Answer.find({
+      bird: requestBird,
+      user: decodedToken.id,
     });
 
-    //I don't need to return user, I just need answer to add to user's answers array in front end
-    const user = await User.findByIdAndUpdate(request.body.user, {
-      $addToSet: {
-        answers: answer,
-      },
-    });
+    if (found.length === 1) {
+      const foundBird = found[0];
+      if (wasCorrect) {
+        foundBird.right = foundBird.right + 1;
+      } else {
+        foundBird.wrong = foundBird.wrong + 1;
+      }
+      await foundBird.save();
+      //console.log("found bird after increment", foundBird);
+      response.json(foundBird);
+    } else if (found.length === 0) {
+      const answer = new Answer({
+        bird: requestBird,
+        right: wasCorrect ? 1 : 0,
+        wrong: wasCorrect ? 0 : 1,
+        user: decodedToken.id,
+      });
+      await answer.save();
+      // console.log("new bird after first answer", answer);
 
-    answer.user = user.id;
-    await answer.save();
-    response.json(answer);
+      response.json(answer);
+    } else
+      console.log(
+        `******THERE WAS A PROBLEM*******found.length${found.length} bird${requestBird}`
+      );
   } catch (error) {
     next(error);
   }
 });
 
-answersRouter.post("/:id", async (request, response, next) => {
-  try {
-    const right = request.body.right;
-    const wrong = request.body.wrong;
+// answersRouter.post("/:id", async (request, response, next) => {
+//   try {
+//     const right = request.body.right;
+//     const wrong = request.body.wrong;
 
-    const answer = await Answer.findByIdAndUpdate(
-      request.params.id,
-      { right, wrong },
-      { new: true }
-    );
+//     const answer = await Answer.findByIdAndUpdate(
+//       request.params.id,
+//       { right, wrong },
+//       { new: true }
+//     );
 
-    response.json(answer);
-  } catch (error) {
-    next(error);
-  }
-});
+//     response.json(answer);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = answersRouter;

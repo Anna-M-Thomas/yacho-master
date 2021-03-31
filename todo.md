@@ -111,14 +111,19 @@
 - Check for token for posting answers...done, badly
   -Add try and catch to answerHandler.answerAgain in Quiz...done
   -Now successfully verifying token for answersRouter, though it does't prompt a logout yet...done
+  -Alter front end to only use one endpoint and send true/false value for right/wrong and bird id to backend, get rid of the front end incrementing...done
+  -Figure out how to omit user in answerFirstTime, right, wrong and user in answerAgain. You should be able to get user from token and increment on backend based on wasCorrect.
   -Send answer id and right/wrong with token header (which contains user) to backend
   ==> backend 1. gets user 2. Checks user's answer set for answer 3. if no answer, makes new Answer, adds to set, and saves answer 4. If answer, find and update answer by Mongo id
+  -Increment for backend definitely works now!! You can just, do something Javascript-y to Mongoose documents and save() and it works! https://mongoosejs.com/docs/documents.html#updating-using-save
+  -Also saving answers in state looks OK
+  -Wait, why are there duplicate answers in the backend?...think it's solved...done
+  -Why is returning user.answers empty? There should be 10
+  -Make new function for clearing logged in user to pass down into quiz, and also make logout stick
 
--Make new function for clearing logged in user to pass down into quiz, and also make logout stick
--Figure out how to omit user in answerFirstTime, right, wrong and user in answerAgain. You should be able to get user from token and increment on backend based on wasCorrect.
 -Change from getting mp3s from xeno canto back to stored on backend unless we can figure out cross origin cookie issue
 -is questionHistory really storing anything right now, or is it always null because there's no question yet inside useEffect?
--Remember you set token to 1 minute, set it back to an hour when figure things out
+-Set token back to 24h for now...
 
 - Add some kind of message/alert component
 - Add something that shows if answer was right or not

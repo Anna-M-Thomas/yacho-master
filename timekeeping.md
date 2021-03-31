@@ -99,3 +99,7 @@ Total 4 hours
 
 March 31, 2021
 -30 minutes: Token checking OK (actually receiving token), groundwork for moving update answer logic to backend and combining into one endpoint
+-30 minutes: backend answer logic written
+-30 minutes: more work on token, update answer
+-30 minutes: checking incrementing
+-30 minutes: working on checking token problem and getting answers from backend on reload

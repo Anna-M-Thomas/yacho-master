@@ -102,40 +102,27 @@ const Quiz = ({
 
   //After click or keydown (handlePress above), but this is all saved user logic
   const handleAnswer = async (wasCorrect) => {
-    if (answerHistory) {
-      const found = answerHistory.find((answer) => answer.bird === question.id);
-      if (!found) {
-        try {
-          const returnedAnswer = await answerHandler.answerFirstTime(
-            user,
-            question,
-            wasCorrect
-          );
+    if (user) {
+      try {
+        const returnedAnswer = await answerHandler.answerFirstTime(
+          user,
+          question,
+          wasCorrect
+        );
+        const found = answerHistory.find(
+          (answer) => answer.id === returnedAnswer.id
+        );
+        if (!found) {
           const newHistory = answerHistory.concat(returnedAnswer);
           setAnswerHistory(newHistory);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        try {
-          const found = answerHistory.find(
-            (answer) => answer.bird === question.id
-          );
-          const { id, right, wrong } = found;
-          const returnedAnswer = await answerHandler.answerAgain(
-            id,
-            right,
-            wrong,
-            wasCorrect,
-            user
-          );
+        } else {
           const newAnswerHistory = answerHistory.map((answer) =>
-            answer.id === id ? returnedAnswer : answer
+            answer.id === returnedAnswer.id ? returnedAnswer : answer
           );
           setAnswerHistory(newAnswerHistory);
-        } catch (error) {
-          console.log(error);
         }
+      } catch (error) {
+        console.log(error);
       }
     }
   };

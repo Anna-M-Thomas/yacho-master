@@ -9,6 +9,7 @@ const loginUser = async (user) => {
 
 const checkUser = async (token) => {
   const response = await axios.post(`${baseUrl}/check`, { token });
+  console.log("response data inside checkUser", response.data);
   return response.data;
 };
 

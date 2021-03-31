@@ -11,6 +11,8 @@ loginRouter.post("/check", async (request, response, next) => {
     if (!token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
     }
+    const user = await User.findOne({ _id: decodedToken.id });
+    return response.status(200).send(user.answers);
   } catch (error) {
     next(error);
   }
@@ -37,8 +39,7 @@ loginRouter.post("/", async (request, response, next) => {
     };
 
     const token = jwt.sign(userForToken, process.env.SECRET, {
-      // expiresIn: "24h",
-      expiresIn: "1m",
+      expiresIn: "24h",
     });
 
     return response.status(200).send({

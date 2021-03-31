@@ -31,9 +31,11 @@ const Menu = ({ user, setUser }) => {
         <Link to="/thanks" style={style}>
           {t("menu.thanks")}
         </Link>
-        <Link to="/login" style={style}>
-          {t("menu.login")}
-        </Link>
+        {!user && (
+          <Link to="/login" style={style}>
+            {t("menu.login")}
+          </Link>
+        )}
         {user ? (
           <span>
             {user.username} logged in
