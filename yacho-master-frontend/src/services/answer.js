@@ -18,4 +18,10 @@ const answerFirstTime = async (user, question, wasCorrect) => {
   return response.data;
 };
 
-export default { answerFirstTime };
+const clearAnswers = async (user) => {
+  const config = getConfig(user.token);
+  const response = await axios.delete(baseUrl, config);
+  return response.data;
+};
+
+export default { answerFirstTime, clearAnswers };

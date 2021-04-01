@@ -63,4 +63,18 @@ answersRouter.post("/", async (request, response, next) => {
   }
 });
 
+answersRouter.delete("/", async (request, response, next) => {
+  try {
+    const token = getToken(request);
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    await Answer.deleteMany({ user: request.params.id });
+    response.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = answersRouter;

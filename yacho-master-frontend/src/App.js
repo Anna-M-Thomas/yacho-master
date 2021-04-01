@@ -95,8 +95,10 @@ function App() {
           {user ? (
             <User
               user={user}
+              setUser={setUser}
               answerHistory={answerHistory}
               setAnswerHistory={setAnswerHistory}
+              handleLogout={handleLogout}
             />
           ) : (
             <Redirect to="/about" />

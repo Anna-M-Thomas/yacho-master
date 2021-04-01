@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
+const Answer = require("../models/answer");
 
 //WHOOPS still can't get token without this
 const getToken = (request) => {
@@ -45,6 +46,7 @@ usersRouter.delete("/:id", async (request, response, next) => {
       return response.status(401).json({ error: "token missing or invalid" });
     }
     await User.findByIdAndRemove(request.params.id);
+    await Answer.deleteMany({ user: request.params.id });
     response.status(204).end();
   } catch (error) {
     next(error);

@@ -124,13 +124,14 @@
   -Make new function for clearing logged in user to pass down into quiz, and also make logout stick...done
 - Can now show right/wrong history with slight delay after answering...done
   -Change from getting mp3s from xeno canto back to stored on backend, unless we can figure out cross origin cookie issue...done
+- It would be quicker to just get stored answer from state and increment it...wait, never mind, if it hasn't been answered it's not in state...done
+- While you're at it, add bird names to answer...WAIT no we can't do that, that hardcodes either English or Japanese name, not good. But on the other end, if we go by xenocanto ID and put that in the i18n thing, then we'd need to change that if we switch xenocanto audio files. OK so answers have BOTH jp and en.
+- Let users delete their accounts..done, and it no longer wrecks everything
 
 - (I've set token back to 24h for now...)
 - Pictures!
 - Add the option to show and clear answer history, maybe make a user page to replace login, delete account button too
-- While you're at it, add bird names to answer
 - Add some kind of message/alert component that says right or wrong
-- Let users delete their accounts
 - Save right and wrong to answers array if not logged in, not local storage (?probably)
 - Also save settings to local storage, like # of options, key commands
 - Translate rest of site for both JP/EN

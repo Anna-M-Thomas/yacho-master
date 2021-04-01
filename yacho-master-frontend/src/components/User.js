@@ -1,14 +1,26 @@
 import React from "react";
 import userHandler from "../services/user";
+import answerHandler from "../services/answer";
 
-const User = ({ user, answerHistory, setAnswerHistory }) => {
+const User = ({
+  user,
+  setUser,
+  answerHistory,
+  setAnswerHistory,
+  handleLogout,
+}) => {
   const handleClearHistory = () => {
     if (
       window.confirm(
         "Are you sure you want to clear your answer history? You cannot undo this!11"
       )
     ) {
-      setAnswerHistory([]);
+      answerHandler
+        .clearAnswers(user)
+        .then((result) => {
+          setAnswerHistory([]);
+        })
+        .catch((error) => console.log(error));
     }
   };
 
@@ -21,10 +33,15 @@ const User = ({ user, answerHistory, setAnswerHistory }) => {
       console.log("user.token inside handledelete inside User!", user.token);
       userHandler
         .deleteUser(user)
-        .then(console.log("Deleeeeted"))
+        .then((result) => {
+          handleLogout();
+        })
         .catch((error) => console.log(error));
     }
   };
+  if (!user || !answerHistory) {
+    return null;
+  }
   return (
     <>
       <h1>User!</h1>

@@ -115,3 +115,4 @@ April 1, 2021
 -30 minutes: User page displays right and wrong history, clears history (locally)
 -30 minutes: Working on delete user option
 -30 minutes: Successfully checking user token with headers and not request.body. Successfully deleting user, which then spectacularly wrecks everything.
+-30 minutes: Can delete answer history now
