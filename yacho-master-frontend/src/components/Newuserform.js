@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import userHandler from "../services/newuser";
+import userHandler from "../services/user";
 
 const Newuserform = () => {
   const [newUserName, setNewUserName] = useState("");

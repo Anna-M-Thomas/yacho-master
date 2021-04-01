@@ -1,13 +1,28 @@
 import React from "react";
+import userHandler from "../services/user";
 
 const User = ({ user, answerHistory, setAnswerHistory }) => {
-  const handleClick = () => {
+  const handleClearHistory = () => {
     if (
       window.confirm(
         "Are you sure you want to clear your answer history? You cannot undo this!11"
       )
     ) {
       setAnswerHistory([]);
+    }
+  };
+
+  const handleDeleteUser = () => {
+    if (
+      window.confirm(
+        "ARE YOU SURE YOU WANT TO DELETE YOURSELF??? You cannot undo this!11"
+      )
+    ) {
+      console.log("user.token inside handledelete inside User!", user.token);
+      userHandler
+        .deleteUser(user)
+        .then(console.log("Deleeeeted"))
+        .catch((error) => console.log(error));
     }
   };
   return (
@@ -23,7 +38,12 @@ const User = ({ user, answerHistory, setAnswerHistory }) => {
           </div>
         ))}
       </div>
-      <button onClick={handleClick}>I am the clear history button</button>
+      <button onClick={handleClearHistory}>
+        I am the clear history button
+      </button>
+      <button onClick={handleDeleteUser}>
+        I however am the delete user button
+      </button>
     </>
   );
 };

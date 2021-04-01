@@ -3,9 +3,20 @@ const bcrypt = require("bcrypt");
 const loginRouter = require("express").Router();
 const User = require("../models/user");
 
+//WHOOPS still can't get token without this
+const getToken = (request) => {
+  const authorization = request.get("authorization");
+  console.log("authorization???", authorization);
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+    return authorization.substring(7);
+  }
+  return null;
+};
+
 loginRouter.post("/check", async (request, response, next) => {
   try {
-    const token = request.body.token;
+    const token = getToken(request);
+    console.log("token inside loginRouter", token);
     const decodedToken = jwt.verify(token, process.env.SECRET);
     console.log("decoded token", decodedToken);
     if (!token || !decodedToken.id) {

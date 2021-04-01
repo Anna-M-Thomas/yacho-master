@@ -1,6 +1,16 @@
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const usersRouter = require("express").Router();
 const User = require("../models/user");
+
+//WHOOPS still can't get token without this
+const getToken = (request) => {
+  const authorization = request.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+    return authorization.substring(7);
+  }
+  return null;
+};
 
 usersRouter.post("/", async (request, response, next) => {
   try {
@@ -22,6 +32,20 @@ usersRouter.post("/", async (request, response, next) => {
     const savedUser = await user.save();
 
     response.json(savedUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.delete("/:id", async (request, response, next) => {
+  try {
+    const token = getToken(request);
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    if (!token || !decodedToken.id) {
+      return response.status(401).json({ error: "token missing or invalid" });
+    }
+    await User.findByIdAndRemove(request.params.id);
+    response.status(204).end();
   } catch (error) {
     next(error);
   }

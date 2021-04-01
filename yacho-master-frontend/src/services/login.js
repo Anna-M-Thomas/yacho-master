@@ -1,6 +1,10 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3001/api/login";
 
+const getConfig = (token) => {
+  return { headers: { Authorization: `bearer ${token}` } };
+};
+
 const loginUser = async (user) => {
   const response = await axios.post(baseUrl, user);
   console.log("response data inside login User", response.data);
@@ -8,8 +12,8 @@ const loginUser = async (user) => {
 };
 
 const checkUser = async (token) => {
-  const response = await axios.post(`${baseUrl}/check`, { token });
-  console.log("response data inside checkUser", response.data);
+  const config = getConfig(token);
+  const response = await axios.post(`${baseUrl}/check`, {}, config);
   return response.data;
 };
 
