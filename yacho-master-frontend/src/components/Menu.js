@@ -28,8 +28,8 @@ const Menu = ({ user, handleLogout }) => {
         <Link to="/settings" style={style}>
           {t("menu.settings")}
         </Link>
-        <Link to="/thanks" style={style}>
-          {t("menu.thanks")}
+        <Link to="/about" style={style}>
+          {t("menu.about")}
         </Link>
         {!user && (
           <Link to="/login" style={style}>
@@ -38,7 +38,7 @@ const Menu = ({ user, handleLogout }) => {
         )}
         {user ? (
           <span>
-            {user.username} logged in
+            <Link to="/user">{user.username}</Link> logged in
             <button onClick={() => handleLogout()}>logout</button>
           </span>
         ) : (

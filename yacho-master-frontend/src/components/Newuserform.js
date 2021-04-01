@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import userHandler from "./services/newuser";
+import userHandler from "../services/newuser";
 
 const Newuserform = () => {
   const [newUserName, setNewUserName] = useState("");
@@ -13,8 +13,8 @@ const Newuserform = () => {
         .makeUser(newUser)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
-      setNewUserName("");
-      setNewPassword("");
+      setNewUserName("Lalala");
+      setNewPassword("Lalala");
     }
   };
 

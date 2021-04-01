@@ -6,18 +6,18 @@ const Loginform = ({ handleLogin }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setUserName("");
+    setPassword("");
     if (userName.length > 0 && password.length > 0) {
       const loginInfo = { username: userName, password };
       handleLogin(loginInfo);
-      setUserName("");
-      setPassword("");
     }
   };
 
   return (
     <>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <div>
           Username
           <input

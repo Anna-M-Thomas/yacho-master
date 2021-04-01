@@ -14,7 +14,9 @@ loginRouter.post("/check", async (request, response, next) => {
     const user = await User.findOne({ _id: decodedToken.id }).populate(
       "answers",
       {
-        bird: 1,
+        xenoId: 1,
+        nameEn: 1,
+        nameJp: 1,
         right: 1,
         wrong: 1,
         id: 1,

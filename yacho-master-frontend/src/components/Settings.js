@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useEventListener from "@use-it/event-listener";
-import keyMap from "./hotkeys-keymap.js";
+import keyMap from "../hotkeys-keymap.js";
 
 const Settings = ({
   keys,
@@ -92,7 +92,7 @@ const Settings = ({
 
   return (
     <div>
-      <h1>Options</h1>
+      <h1>Settings</h1>
       {keys.map((item, index) => (
         <div key={item.charAt(0)}>
           Answer {index + 1}{" "}

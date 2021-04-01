@@ -7,7 +7,9 @@ const getConfig = (token) => {
 
 const answerFirstTime = async (user, question, wasCorrect) => {
   const answerObject = {
-    bird: question.id,
+    xenoId: question.id,
+    nameEn: question.en,
+    nameJp: question.jp,
     wasCorrect,
   };
 

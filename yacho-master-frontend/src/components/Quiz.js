@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import questionHandler from "./services/nextquestion";
-import answerHandler from "./services/answer";
+import questionHandler from "../services/nextquestion";
+import answerHandler from "../services/answer";
 import { useHotkeys } from "react-hotkeys-hook";
 
 const Question = React.forwardRef((props, ref) => {
@@ -15,6 +15,7 @@ const Question = React.forwardRef((props, ref) => {
 
   return (
     <>
+      <h1>Quiz!</h1>
       <div>
         {hasAnswered ? (
           <>

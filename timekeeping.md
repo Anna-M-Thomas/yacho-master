@@ -106,3 +106,10 @@ March 31, 2021
 -30 minutes: saving answers in user problems
 -30 minutes: saving answers ok even when answering quickly (mongo version problems), working on login check and returning answers
 -30 minutes: can display right/wrong history, logout function OK, changed mp3 files back to access from backend
+Total 4 hours
+
+36 hours so far...wow, that's only like 2 credits and to get 10 credits it'd be....175 hours??
+
+April 1, 2021
+-30 minutes: Saving Japanese and English names in answer, changed thanks page to about page, redirecting to about page, started a user page
+-30 minutes: User page displays right and wrong history, clears history (locally)

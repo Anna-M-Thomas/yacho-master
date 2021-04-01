@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
 const answerSchema = new mongoose.Schema({
-  bird: String,
+  xenoId: String,
+  nameEn: String,
+  nameJp: String,
   right: Number,
   wrong: Number,
   user: {

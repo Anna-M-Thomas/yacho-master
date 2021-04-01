@@ -16,11 +16,10 @@ answersRouter.post("/", async (request, response, next) => {
   try {
     const token = getToken(request);
     const decodedToken = jwt.verify(token, process.env.SECRET);
-    const requestBird = request.body.bird;
-    const wasCorrect = request.body.wasCorrect;
+    const { xenoId, nameEn, nameJp, wasCorrect } = request.body;
 
     const found = await Answer.find({
-      bird: requestBird,
+      xenoId: xenoId,
       user: decodedToken.id,
     });
 
@@ -36,19 +35,20 @@ answersRouter.post("/", async (request, response, next) => {
       response.json(foundBird);
     } else if (found.length === 0) {
       const answer = new Answer({
-        bird: requestBird,
+        xenoId,
+        nameEn,
+        nameJp,
         right: wasCorrect ? 1 : 0,
         wrong: wasCorrect ? 0 : 1,
         user: decodedToken.id,
       });
       await answer.save();
 
-      const user = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { _id: decodedToken.id },
         { $push: { answers: answer._id } },
         { new: true }
       );
-
       response.json(answer);
     } else
       console.log(

@@ -135,6 +135,7 @@
 - Also save settings to local storage, like # of options, key commands
 - Translate rest of site for both JP/EN
 - Start to work on the Dreaded Design
+- What am I going to do for a hundred and something more hours? Think of more stuff to do!
 - Show citation and license with audio file
   `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
   Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.

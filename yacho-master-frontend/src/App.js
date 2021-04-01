@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import loginHandler from "./services/login";
-import Menu from "./Menu";
-import Settings from "./Settings";
-import Newuserform from "./Newuserform";
-import Loginform from "./Loginform";
-import Quiz from "./Quiz";
+import Menu from "./components/Menu";
+import Settings from "./components/Settings";
+import Newuserform from "./components/Newuserform";
+import Loginform from "./components/Loginform";
+import Quiz from "./components/Quiz";
+import User from "./components/User";
+import About from "./components/About";
 
 function App() {
   const [choices, setChoices] = useState(8);
@@ -76,15 +78,28 @@ function App() {
             setChoices={setChoices}
           />
         </Route>
-        <Route path="/thanks">
-          <div>Lalala these are the thanks</div>
+        <Route path="/about">
+          <About />
         </Route>
         <Route path="/login">
-          {!user && (
+          {!user ? (
             <>
               <Loginform setUser={setUser} handleLogin={handleLogin} />
               <Newuserform />
             </>
+          ) : (
+            <Redirect to="/about" />
+          )}
+        </Route>
+        <Route path="/user">
+          {user ? (
+            <User
+              user={user}
+              answerHistory={answerHistory}
+              setAnswerHistory={setAnswerHistory}
+            />
+          ) : (
+            <Redirect to="/about" />
           )}
         </Route>
       </Switch>
