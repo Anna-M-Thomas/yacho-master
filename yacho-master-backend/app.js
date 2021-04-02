@@ -6,7 +6,7 @@ const usersRouter = require("./controllers/users");
 const questionsRouter = require("./controllers/questions");
 const loginRouter = require("./controllers/login");
 const answersRouter = require("./controllers/answers");
-
+const imagesRouter = require("./controllers/images");
 const app = express();
 const middleware = require("./utils/middleware");
 
@@ -31,6 +31,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/nextquestion", questionsRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/answers", answersRouter);
+app.use("/api/getimage", imagesRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

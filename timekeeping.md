@@ -116,3 +116,11 @@ April 1, 2021
 -30 minutes: Working on delete user option
 -30 minutes: Successfully checking user token with headers and not request.body. Successfully deleting user, which then spectacularly wrecks everything.
 -30 minutes: Can delete answer history now
+-30 minutes: looking at options for pictures, will try flickr api
+Total 3 hours
+
+April 2, 2021
+30 minutes: Looking at Flickr api
+30 minutes: Made temporary mystery bird image, front end asking for api for image
+30 minutes: Successfully getting JSON image info from flikr api through the backend!
+Total 1.5 hours

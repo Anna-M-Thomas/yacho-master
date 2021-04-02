@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import questionHandler from "../services/nextquestion";
 import answerHandler from "../services/answer";
+import imageHandler from "../services/image";
 import { useHotkeys } from "react-hotkeys-hook";
 
 const Question = React.forwardRef((props, ref) => {
@@ -31,7 +32,10 @@ const Question = React.forwardRef((props, ref) => {
             </div>
           </>
         ) : (
-          "?"
+          <img
+            src="./mysterybird.jpg"
+            alt="a silhouette of a bird with a question mark on it"
+          />
         )}
       </div>
       <audio
@@ -40,6 +44,7 @@ const Question = React.forwardRef((props, ref) => {
         controls
         preload="auto"
       />
+
       {answers.map((bird, index) => (
         <button key={bird.id} data-id={bird.id} onClick={handlePress}>
           {bird.en} {bird.jp} ({keys[index]})
@@ -59,6 +64,7 @@ const Quiz = ({
   setAnswerHistory,
 }) => {
   const [question, setQuestion] = useState(null);
+  const [image, setImage] = useState(null);
   const [answers, setAnswers] = useState(null);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [displayHistory, setdisplayHistory] = useState(null);
@@ -80,6 +86,21 @@ const Quiz = ({
       setAnswers(result.answers);
     });
   }, []);
+
+  useEffect(() => {
+    if (question) {
+      imageHandler
+        .getImage(question.en)
+        .then((result) => {
+          console.log("result from get Image!!", result);
+          setImage(result);
+        })
+        .catch((error) => {
+          console.log(error);
+          setImage("./notmysterybird.jpg");
+        });
+    }
+  }, [question]);
 
   const handlePlayButton = () => {
     audioRef.current.paused
