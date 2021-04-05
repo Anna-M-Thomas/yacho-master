@@ -124,3 +124,11 @@ April 2, 2021
 30 minutes: Made temporary mystery bird image, front end asking for api for image
 30 minutes: Successfully getting JSON image info from flikr api through the backend!
 Total 1.5 hours
+
+April 4, 2021
+30 minutes: Showing an image from flickr!
+Total .5 hours
+
+April 5, 2021
+30 minutes: No longer resets previously set keys by adding choices, working on local storage for settings
+30 minutes: local storage works, looking at material UI

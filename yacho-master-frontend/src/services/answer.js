@@ -5,7 +5,7 @@ const getConfig = (token) => {
   return { headers: { Authorization: `bearer ${token}` } };
 };
 
-const answerFirstTime = async (user, question, wasCorrect) => {
+const answer = async (user, question, wasCorrect) => {
   const answerObject = {
     xenoId: question.id,
     nameEn: question.en,
@@ -24,4 +24,4 @@ const clearAnswers = async (user) => {
   return response.data;
 };
 
-export default { answerFirstTime, clearAnswers };
+export default { answer, clearAnswers };

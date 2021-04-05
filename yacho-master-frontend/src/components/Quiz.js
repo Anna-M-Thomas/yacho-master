@@ -12,6 +12,7 @@ const Question = React.forwardRef((props, ref) => {
     question,
     hasAnswered,
     displayHistory,
+    image,
   } = props;
 
   return (
@@ -22,6 +23,10 @@ const Question = React.forwardRef((props, ref) => {
           <>
             <div>
               {question.en} {question.jp}{" "}
+              <img
+                src={image}
+                alt="a silhouette of a bird with a question mark on it"
+              />
               {displayHistory &&
                 `right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
             </div>
@@ -93,7 +98,10 @@ const Quiz = ({
         .getImage(question.en)
         .then((result) => {
           console.log("result from get Image!!", result);
-          setImage(result);
+          const { farm, server, id, secret } = result.photos.photo[0];
+          setImage(
+            `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_w.jpg`
+          );
         })
         .catch((error) => {
           console.log(error);
@@ -125,7 +133,7 @@ const Quiz = ({
   const handleAnswer = async (wasCorrect) => {
     if (user) {
       try {
-        const returnedAnswer = await answerHandler.answerFirstTime(
+        const returnedAnswer = await answerHandler.answer(
           user,
           question,
           wasCorrect
@@ -178,6 +186,7 @@ const Quiz = ({
           setAnswerHistory={setAnswerHistory}
           handlePress={handlePress}
           displayHistory={displayHistory}
+          image={image}
         />
       )}
       <button onClick={nextQuestion}>Next question {nextKey}</button>

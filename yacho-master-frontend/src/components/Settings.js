@@ -15,6 +15,8 @@ const Settings = ({
   const [settingNow, setSettingNow] = useState(null);
   const [index, setIndex] = useState(null);
 
+  const defaultKeys = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
   //both inclusive
   const inRange = (min, max, number) => {
     return number >= min && number <= max;
@@ -34,6 +36,17 @@ const Settings = ({
     setSettingNow(null);
     const buttons = document.querySelectorAll("button");
     buttons.forEach((button) => button.classList.remove("clicked"));
+  };
+
+  const resetValues = () => {
+    setChoices(8);
+    setKeys(defaultKeys);
+    setNextkey("right");
+    setPlay("space");
+    window.localStorage.removeItem("keys");
+    window.localStorage.removeItem("choices");
+    window.localStorage.removeItem("next");
+    window.localStorage.removeItem("play");
   };
 
   const keydownHandler = (e) => {
@@ -58,13 +71,16 @@ const Settings = ({
           let newKeys = [...keys];
           newKeys[index] = keyName;
           setKeys(newKeys);
+          window.localStorage.setItem("keys", JSON.stringify(newKeys));
           setIndex(null);
           break;
         case "next":
           setNextkey(keyName);
+          window.localStorage.setItem("next", JSON.stringify(keyName));
           break;
         case "play":
           setPlay(keyName);
+          window.localStorage.setItem("play", JSON.stringify(keyName));
           break;
         default:
           break;
@@ -85,9 +101,14 @@ const Settings = ({
 
   const handleChoicesChange = (event) => {
     setChoices(event.target.value);
-    const defaultKeys = ["a", "s", "d", "f", "j", "k", "l", ";"];
-    const newKeys = defaultKeys.slice(0, event.target.value);
+    let keysToAdd = defaultKeys.filter((key) => {
+      return keys.every((item) => item !== key);
+    });
+    let newKeys = [...keys, ...keysToAdd];
+    newKeys.length = event.target.value;
     setKeys(newKeys);
+    window.localStorage.setItem("choices", JSON.stringify(event.target.value));
+    window.localStorage.setItem("keys", JSON.stringify(newKeys));
   };
 
   return (
@@ -126,6 +147,7 @@ const Settings = ({
           max="8"
         />
       </div>
+      <button onClick={resetValues}>Reset all values</button>
     </div>
   );
 };

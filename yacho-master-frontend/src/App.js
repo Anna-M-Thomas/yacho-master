@@ -10,16 +10,19 @@ import User from "./components/User";
 import About from "./components/About";
 
 function App() {
-  const [choices, setChoices] = useState(8);
-  const defaultKeys = ["a", "s", "d", "f", "j", "k", "l", ";"];
+  const savedChoices = JSON.parse(window.localStorage.getItem("choices"));
   const savedUser = JSON.parse(window.localStorage.getItem("loggedInUser"));
+  const savedKeys = JSON.parse(window.localStorage.getItem("keys"));
+  const savedNext = JSON.parse(window.localStorage.getItem("next"));
+  const savedPlay = JSON.parse(window.localStorage.getItem("play"));
+  const [choices, setChoices] = useState(parseInt(savedChoices) || 8);
   const [user, setUser] = useState(savedUser || "");
   const [answerHistory, setAnswerHistory] = useState([]);
-  const [keys, setKeys] = useState(defaultKeys.slice(0, choices));
-  const [nextKey, setNextkey] = useState("right");
-  const [play, setPlay] = useState("space");
-
-  console.log("answerHistory", answerHistory);
+  const [keys, setKeys] = useState(
+    savedKeys || ["1", "2", "3", "4", "5", "6", "7", "8"].slice(0, choices)
+  );
+  const [nextKey, setNextkey] = useState(savedNext || "right");
+  const [play, setPlay] = useState(savedPlay || "space");
 
   useEffect(() => {
     if (user)
