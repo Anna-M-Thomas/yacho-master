@@ -1,52 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Toolbar from "@material-ui/core/Toolbar";
+import AppBar from "@material-ui/core/Appbar";
+import Button from "@material-ui/core/Button";
 
 const Languageselect = () => {
   const { i18n } = useTranslation();
   return (
-    <div>
-      <button onClick={() => i18n.changeLanguage("jp")}>jp</button>
-      <button onClick={() => i18n.changeLanguage("en")}>en</button>
-    </div>
+    <>
+      <Button onClick={() => i18n.changeLanguage("jp")}>jp</Button>
+      <Button onClick={() => i18n.changeLanguage("en")}>en</Button>
+    </>
   );
 };
 
 const Menu = ({ user, handleLogout }) => {
   const { t } = useTranslation();
 
-  const style = {
-    padding: 20,
-  };
-
   return (
-    <>
-      <nav>
-        <Link to="/quiz" style={style}>
+    <AppBar position="static">
+      <Toolbar>
+        <Button color="inherit" component={Link} to="/quiz">
           {t("menu.quiz")}
-        </Link>
-        <Link to="/settings" style={style}>
+        </Button>
+        <Button color="inherit" component={Link} to="/settings">
           {t("menu.settings")}
-        </Link>
-        <Link to="/about" style={style}>
+        </Button>
+        <Button color="inherit" component={Link} to="/about">
           {t("menu.about")}
-        </Link>
+        </Button>
         {!user && (
-          <Link to="/login" style={style}>
+          <Button color="inherit" component={Link} to="/login">
             {t("menu.login")}
-          </Link>
+          </Button>
         )}
         {user ? (
           <span>
-            <Link to="/user">{user.username}</Link> logged in
-            <button onClick={() => handleLogout()}>logout</button>
+            <Button color="inherit" component={Link} to="/user">
+              {user.username}
+            </Button>{" "}
+            logged in
+            <Button onClick={() => handleLogout()}>logout</Button>
           </span>
         ) : (
           ""
         )}
-      </nav>
-      <Languageselect />
-    </>
+        <Languageselect />
+      </Toolbar>
+    </AppBar>
   );
 };
 

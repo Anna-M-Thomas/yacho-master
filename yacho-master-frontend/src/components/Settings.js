@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useEventListener from "@use-it/event-listener";
 import keyMap from "../hotkeys-keymap.js";
+import Alertmessage from "./Alertmessage";
+import Button from "@material-ui/core/Button";
 
 const Settings = ({
   keys,
@@ -32,12 +34,6 @@ const Settings = ({
 
   const inOtherKeys = (newKey, ...keys) => keys.some((item) => item === newKey);
 
-  const resetButtons = () => {
-    setSettingNow(null);
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => button.classList.remove("clicked"));
-  };
-
   const resetValues = () => {
     setChoices(8);
     setKeys(defaultKeys);
@@ -54,7 +50,6 @@ const Settings = ({
       const key = e.keyCode || e.which || e.charCode;
 
       if (!keysOK(key)) {
-        resetButtons();
         return;
       }
 
@@ -62,7 +57,6 @@ const Settings = ({
 
       if (inOtherKeys(keyName, ...keys, nextKey, play)) {
         console.log(`Sorry, ${keyName} is already being used`);
-        resetButtons();
         return;
       }
 
@@ -85,18 +79,17 @@ const Settings = ({
         default:
           break;
       }
-      resetButtons();
     }
   };
 
   useEventListener("keydown", keydownHandler);
 
   const handleClick = (e) => {
-    e.target.classList.add("clicked");
-    if (e.target.dataset.index) {
-      setIndex(e.target.dataset.index);
+    console.log("event current target", e.currentTarget);
+    if (e.currentTarget.dataset.index) {
+      setIndex(e.currentTarget.dataset.index);
     }
-    setSettingNow(e.target.dataset.category);
+    setSettingNow(e.currentTarget.dataset.category);
   };
 
   const handleChoicesChange = (event) => {
@@ -114,25 +107,26 @@ const Settings = ({
   return (
     <div>
       <h1>Settings</h1>
+      <Alertmessage message={"cat"} />
       {keys.map((item, index) => (
         <div key={item.charAt(0)}>
           Answer {index + 1}{" "}
-          <button data-index={index} data-category="keys" onClick={handleClick}>
+          <Button data-index={index} data-category="keys" onClick={handleClick}>
             {item}
-          </button>
+          </Button>
         </div>
       ))}
       <div>
         Next button
-        <button data-category="next" onClick={handleClick}>
+        <Button data-category="next" onClick={handleClick}>
           {nextKey}
-        </button>
+        </Button>
       </div>
       <div>
         Play button
-        <button data-category="play" onClick={handleClick}>
+        <Button data-category="play" onClick={handleClick}>
           {play}
-        </button>
+        </Button>
       </div>
       <div>
         {" "}
@@ -147,7 +141,7 @@ const Settings = ({
           max="8"
         />
       </div>
-      <button onClick={resetValues}>Reset all values</button>
+      <Button onClick={resetValues}>Reset all values</Button>
     </div>
   );
 };

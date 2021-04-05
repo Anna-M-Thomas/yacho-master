@@ -67,7 +67,7 @@ answersRouter.delete("/", async (request, response, next) => {
     if (!token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
     }
-    await Answer.deleteMany({ user: request.params.id });
+    await Answer.deleteMany({ user: decodedToken.id });
     response.status(204).end();
   } catch (error) {
     next(error);

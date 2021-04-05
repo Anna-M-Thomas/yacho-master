@@ -3,6 +3,7 @@ import questionHandler from "../services/nextquestion";
 import answerHandler from "../services/answer";
 import imageHandler from "../services/image";
 import { useHotkeys } from "react-hotkeys-hook";
+import Button from "@material-ui/core/Button";
 
 const Question = React.forwardRef((props, ref) => {
   const {
@@ -19,29 +20,10 @@ const Question = React.forwardRef((props, ref) => {
     <>
       <h1>Quiz!</h1>
       <div>
-        {hasAnswered ? (
-          <>
-            <div>
-              {question.en} {question.jp}{" "}
-              <img
-                src={image}
-                alt="a silhouette of a bird with a question mark on it"
-              />
-              {displayHistory &&
-                `right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
-            </div>
-            <div>
-              {" "}
-              <a href={`${question.lic}`}>CC</a> {question.rec}, XC{question.id}
-              . Accessible at {question.url}.
-            </div>
-          </>
-        ) : (
-          <img
-            src="./mysterybird.jpg"
-            alt="a silhouette of a bird with a question mark on it"
-          />
-        )}
+        <img src={hasAnswered ? image : "./mysterybird.jpg"} />
+        {hasAnswered && question.en}
+        {displayHistory &&
+          `right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
       </div>
       <audio
         ref={ref}
@@ -49,11 +31,17 @@ const Question = React.forwardRef((props, ref) => {
         controls
         preload="auto"
       />
+      {hasAnswered && (
+        <div>
+          <a href={`${question.lic}`}>CC</a> {question.rec}, XC{question.id}.
+          Accessible at {question.url}.
+        </div>
+      )}
 
       {answers.map((bird, index) => (
-        <button key={bird.id} data-id={bird.id} onClick={handlePress}>
+        <Button key={bird.id} data-id={bird.id} onClick={handlePress}>
           {bird.en} {bird.jp} ({keys[index]})
-        </button>
+        </Button>
       ))}
     </>
   );
@@ -189,7 +177,7 @@ const Quiz = ({
           image={image}
         />
       )}
-      <button onClick={nextQuestion}>Next question {nextKey}</button>
+      <Button onClick={nextQuestion}>Next question {nextKey}</Button>
       <div>Play/stop audio: {play}</div>
     </>
   );

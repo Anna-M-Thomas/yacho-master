@@ -132,3 +132,8 @@ Total .5 hours
 April 5, 2021
 30 minutes: No longer resets previously set keys by adding choices, working on local storage for settings
 30 minutes: local storage works, looking at material UI
+30 minutes: material UI stuff
+30 minutes: user data to Table, fixed clear answers (wasn't actually deleting)
+30 minutes: Looking at quiz styling, alert dialog (for erasing user etc)
+30 minutes: Alert opens with generic message (but doesn't close, whoops)
+Total 3 hours
