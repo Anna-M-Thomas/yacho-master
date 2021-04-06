@@ -6,4 +6,6 @@ const getQuestion = async (choices) => {
   return response.data;
 };
 
-export default { getQuestion };
+const questionHandler = { getQuestion };
+
+export default questionHandler;

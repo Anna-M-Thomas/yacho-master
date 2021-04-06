@@ -130,11 +130,14 @@
   -Erase all answers that user had...done!!!
 - (I've set token back to 24h for now...)
 - Pictures! Here's flicker-sdk https://www.npmjs.com/package/flickr-sdk
-- Save settings to local storage, like # of options, key commands
+- Save settings to local storage, like # of options, key commands....done
+- Save right and wrong to answers array if not logged in, not local storage (?probably)...no, I'm going to leave that just for logged in users...done
 
-- Add some kind of message/alert component that says right or wrong
-- Save right and wrong to answers array if not logged in, not local storage (?probably)
+-Switch all Buttons to contained
+
+- Add some kind of message/alert component that says right or wrong and shows errors
 - Translate rest of site for both JP/EN
+
 - Start to work on the Dreaded Design
 - What am I going to do for a hundred and something more hours? Think of more stuff to do!
 - Show citation and license with audio file

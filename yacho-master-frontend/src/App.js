@@ -55,7 +55,7 @@ function App() {
 
   return (
     <>
-      <Menu user={user} handleLogout={handleLogout} />
+      <Menu user={user} />
       <Switch>
         <Route path="/quiz">
           <Quiz

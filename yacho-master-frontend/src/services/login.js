@@ -17,4 +17,6 @@ const checkUser = async (token) => {
   return response.data;
 };
 
-export default { loginUser, checkUser };
+const loginHandler = { loginUser, checkUser };
+
+export default loginHandler;

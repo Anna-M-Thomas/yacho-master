@@ -6,4 +6,5 @@ const getImage = async (birdname) => {
   return response.data;
 };
 
-export default { getImage };
+const imageHandler = { getImage };
+export default imageHandler;

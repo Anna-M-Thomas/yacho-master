@@ -15,7 +15,7 @@ const Languageselect = () => {
   );
 };
 
-const Menu = ({ user, handleLogout }) => {
+const Menu = ({ user }) => {
   const { t } = useTranslation();
 
   return (
@@ -31,7 +31,7 @@ const Menu = ({ user, handleLogout }) => {
           {t("menu.about")}
         </Button>
         {!user && (
-          <Button color="inherit" component={Link} to="/login">
+          <Button variant="contained" component={Link} to="/login">
             {t("menu.login")}
           </Button>
         )}
@@ -41,7 +41,6 @@ const Menu = ({ user, handleLogout }) => {
               {user.username}
             </Button>{" "}
             logged in
-            <Button onClick={() => handleLogout()}>logout</Button>
           </span>
         ) : (
           ""

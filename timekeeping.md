@@ -137,3 +137,11 @@ April 5, 2021
 30 minutes: Looking at quiz styling, alert dialog (for erasing user etc)
 30 minutes: Alert opens with generic message (but doesn't close, whoops)
 Total 3 hours
+
+April 6, 2021
+30 minutes: Alert for delete answer history and user works
+30 minutes: working on grid layout for quiz
+30 minutes: more messing with grid
+30 minutes: trying to resolve overlapping with grid and failing
+30 minutes: Working on various console log warnings
+30 minutes: i18n for Quiz

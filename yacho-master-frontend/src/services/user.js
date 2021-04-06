@@ -17,4 +17,6 @@ const deleteUser = async (user) => {
   return response.data;
 };
 
-export default { makeUser, deleteUser };
+const userHandler = { makeUser, deleteUser };
+
+export default userHandler;

@@ -24,4 +24,6 @@ const clearAnswers = async (user) => {
   return response.data;
 };
 
-export default { answer, clearAnswers };
+const answerHandler = { answer, clearAnswers };
+
+export default answerHandler;

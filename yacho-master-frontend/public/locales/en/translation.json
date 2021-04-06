@@ -9,5 +9,10 @@
     "settings": "Settings",
     "about": "About",
     "login": "Login"
+  },
+  "quiz": {
+    "title": "Quiz!",
+    "playstopaudio": "Play/stop audio:",
+    "nextquestion": "Next question"
   }
 }

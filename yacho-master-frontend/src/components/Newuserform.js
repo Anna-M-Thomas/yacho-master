@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import userHandler from "../services/user";
+import Textfield from "@material-ui/core/Textfield";
+import Button from "@material-ui/core/Button";
 
 const Newuserform = () => {
   const [newUserName, setNewUserName] = useState("");
@@ -13,33 +15,29 @@ const Newuserform = () => {
         .makeUser(newUser)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
-      setNewUserName("Lalala");
-      setNewPassword("Lalala");
+      setNewUserName("");
+      setNewPassword("");
     }
   };
 
   return (
     <>
       <h1>Make a new user</h1>
-      <form onSubmit={handleNewUser}>
-        <div>
-          New username
-          <input
-            type="text"
-            value={newUserName}
-            onChange={({ target }) => setNewUserName(target.value)}
-          />
-        </div>
-        <div>
-          {" "}
-          Password
-          <input
-            type="password"
-            value={newPassword}
-            onChange={({ target }) => setNewPassword(target.value)}
-          />
-        </div>
-        <button>Submit</button>
+      <form onSubmit={handleNewUser} autoComplete="off">
+        <Textfield
+          label="New username"
+          type="text"
+          value={newUserName}
+          onChange={({ target }) => setNewUserName(target.value)}
+        />
+        <Textfield
+          type="password"
+          label="Password"
+          value={newPassword}
+          autoComplete="new-password"
+          onChange={({ target }) => setNewPassword(target.value)}
+        />
+        <Button type="submit">Submit</Button>
       </form>
     </>
   );

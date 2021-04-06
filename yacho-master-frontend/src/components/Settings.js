@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import useEventListener from "@use-it/event-listener";
 import keyMap from "../hotkeys-keymap.js";
-import Alertmessage from "./Alertmessage";
 import Button from "@material-ui/core/Button";
 
 const Settings = ({
@@ -107,24 +106,28 @@ const Settings = ({
   return (
     <div>
       <h1>Settings</h1>
-      <Alertmessage message={"cat"} />
       {keys.map((item, index) => (
         <div key={item.charAt(0)}>
           Answer {index + 1}{" "}
-          <Button data-index={index} data-category="keys" onClick={handleClick}>
+          <Button
+            variant="contained"
+            data-index={index}
+            data-category="keys"
+            onClick={handleClick}
+          >
             {item}
           </Button>
         </div>
       ))}
       <div>
         Next button
-        <Button data-category="next" onClick={handleClick}>
+        <Button data-category="next" variant="contained" onClick={handleClick}>
           {nextKey}
         </Button>
       </div>
       <div>
         Play button
-        <Button data-category="play" onClick={handleClick}>
+        <Button data-category="play" variant="contained" onClick={handleClick}>
           {play}
         </Button>
       </div>
@@ -141,7 +144,9 @@ const Settings = ({
           max="8"
         />
       </div>
-      <Button onClick={resetValues}>Reset all values</Button>
+      <Button variant="contained" onClick={resetValues}>
+        Reset all values
+      </Button>
     </div>
   );
 };

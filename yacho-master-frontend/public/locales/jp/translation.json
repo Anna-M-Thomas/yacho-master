@@ -9,5 +9,10 @@
     "settings": "設定",
     "about": "このアプリについて",
     "login": "ログイン"
+  },
+  "quiz": {
+    "title": "クイズ!",
+    "playstopaudio": "録音を再生・停止:",
+    "nextquestion": "次の質問"
   }
 }
