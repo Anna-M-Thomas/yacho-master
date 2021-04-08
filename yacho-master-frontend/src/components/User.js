@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import userHandler from "../services/user";
 import answerHandler from "../services/answer";
 import Button from "@material-ui/core/Button";

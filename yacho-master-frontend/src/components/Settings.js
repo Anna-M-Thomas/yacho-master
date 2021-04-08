@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useEventListener from "@use-it/event-listener";
+import { useTranslation } from "react-i18next";
 import keyMap from "../hotkeys-keymap.js";
 import Button from "@material-ui/core/Button";
 
@@ -13,6 +14,7 @@ const Settings = ({
   choices,
   setChoices,
 }) => {
+  const { t } = useTranslation();
   const [settingNow, setSettingNow] = useState(null);
   const [index, setIndex] = useState(null);
 
@@ -105,35 +107,36 @@ const Settings = ({
 
   return (
     <div>
-      <h1>Settings</h1>
-      {keys.map((item, index) => (
-        <div key={item.charAt(0)}>
-          Answer {index + 1}{" "}
-          <Button
-            variant="contained"
-            data-index={index}
-            data-category="keys"
-            onClick={handleClick}
-          >
-            {item}
-          </Button>
-        </div>
-      ))}
+      <h1>{t("settings.title")}</h1>
+      <div id="keysDiv">
+        {keys.map((item, index) => (
+          <div key={item.charAt(0)}>
+            {t("settings.answer")} {index + 1}{" "}
+            <Button
+              variant="outlined"
+              data-index={index}
+              data-category="keys"
+              onClick={handleClick}
+            >
+              {item}
+            </Button>
+          </div>
+        ))}
+      </div>
       <div>
-        Next button
-        <Button data-category="next" variant="contained" onClick={handleClick}>
+        {t("settings.nextbutton")}
+        <Button data-category="next" variant="outlined" onClick={handleClick}>
           {nextKey}
         </Button>
       </div>
       <div>
-        Play button
-        <Button data-category="play" variant="contained" onClick={handleClick}>
+        {t("settings.playbutton")}
+        <Button data-category="play" variant="outlined" onClick={handleClick}>
           {play}
         </Button>
       </div>
       <div>
-        {" "}
-        Number of choices {choices}
+        {t("settings.numberofchoices")} {choices}
         <input
           type="range"
           value={choices}
@@ -144,8 +147,8 @@ const Settings = ({
           max="8"
         />
       </div>
-      <Button variant="contained" onClick={resetValues}>
-        Reset all values
+      <Button variant="contained" color="secondary" onClick={resetValues}>
+        {t("settings.resetallvalues")}
       </Button>
     </div>
   );

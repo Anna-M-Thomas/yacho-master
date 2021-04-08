@@ -145,3 +145,12 @@ April 6, 2021
 30 minutes: trying to resolve overlapping with grid and failing
 30 minutes: Working on various console log warnings
 30 minutes: i18n for Quiz
+Total 3 hours
+
+April 8. 2021
+30 minutes: Watching Material UI tutorial
+30 minutes; still trying to fix layout
+30 minutes: gave up on Grid, switched to regular flexbox
+30 minutes: fiddling with styles
+30 minutes: more styles
+30 minutes: translated settings, userforms

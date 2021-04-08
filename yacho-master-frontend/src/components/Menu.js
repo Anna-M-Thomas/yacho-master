@@ -9,8 +9,12 @@ const Languageselect = () => {
   const { i18n } = useTranslation();
   return (
     <>
-      <Button onClick={() => i18n.changeLanguage("jp")}>jp</Button>
-      <Button onClick={() => i18n.changeLanguage("en")}>en</Button>
+      <Button size="small" onClick={() => i18n.changeLanguage("jp")}>
+        jp
+      </Button>
+      <Button size="small" onClick={() => i18n.changeLanguage("en")}>
+        en
+      </Button>
     </>
   );
 };
@@ -19,7 +23,7 @@ const Menu = ({ user }) => {
   const { t } = useTranslation();
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" color="primary" elevation={2}>
       <Toolbar>
         <Button color="inherit" component={Link} to="/quiz">
           {t("menu.quiz")}
@@ -31,7 +35,7 @@ const Menu = ({ user }) => {
           {t("menu.about")}
         </Button>
         {!user && (
-          <Button variant="contained" component={Link} to="/login">
+          <Button variant="contained" size="small" component={Link} to="/login">
             {t("menu.login")}
           </Button>
         )}

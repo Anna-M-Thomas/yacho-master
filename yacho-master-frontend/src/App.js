@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import loginHandler from "./services/login";
+import Container from "@material-ui/core/Container";
 import Menu from "./components/Menu";
 import Settings from "./components/Settings";
 import Newuserform from "./components/Newuserform";
@@ -56,58 +57,60 @@ function App() {
   return (
     <>
       <Menu user={user} />
-      <Switch>
-        <Route path="/quiz">
-          <Quiz
-            keys={keys}
-            nextKey={nextKey}
-            play={play}
-            choices={choices}
-            user={user}
-            setUser={setUser}
-            answerHistory={answerHistory}
-            setAnswerHistory={setAnswerHistory}
-          />
-        </Route>
-        <Route path="/settings">
-          <Settings
-            keys={keys}
-            setKeys={setKeys}
-            nextKey={nextKey}
-            setNextkey={setNextkey}
-            play={play}
-            setPlay={setPlay}
-            choices={choices}
-            setChoices={setChoices}
-          />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/login">
-          {!user ? (
-            <>
-              <Loginform setUser={setUser} handleLogin={handleLogin} />
-              <Newuserform />
-            </>
-          ) : (
-            <Redirect to="/about" />
-          )}
-        </Route>
-        <Route path="/user">
-          {user ? (
-            <User
+      <Container>
+        <Switch>
+          <Route path="/quiz">
+            <Quiz
+              keys={keys}
+              nextKey={nextKey}
+              play={play}
+              choices={choices}
               user={user}
               setUser={setUser}
               answerHistory={answerHistory}
               setAnswerHistory={setAnswerHistory}
-              handleLogout={handleLogout}
             />
-          ) : (
-            <Redirect to="/about" />
-          )}
-        </Route>
-      </Switch>
+          </Route>
+          <Route path="/settings">
+            <Settings
+              keys={keys}
+              setKeys={setKeys}
+              nextKey={nextKey}
+              setNextkey={setNextkey}
+              play={play}
+              setPlay={setPlay}
+              choices={choices}
+              setChoices={setChoices}
+            />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/login">
+            {!user ? (
+              <>
+                <Loginform setUser={setUser} handleLogin={handleLogin} />
+                <Newuserform />
+              </>
+            ) : (
+              <Redirect to="/about" />
+            )}
+          </Route>
+          <Route path="/user">
+            {user ? (
+              <User
+                user={user}
+                setUser={setUser}
+                answerHistory={answerHistory}
+                setAnswerHistory={setAnswerHistory}
+                handleLogout={handleLogout}
+              />
+            ) : (
+              <Redirect to="/about" />
+            )}
+          </Route>
+        </Switch>
+      </Container>
     </>
   );
 }

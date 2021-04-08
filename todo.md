@@ -134,6 +134,7 @@
 - Save right and wrong to answers array if not logged in, not local storage (?probably)...no, I'm going to leave that just for logged in users...done
 
 -Switch all Buttons to contained
+-Clicking the right answer registers as being the wrong answer...
 
 - Add some kind of message/alert component that says right or wrong and shows errors
 - Translate rest of site for both JP/EN
@@ -148,3 +149,6 @@
 - I should probably just have one gitignore file instead of multiple, it's one repository?
   Add endpoint that gives all the recorders (for thanks)
 - Safari is super slow with audio, but this seems to be just "the nature of safari"
+- Japanese Grosbeak was restricted and we didn't actually download an mp3 file for it
+- Japanese thrush has no Japanese name listed (undefined)
+- Common sandpiper audio is too short

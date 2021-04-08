@@ -1,5 +1,5 @@
 body {
-  margin: 15;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -17,12 +17,17 @@ button {
   margin: 2px;
 }
 
+#keysDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .clicked {
   background-color: aqua;
 }
 
 .imageDiv {
-  background-color: green;
+  background-color: rgb(247, 217, 247);
   display: flex;
   justify-content: center;
 }
@@ -32,6 +37,36 @@ button {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+#quizContainer {
+  display: flex;
+  align-items: center;
+}
+
+#quizLeft {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+#quizRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
 #audioLabel {
   font-size: 15px;
+}
+
+@media all and (max-width: 700px) {
+  #quizContainer {
+    flex-direction: column;
+  }
+
+  #quizRight {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

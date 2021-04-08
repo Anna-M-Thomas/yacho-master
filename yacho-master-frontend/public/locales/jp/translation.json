@@ -14,5 +14,20 @@
     "title": "クイズ!",
     "playstopaudio": "録音を再生・停止:",
     "nextquestion": "次の質問"
+  },
+  "settings": {
+    "title": "設定",
+    "answer": "答えボタン",
+    "nextbutton": "次の質問ボタン",
+    "playbutton": "再生ボタン",
+    "numberofchoices": "選択の個数",
+    "resetallvalues": "設定をデファウトに戻す"
+  },
+  "login": {
+    "login": "ログイン",
+    "newuser": "新しいアカウントを作成",
+    "username": "ユーザー ネーム",
+    "password": "パスワード",
+    "submit": "送信"
   }
 }

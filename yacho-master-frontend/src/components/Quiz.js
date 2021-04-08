@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useHotkeys } from "react-hotkeys-hook";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 
 const Quiz = ({
   keys,
@@ -129,8 +130,8 @@ const Quiz = ({
       {question && answers && (
         <>
           <h1>{t("quiz.title")}</h1>
-          <Grid container justify="space-around" spacing={4}>
-            <Grid container item sm={7} direction="column" alignItems="stretch">
+          <div id="quizContainer">
+            <div id="quizLeft">
               <div className="imageDiv">
                 <img
                   src={hasAnswered ? image : "./mysterybird.jpg"}
@@ -144,7 +145,7 @@ const Quiz = ({
               <div id="imageLabel">
                 {hasAnswered && question.en}
                 {displayHistory &&
-                  `right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
+                  ` right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
               </div>
               <audio
                 ref={audioRef}
@@ -152,46 +153,35 @@ const Quiz = ({
                 controls
                 preload="auto"
               />
-
-              {hasAnswered && (
-                <aside id="audioLabel">
-                  Audio <a href={`${question.lic}`}>CC</a> {question.rec}, XC
-                  {question.id}. Accessible at www.xeno-canto.org/{question.id}.
-                </aside>
-              )}
               <div>
                 {t("quiz.playstopaudio")}
                 {play}
+                {hasAnswered && (
+                  <aside id="audioLabel">
+                    Audio <a href={`${question.lic}`}>CC</a> {question.rec}, XC
+                    {question.id}. Accessible at www.xeno-canto.org/
+                    {question.id}.
+                  </aside>
+                )}
               </div>
-            </Grid>
-            <Grid
-              container
-              item
-              sm={5}
-              direction="column"
-              spacing={3}
-              alignItems="center"
-            >
+            </div>
+            <div id="quizRight">
               {answers.map((bird, index) => (
-                <Grid item key={bird.id}>
-                  <Button
-                    data-id={bird.id}
-                    onClick={handlePress}
-                    variant="contained"
-                  >
-                    {currentLang === "jp"
-                      ? `${bird.jp} ${bird.en} (${keys[index]})`
-                      : `${bird.en} ${bird.jp} (${keys[index]})`}
-                  </Button>
-                </Grid>
-              ))}
-              <Grid item>
-                <Button onClick={nextQuestion} variant="contained">
-                  {t("quiz.nextquestion")} ({nextKey})
+                <Button data-id={bird.id} onClick={handlePress}>
+                  {currentLang === "jp"
+                    ? `${bird.jp} ${bird.en} (${keys[index]})`
+                    : `${bird.en} ${bird.jp} (${keys[index]})`}
                 </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+              ))}
+              <Button
+                onClick={nextQuestion}
+                variant="contained"
+                color="secondary"
+              >
+                {t("quiz.nextquestion")} ({nextKey})
+              </Button>
+            </div>
+          </div>
         </>
       )}
     </>

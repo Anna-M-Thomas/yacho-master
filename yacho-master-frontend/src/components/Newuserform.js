@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import userHandler from "../services/user";
 import Textfield from "@material-ui/core/Textfield";
 import Button from "@material-ui/core/Button";
 
 const Newuserform = () => {
+  const { t } = useTranslation();
   const [newUserName, setNewUserName] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -22,22 +24,22 @@ const Newuserform = () => {
 
   return (
     <>
-      <h1>Make a new user</h1>
+      <h1>{t("login.newuser")}</h1>
       <form onSubmit={handleNewUser} autoComplete="off">
         <Textfield
-          label="New username"
+          label={t("login.username")}
           type="text"
           value={newUserName}
           onChange={({ target }) => setNewUserName(target.value)}
         />
         <Textfield
           type="password"
-          label="Password"
+          label={t("login.password")}
           value={newPassword}
           autoComplete="new-password"
           onChange={({ target }) => setNewPassword(target.value)}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{t("login.submit")}</Button>
       </form>
     </>
   );

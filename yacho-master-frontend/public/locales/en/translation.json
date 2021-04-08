@@ -14,5 +14,20 @@
     "title": "Quiz!",
     "playstopaudio": "Play/stop audio:",
     "nextquestion": "Next question"
+  },
+  "settings": {
+    "title": "Settings",
+    "answer": "Answer",
+    "playbutton": "Play button",
+    "nextbutton": "Next button",
+    "numberofchoices": "Number of choices",
+    "resetallvalues": "Reset all values"
+  },
+  "login": {
+    "login": "Login",
+    "newuser": "Make a new user",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Submit"
   }
 }
