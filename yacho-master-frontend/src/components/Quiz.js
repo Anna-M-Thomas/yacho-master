@@ -5,8 +5,6 @@ import imageHandler from "../services/image";
 import { useTranslation } from "react-i18next";
 import { useHotkeys } from "react-hotkeys-hook";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 
 const Quiz = ({
   keys,
@@ -50,14 +48,23 @@ const Quiz = ({
         .getImage(question.en)
         .then((result) => {
           console.log("result from get Image!!", result);
-          const { farm, server, id, secret } = result.photos.photo[0];
-          setImage(
-            `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_w.jpg`
-          );
+          const {
+            farm,
+            server,
+            id,
+            secret,
+            ownername,
+            title,
+          } = result.photos.photo[0];
+          setImage({
+            url: `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_w.jpg`,
+            ownername,
+            title,
+          });
         })
         .catch((error) => {
           console.log(error);
-          setImage("./notmysterybird.jpg");
+          setImage({ url: "./notmysterybird.jpg" });
         });
     }
   }, [question]);
@@ -75,7 +82,7 @@ const Quiz = ({
         const index = keys.findIndex((key) => key === event.key);
         handleAnswer(answers[index].id === question.id);
       } else {
-        handleAnswer(event.target.dataset.id === question.id);
+        handleAnswer(event.currentTarget.dataset.id === question.id);
       }
       setHasAnswered(true);
     }
@@ -129,12 +136,12 @@ const Quiz = ({
     <>
       {question && answers && (
         <>
-          <h1>{t("quiz.title")}</h1>
           <div id="quizContainer">
             <div id="quizLeft">
               <div className="imageDiv">
                 <img
-                  src={hasAnswered ? image : "./mysterybird.jpg"}
+                  id="birdImg"
+                  src={hasAnswered ? image.url : "./mysterybird.jpg"}
                   alt={
                     hasAnswered
                       ? question.en
@@ -153,24 +160,13 @@ const Quiz = ({
                 controls
                 preload="auto"
               />
-              <div>
-                {t("quiz.playstopaudio")}
-                {play}
-                {hasAnswered && (
-                  <aside id="audioLabel">
-                    Audio <a href={`${question.lic}`}>CC</a> {question.rec}, XC
-                    {question.id}. Accessible at www.xeno-canto.org/
-                    {question.id}.
-                  </aside>
-                )}
-              </div>
             </div>
             <div id="quizRight">
-              {answers.map((bird, index) => (
-                <Button data-id={bird.id} onClick={handlePress}>
+              {answers.map((bird) => (
+                <Button key={bird.id} data-id={bird.id} onClick={handlePress}>
                   {currentLang === "jp"
-                    ? `${bird.jp} ${bird.en} (${keys[index]})`
-                    : `${bird.en} ${bird.jp} (${keys[index]})`}
+                    ? `${bird.jp} ${bird.en}`
+                    : `${bird.en} ${bird.jp}`}
                 </Button>
               ))}
               <Button
@@ -181,6 +177,27 @@ const Quiz = ({
                 {t("quiz.nextquestion")} ({nextKey})
               </Button>
             </div>
+          </div>
+          <div id="creditsDiv">
+            {t("quiz.playstopaudio")} {play}{" "}
+            {keys.map(
+              (item, index) =>
+                `${t("settings.answer")} ${index + 1}: ${item}${
+                  index === keys.length - 1 ? "" : ","
+                } `
+            )}
+            <aside id="audioCredits">
+              Audio <a href={`${question.lic}`}>CC</a> {question.rec}, XC
+              {question.id}. Accessible at www.xeno-canto.org/
+              {question.id}.
+            </aside>
+            {image && (
+              <aside id="imageCredits">
+                <a href={image.url}>Image</a> by {image.ownername}. "This
+                product uses the Flickr API but is not endorsed or certified by
+                SmugMug, Inc."
+              </aside>
+            )}
           </div>
         </>
       )}

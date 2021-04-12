@@ -39,7 +39,9 @@ const Newuserform = () => {
           autoComplete="new-password"
           onChange={({ target }) => setNewPassword(target.value)}
         />
-        <Button type="submit">{t("login.submit")}</Button>
+        <Button type="submit" variant="contained">
+          {t("login.submit")}
+        </Button>
       </form>
     </>
   );

@@ -20,6 +20,7 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         margin: "3px",
+        lineHeight: 1,
       },
     },
   },

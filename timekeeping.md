@@ -154,3 +154,11 @@ April 8. 2021
 30 minutes: fiddling with styles
 30 minutes: more styles
 30 minutes: translated settings, userforms
+Total 3 hours
+
+April 9, 2021
+30 minutes: Removed h1s, fixed margins without h1s, looking at hover effect for menu
+Total 30 minutes
+
+April 12, 2021
+30 minutes: Slightly more mobile responsive, fixed too-tall images, added Roboto font to html page

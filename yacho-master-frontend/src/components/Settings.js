@@ -86,7 +86,6 @@ const Settings = ({
   useEventListener("keydown", keydownHandler);
 
   const handleClick = (e) => {
-    console.log("event current target", e.currentTarget);
     if (e.currentTarget.dataset.index) {
       setIndex(e.currentTarget.dataset.index);
     }
@@ -107,7 +106,6 @@ const Settings = ({
 
   return (
     <div>
-      <h1>{t("settings.title")}</h1>
       <div id="keysDiv">
         {keys.map((item, index) => (
           <div key={item.charAt(0)}>

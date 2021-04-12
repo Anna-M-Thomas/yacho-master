@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-
 import userHandler from "../services/user";
 import answerHandler from "../services/answer";
 import Button from "@material-ui/core/Button";
@@ -43,8 +41,7 @@ const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
   }
   return (
     <>
-      <h1>User!</h1>
-      <div>I am user page here is user {user.username}</div>{" "}
+      <div>Answer history for {user.username}</div>{" "}
       <Button variant="contained" onClick={() => handleLogout()}>
         logout
       </Button>
@@ -80,11 +77,11 @@ const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button onClick={() => setClearHistoryOpen(true)}>
-        I am the clear history button
+      <Button onClick={() => setClearHistoryOpen(true)} variant="contained">
+        Clear history
       </Button>
-      <Button onClick={() => setDeleteUserOpen(true)}>
-        I however am the delete user button
+      <Button onClick={() => setDeleteUserOpen(true)} variant="contained">
+        Delete user
       </Button>
     </>
   );

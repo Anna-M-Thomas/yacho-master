@@ -57,7 +57,7 @@ function App() {
   return (
     <>
       <Menu user={user} />
-      <Container>
+      <Container style={{ marginTop: 20 }}>
         <Switch>
           <Route path="/quiz">
             <Quiz

@@ -132,9 +132,10 @@
 - Pictures! Here's flicker-sdk https://www.npmjs.com/package/flickr-sdk
 - Save settings to local storage, like # of options, key commands....done
 - Save right and wrong to answers array if not logged in, not local storage (?probably)...no, I'm going to leave that just for logged in users...done
-
--Switch all Buttons to contained
--Clicking the right answer registers as being the wrong answer...
+  -Clicking the right answer registers as being the wrong answer...fixed...done
+  -Switch all Buttons to contained...done mostly
+  
+  -Looking for hover effect for menu links
 
 - Add some kind of message/alert component that says right or wrong and shows errors
 - Translate rest of site for both JP/EN
@@ -147,7 +148,7 @@
   (How to do that with react-i18next?)
 - Make everything async
 - I should probably just have one gitignore file instead of multiple, it's one repository?
-  Add endpoint that gives all the recorders (for thanks)
+  Add endpoint that gives all the recorders (for thanks)...no I don't need to do that, giving thanks individually
 - Safari is super slow with audio, but this seems to be just "the nature of safari"
 - Japanese Grosbeak was restricted and we didn't actually download an mp3 file for it
 - Japanese thrush has no Japanese name listed (undefined)
