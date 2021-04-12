@@ -162,3 +162,8 @@ Total 30 minutes
 
 April 12, 2021
 30 minutes: Slightly more mobile responsive, fixed too-tall images, added Roboto font to html page
+30 minutes: Added Flickr credits, moved credits and key map to bottom
+30 minutes: Fiddling with menu icons
+30 minutes: More menu icons, starting mystery bird pic
+30 minutes: mystery bird pic
+Total 2 hours 30 minutes

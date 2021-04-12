@@ -47,7 +47,6 @@ const Quiz = ({
       imageHandler
         .getImage(question.en)
         .then((result) => {
-          console.log("result from get Image!!", result);
           const {
             farm,
             server,
@@ -141,7 +140,7 @@ const Quiz = ({
               <div className="imageDiv">
                 <img
                   id="birdImg"
-                  src={hasAnswered ? image.url : "./mysterybird.jpg"}
+                  src={hasAnswered ? image.url : "./anothermysterybird.png"}
                   alt={
                     hasAnswered
                       ? question.en
@@ -162,11 +161,11 @@ const Quiz = ({
               />
             </div>
             <div id="quizRight">
-              {answers.map((bird) => (
+              {answers.map((bird, index) => (
                 <Button key={bird.id} data-id={bird.id} onClick={handlePress}>
                   {currentLang === "jp"
-                    ? `${bird.jp} ${bird.en}`
-                    : `${bird.en} ${bird.jp}`}
+                    ? `${bird.jp} ${bird.en} (${keys[index]})`
+                    : `${bird.en} ${bird.jp} (${keys[index]})`}
                 </Button>
               ))}
               <Button
@@ -179,13 +178,7 @@ const Quiz = ({
             </div>
           </div>
           <div id="creditsDiv">
-            {t("quiz.playstopaudio")} {play}{" "}
-            {keys.map(
-              (item, index) =>
-                `${t("settings.answer")} ${index + 1}: ${item}${
-                  index === keys.length - 1 ? "" : ","
-                } `
-            )}
+            {t("quiz.playstopaudio")} {play}
             <aside id="audioCredits">
               Audio <a href={`${question.lic}`}>CC</a> {question.rec}, XC
               {question.id}. Accessible at www.xeno-canto.org/

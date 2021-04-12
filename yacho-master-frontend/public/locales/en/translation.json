@@ -8,7 +8,8 @@
     "quiz": "Quiz",
     "settings": "Settings",
     "about": "About",
-    "login": "Login"
+    "login": "Login",
+    "loggedin": "logged in"
   },
   "quiz": {
     "title": "Quiz!",
@@ -29,5 +30,10 @@
     "username": "Username",
     "password": "Password",
     "submit": "Submit"
+  },
+  "about": {
+    "main1": "Yacho Master was made with love by Anna after taking the amazing Full Stack Open course by the University of Helsinki (parts 1 through 7)! It is always free and as of this writing is available in Finnish, English, Chinese, and Spanish.",
+    "main2": "This app uses recordings from Xeno-Canto, and the images are from Flickr.",
+    "main3": "All of the bird recordings on Xeno-Canto are released under one of the Creative Commons Licenses. If you enjoyed this app and have personal bird recordings, please consider uploading your recordings to Xeno-Canto or releasing them under a Creative Commons license so others can use them for education and science!"
   }
 }

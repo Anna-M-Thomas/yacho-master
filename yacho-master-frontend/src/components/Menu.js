@@ -23,15 +23,19 @@ const Menu = ({ user }) => {
   const { t } = useTranslation();
 
   return (
-    <AppBar position="sticky" color="primary">
+    <AppBar position="sticky" color="primary" id="menu">
       <Toolbar>
         <Button color="inherit" component={Link} to="/quiz" id="quiz">
+          <img src="bird_ooruri.png" alt="Blue-and-white flycatcher" />
           {t("menu.quiz")}
         </Button>
+
         <Button color="inherit" component={Link} to="/settings" id="settings">
+          <img src="bird_yatsugashira.png" alt="Eurasian Hoopoe" />
           {t("menu.settings")}
         </Button>
         <Button color="inherit" component={Link} to="/about" id="about">
+          <img src="bird_tashigi.png" alt="Common Snipe" />
           {t("menu.about")}
         </Button>
         {!user && (
@@ -47,10 +51,11 @@ const Menu = ({ user }) => {
         )}
         {user ? (
           <span>
-            <Button color="inherit" component={Link} to="/user">
+            <Button color="inherit" component={Link} to="/user" id="user">
+              <img src="bird_mejiro.png" alt="Japanese Whiteeye" />
               {user.username}
             </Button>{" "}
-            logged in
+            {t("menu.loggedin")}
           </span>
         ) : (
           ""
