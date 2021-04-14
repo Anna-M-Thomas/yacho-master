@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { makeStyles } from "@material-ui/core/styles";
+
 import userHandler from "../services/user";
 import answerHandler from "../services/answer";
 import Button from "@material-ui/core/Button";
@@ -11,9 +14,18 @@ import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import Confirmdialog from "./Confirmdialog";
 
+const useStyles = makeStyles({
+  root: {
+    margin: "2%",
+  },
+});
+
 const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
   const [clearHistoryOpen, setClearHistoryOpen] = useState(false);
   const [deleteUserOpen, setDeleteUserOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const classes = useStyles();
+  const currentLang = i18n.language;
 
   const handleClearHistory = () => {
     setClearHistoryOpen(false);
@@ -40,36 +52,44 @@ const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
     return null;
   }
   return (
-    <>
-      <div>Answer history for {user.username}</div>{" "}
-      <Button variant="contained" onClick={() => handleLogout()}>
-        logout
+    <main>
+      <div>
+        {t("user.answerhistory")} {user.username}
+      </div>{" "}
+      <Button
+        variant="contained"
+        onClick={() => handleLogout()}
+        className={classes.root}
+      >
+        {t("user.logout")}
       </Button>
       <Confirmdialog
         open={clearHistoryOpen}
         setOpen={setClearHistoryOpen}
-        title="Delete answer history?"
+        title={t("user.deleteanswer?")}
         onConfirm={handleClearHistory}
       />
       <Confirmdialog
         open={deleteUserOpen}
         setOpen={setDeleteUserOpen}
-        title="Delete user?"
+        title={t("user.deleteuser?")}
         onConfirm={handleDeleteUser}
       />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Bird name</TableCell>
-              <TableCell>Answered right</TableCell>
-              <TableCell>Answered wrong</TableCell>
+              <TableCell>{t("user.birdname")}</TableCell>
+              <TableCell>{t("user.answeredright")}</TableCell>
+              <TableCell>{t("user.answeredwrong")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {answerHistory.map((answer) => (
               <TableRow key={answer.id}>
-                <TableCell>{answer.nameEn}</TableCell>
+                <TableCell>
+                  {currentLang === "en" ? answer.nameEn : answer.nameJp}
+                </TableCell>
                 <TableCell>{answer.right}</TableCell>
                 <TableCell>{answer.wrong}</TableCell>
               </TableRow>
@@ -77,13 +97,21 @@ const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Button onClick={() => setClearHistoryOpen(true)} variant="contained">
-        Clear history
+      <Button
+        onClick={() => setClearHistoryOpen(true)}
+        variant="contained"
+        className={classes.root}
+      >
+        {t("user.clearhistory")}
       </Button>
-      <Button onClick={() => setDeleteUserOpen(true)} variant="contained">
-        Delete user
+      <Button
+        onClick={() => setDeleteUserOpen(true)}
+        variant="contained"
+        className={classes.root}
+      >
+        {t("user.deleteuser")}
       </Button>
-    </>
+    </main>
   );
 };
 

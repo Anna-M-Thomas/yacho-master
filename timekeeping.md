@@ -120,50 +120,56 @@ April 1, 2021
 Total 3 hours
 
 April 2, 2021
-30 minutes: Looking at Flickr api
-30 minutes: Made temporary mystery bird image, front end asking for api for image
-30 minutes: Successfully getting JSON image info from flikr api through the backend!
+-30 minutes: Looking at Flickr api
+-30 minutes: Made temporary mystery bird image, front end asking for api for image
+-30 minutes: Successfully getting JSON image info from flikr api through the backend!
 Total 1.5 hours
 
 April 4, 2021
-30 minutes: Showing an image from flickr!
+-30 minutes: Showing an image from flickr!
 Total .5 hours
 
 April 5, 2021
-30 minutes: No longer resets previously set keys by adding choices, working on local storage for settings
-30 minutes: local storage works, looking at material UI
-30 minutes: material UI stuff
-30 minutes: user data to Table, fixed clear answers (wasn't actually deleting)
-30 minutes: Looking at quiz styling, alert dialog (for erasing user etc)
-30 minutes: Alert opens with generic message (but doesn't close, whoops)
+-30 minutes: No longer resets previously set keys by adding choices, working on local storage for settings
+-30 minutes: local storage works, looking at material UI
+-30 minutes: material UI stuff
+-30 minutes: user data to Table, fixed clear answers (wasn't actually deleting)
+-30 minutes: Looking at quiz styling, alert dialog (for erasing user etc)
+-30 minutes: Alert opens with generic message (but doesn't close, whoops)
 Total 3 hours
 
 April 6, 2021
-30 minutes: Alert for delete answer history and user works
-30 minutes: working on grid layout for quiz
-30 minutes: more messing with grid
-30 minutes: trying to resolve overlapping with grid and failing
-30 minutes: Working on various console log warnings
-30 minutes: i18n for Quiz
+-30 minutes: Alert for delete answer history and user works
+-30 minutes: working on grid layout for quiz
+-30 minutes: more messing with grid
+-30 minutes: trying to resolve overlapping with grid and failing
+-30 minutes: Working on various console log warnings
+-30 minutes: i18n for Quiz
 Total 3 hours
 
 April 8. 2021
-30 minutes: Watching Material UI tutorial
-30 minutes; still trying to fix layout
-30 minutes: gave up on Grid, switched to regular flexbox
-30 minutes: fiddling with styles
-30 minutes: more styles
-30 minutes: translated settings, userforms
+-30 minutes: Watching Material UI tutorial
+-30 minutes; still trying to fix layout
+-30 minutes: gave up on Grid, switched to regular flexbox
+-30 minutes: fiddling with styles
+-30 minutes: more styles
+-30 minutes: translated settings, userforms
 Total 3 hours
 
 April 9, 2021
-30 minutes: Removed h1s, fixed margins without h1s, looking at hover effect for menu
+-30 minutes: Removed h1s, fixed margins without h1s, looking at hover effect for menu
 Total 30 minutes
 
 April 12, 2021
-30 minutes: Slightly more mobile responsive, fixed too-tall images, added Roboto font to html page
-30 minutes: Added Flickr credits, moved credits and key map to bottom
-30 minutes: Fiddling with menu icons
-30 minutes: More menu icons, starting mystery bird pic
-30 minutes: mystery bird pic
+-30 minutes: Slightly more mobile responsive, fixed too-tall images, added Roboto font to html page
+-30 minutes: Added Flickr credits, moved credits and key map to bottom
+-30 minutes: Fiddling with menu icons
+-30 minutes: More menu icons, starting mystery bird pic
+-30 minutes: mystery bird pic
 Total 2 hours 30 minutes
+
+April 14, 2021
+-30 minutes JP-EN and links for About page
+-30 minutes JP-EN for User page and confirm dialog
+-30 minutes, made footer in Quiz, adjusted picture label, fixed photo credit to link to profile
+-30 minutes: Tweaked button styling, changed bullets to duck emojis, omitted tab and escape for keyboard navigation

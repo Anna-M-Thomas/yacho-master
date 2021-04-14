@@ -32,8 +32,25 @@
     "submit": "Submit"
   },
   "about": {
-    "main1": "Yacho Master was made with love by Anna after taking the amazing Full Stack Open course by the University of Helsinki (parts 1 through 7)! It is always free and as of this writing is available in Finnish, English, Chinese, and Spanish.",
-    "main2": "This app uses recordings from Xeno-Canto, and the images are from Flickr.",
-    "main3": "All of the bird recordings on Xeno-Canto are released under one of the Creative Commons Licenses. If you enjoyed this app and have personal bird recordings, please consider uploading your recordings to Xeno-Canto or releasing them under a Creative Commons license so others can use them for education and science!"
+    "para1": "Yacho Master was made with love by Anna after taking the amazing Full Stack Open course by the University of Helsinki (parts 1 through 7)! Full Stack Open is a free course where you can learn React, Redux, Node.js, MongoDB and more, and as of this writing is available in Finnish, English, Chinese, and Spanish.",
+    "para2": "This app uses recordings from Xeno-Canto, and the images are from Flickr.",
+    "para3": "All of the bird recordings on Xeno-Canto are released under one of the Creative Commons Licenses. If you enjoyed this app and have personal bird recordings, please consider uploading your recordings to Xeno-Canto or releasing them under a Creative Commons license so others can use them for education and science!",
+    "aboutcc": "About Creative Commons licenses"
+  },
+  "user": {
+    "answerhistory": "Answer history for",
+    "logout": "logout",
+    "deleteanswer?": "Delete answer history?",
+    "deleteuser?": "Delete user?",
+    "birdname": "Bird name",
+    "answeredright": "Answered right",
+    "answeredwrong": "Answered wrong",
+    "clearhistory": "Clear history",
+    "deleteuser": "Delete user"
+  },
+  "confirm": {
+    "cantundo": "You cannot undo this action.",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

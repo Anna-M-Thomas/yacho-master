@@ -1,13 +1,16 @@
 //This is a reverse of the hotkeys keymap because hotkeys has its own names for some keys
 //So I can get the names from keycode
 
+//Omit tab and escape to not interfere with keyboard navigation
+//Space stays, user can reset
+// 9: "tab",
+//27: "escape",
+
 const keyMap = {
   8: "backspace",
-  9: "tab",
   12: "clear",
   13: "return",
   20: "⇪",
-  27: "escape",
   32: "space",
   33: "pageup",
   34: "pagedown",

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -7,6 +8,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const Confirmdialog = ({ title, open, setOpen, onConfirm }) => {
+  const { t } = useTranslation();
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -18,15 +21,15 @@ const Confirmdialog = ({ title, open, setOpen, onConfirm }) => {
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          You cannot undo this action.
+          {t("confirm.cantundo")}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary" variation="contained">
-          Cancel
+          {t("confirm.cancel")}
         </Button>
         <Button onClick={onConfirm} color="primary" autoFocus>
-          Delete
+          {t("confirm.delete")}
         </Button>
       </DialogActions>
     </Dialog>

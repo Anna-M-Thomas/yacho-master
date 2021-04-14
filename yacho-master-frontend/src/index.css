@@ -17,6 +17,15 @@ button {
   margin: 2px;
 }
 
+ul {
+  list-style: none;
+}
+
+li::before {
+  content: "🦆";
+  padding-right: 4px;
+}
+
 /* Menu */
 
 #quiz img,
@@ -38,10 +47,12 @@ button {
   flex-wrap: wrap;
 }
 
+/* Settings */
 .clicked {
   background-color: aqua;
 }
 
+/* Quiz */
 .imageDiv {
   background-color: rgb(240, 240, 240);
   display: flex;
@@ -53,8 +64,9 @@ button {
 }
 
 #imageLabel {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  text-align: center;
+  background-color: #c5cec4;
 }
 
 #quizContainer {
@@ -80,6 +92,10 @@ button {
 #creditsDiv {
   text-align: center;
   margin: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 #imageCredits,
@@ -87,6 +103,10 @@ button {
   font-size: 15px;
   width: 100%;
   text-align: center;
+}
+
+audio {
+  width: 100%;
 }
 
 @media all and (max-width: 700px) {
@@ -100,6 +120,15 @@ button {
   }
 
   #menu img {
+    display: none;
+  }
+  #creditsDiv {
+    position: static;
+  }
+}
+
+@media all and (max-height: 500px) {
+  #creditsDiv {
     display: none;
   }
 }

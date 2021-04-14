@@ -105,7 +105,7 @@ const Settings = ({
   };
 
   return (
-    <div>
+    <main>
       <div id="keysDiv">
         {keys.map((item, index) => (
           <div key={item.charAt(0)}>
@@ -148,7 +148,7 @@ const Settings = ({
       <Button variant="contained" color="secondary" onClick={resetValues}>
         {t("settings.resetallvalues")}
       </Button>
-    </div>
+    </main>
   );
 };
 

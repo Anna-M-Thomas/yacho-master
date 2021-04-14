@@ -54,11 +54,13 @@ const Quiz = ({
             secret,
             ownername,
             title,
+            owner,
           } = result.photos.photo[0];
           setImage({
             url: `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_w.jpg`,
             ownername,
             title,
+            owner,
           });
         })
         .catch((error) => {
@@ -132,7 +134,7 @@ const Quiz = ({
   };
 
   return (
-    <>
+    <main>
       {question && answers && (
         <>
           <div id="quizContainer">
@@ -151,7 +153,7 @@ const Quiz = ({
               <div id="imageLabel">
                 {hasAnswered && question.en}
                 {displayHistory &&
-                  ` right: ${displayHistory.right} wrong: ${displayHistory.wrong}`}
+                  ` Right: ${displayHistory.right} Wrong: ${displayHistory.wrong}`}
               </div>
               <audio
                 ref={audioRef}
@@ -159,6 +161,7 @@ const Quiz = ({
                 controls
                 preload="auto"
               />
+              {t("quiz.playstopaudio")} {play}
             </div>
             <div id="quizRight">
               {answers.map((bird, index) => (
@@ -178,7 +181,6 @@ const Quiz = ({
             </div>
           </div>
           <div id="creditsDiv">
-            {t("quiz.playstopaudio")} {play}
             <aside id="audioCredits">
               Audio <a href={`${question.lic}`}>CC</a> {question.rec}, XC
               {question.id}. Accessible at www.xeno-canto.org/
@@ -186,15 +188,18 @@ const Quiz = ({
             </aside>
             {image && (
               <aside id="imageCredits">
-                <a href={image.url}>Image</a> by {image.ownername}. "This
-                product uses the Flickr API but is not endorsed or certified by
-                SmugMug, Inc."
+                Image by{" "}
+                <a href={`https://www.flickr.com/people/${image.owner}/`}>
+                  {image.ownername}
+                </a>
+                . "This product uses the Flickr API but is not endorsed or
+                certified by SmugMug, Inc."
               </aside>
             )}
           </div>
         </>
       )}
-    </>
+    </main>
   );
 };
 
