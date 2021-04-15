@@ -173,3 +173,9 @@ April 14, 2021
 -30 minutes JP-EN for User page and confirm dialog
 -30 minutes, made footer in Quiz, adjusted picture label, fixed photo credit to link to profile
 -30 minutes: Tweaked button styling, changed bullets to duck emojis, omitted tab and escape for keyboard navigation
+Total 2 hours
+
+55 hours so far
+
+April 15, 2021
+-30 minutes: Using quiz and checking recordings

@@ -27,6 +27,8 @@ const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
   const classes = useStyles();
   const currentLang = i18n.language;
 
+  console.log("# of birds answered", answerHistory.length);
+
   const handleClearHistory = () => {
     setClearHistoryOpen(false);
     answerHandler

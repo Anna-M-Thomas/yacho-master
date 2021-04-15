@@ -134,7 +134,7 @@
 - Save right and wrong to answers array if not logged in, not local storage (?probably)...no, I'm going to leave that just for logged in users...done
   -Clicking the right answer registers as being the wrong answer...fixed...done
   -Switch all Buttons to contained...done mostly
-  
+
   -Looking for hover effect for menu links
 
 - Add some kind of message/alert component that says right or wrong and shows errors
@@ -150,6 +150,42 @@
 - I should probably just have one gitignore file instead of multiple, it's one repository?
   Add endpoint that gives all the recorders (for thanks)...no I don't need to do that, giving thanks individually
 - Safari is super slow with audio, but this seems to be just "the nature of safari"
+
+Other problems
+
 - Japanese Grosbeak was restricted and we didn't actually download an mp3 file for it
 - Japanese thrush has no Japanese name listed (undefined)
-- Common sandpiper audio is too short
+- What is Western Yellow Wagtail doing in there?
+- Chinese Hwamei's audio is broken. Another restricted recording
+
+Too short or not clear--look for a better source?
+
+- Common sandpiper
+
+- Eurasian bittern
+
+- Jungle nightjar www.xeno-canto.org/404907
+
+- Common snipe www.xeno-canto.org/622103
+
+- Japanese cormorant www.xeno-canto.org/360997 to https://www.xeno-canto.org/215126
+
+- Striated heron www.xeno-canto.org/550529
+
+- Bull-bellied pipit www.xeno-canto.org/624421
+
+- Rock dove www.xeno-canto.org/550328
+
+- Whistling Green Pigeon www.xeno-canto.org/551645
+
+- Oriental Cuckoo www.xeno-canto.org/624365
+
+- Tundra Swan www.xeno-canto.org/622675
+
+- Japanese Wood Pigeon www.xeno-canto.org/190496
+
+- Japanese Reed Bunting www.xeno-canto.org/492006
+
+- Northern Shoveler www.xeno-canto.org/541310
+
+- Grey Heron (too much silence) www.xeno-canto.org/625963
