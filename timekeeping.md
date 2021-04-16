@@ -179,3 +179,9 @@ Total 2 hours
 
 April 15, 2021
 -30 minutes: Using quiz and checking recordings
+
+April 16, 2021
+-30 minutes: more checking recordings
+-30 minutes: Missing bird image
+-30 minutes: Favicon stuff, starting fixing audio
+-30 minutes: downloadeding new audio

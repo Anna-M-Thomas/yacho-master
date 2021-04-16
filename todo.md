@@ -153,39 +153,53 @@
 
 Other problems
 
-- Japanese Grosbeak was restricted and we didn't actually download an mp3 file for it
-- Japanese thrush has no Japanese name listed (undefined)
-- What is Western Yellow Wagtail doing in there?
-- Chinese Hwamei's audio is broken. Another restricted recording
+- Japanese Grosbeak was restricted and we didn't actually download an mp3 file for it...done
+- Chinese Hwamei's audio is broken. Another restricted recording....done
+- Japanese thrush has no Japanese name listed (undefined)....done
+- What is Western Yellow Wagtail doing in there?...Oh yeah, yellow wagtail in En is gray wagtail, western yellow comes to Okinawa and sometimes Kyushu I guess....done
+
+  -Something wrong with Peregrine Falcon audio www.xeno-canto.org/624604...can't tell what it is.Everything looks ok.
 
 Too short or not clear--look for a better source?
 
-- Common sandpiper
+- Common sandpiper www.xeno-canto.org/575518 change to https://www.xeno-canto.org/240418 downloaded
 
-- Eurasian bittern
+- Eurasian bittern www.xeno-canto.org/628793 oh whatever, it's fine.
 
-- Jungle nightjar www.xeno-canto.org/404907
+- Jungle nightjar www.xeno-canto.org/404907 change to https://www.xeno-canto.org/575166 downloaded
 
-- Common snipe www.xeno-canto.org/622103
+- Common snipe www.xeno-canto.org/622103 to https://www.xeno-canto.org/637616 donwloaded
 
-- Japanese cormorant www.xeno-canto.org/360997 to https://www.xeno-canto.org/215126
+- Japanese cormorant www.xeno-canto.org/360997 to https://www.xeno-canto.org/215126 downloaded
 
-- Striated heron www.xeno-canto.org/550529
+- Striated heron www.xeno-canto.org/550529 to https://www.xeno-canto.org/623412 downloaded
 
-- Bull-bellied pipit www.xeno-canto.org/624421
+- Bull-bellied pipit www.xeno-canto.org/624421 to https://www.xeno-canto.org/622932
 
-- Rock dove www.xeno-canto.org/550328
+- Rock dove www.xeno-canto.org/550328 to https://www.xeno-canto.org/615956 downloaded
 
 - Whistling Green Pigeon www.xeno-canto.org/551645
+  never mind, good enough
 
-- Oriental Cuckoo www.xeno-canto.org/624365
+- Oriental Cuckoo www.xeno-canto.org/624365 to https://www.xeno-canto.org/636271
 
-- Tundra Swan www.xeno-canto.org/622675
+- Tundra Swan www.xeno-canto.org/622675 to https://www.xeno-canto.org/615226 downloaded
 
-- Japanese Wood Pigeon www.xeno-canto.org/190496
+- Japanese Wood Pigeon www.xeno-canto.org/190496 to https://www.xeno-canto.org/285879 downloaded
 
-- Japanese Reed Bunting www.xeno-canto.org/492006
+- Japanese Reed Bunting www.xeno-canto.org/492006 to https://www.xeno-canto.org/467361 downloaded
 
-- Northern Shoveler www.xeno-canto.org/541310
+- Northern Shoveler www.xeno-canto.org/541310 to https://www.xeno-canto.org/635744 downloaded
 
 - Grey Heron (too much silence) www.xeno-canto.org/625963
+
+- Grey-Capped Greenfinch www.xeno-canto.org/627141
+
+- Little Grebe (can hear honking instead) www.xeno-canto.org/553775
+
+-Water rail www.xeno-canto.org/575203
+-Common redshank www.xeno-canto.org/560874
+
+-Grey-tailed Tattler
+
+-Common Redpoll www.xeno-canto.org/626750

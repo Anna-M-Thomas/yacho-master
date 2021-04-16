@@ -65,7 +65,7 @@ const Quiz = ({
         })
         .catch((error) => {
           console.log(error);
-          setImage({ url: "./notmysterybird.jpg" });
+          setImage({ url: "./missingbird.png" });
         });
     }
   }, [question]);
@@ -142,7 +142,7 @@ const Quiz = ({
               <div className="imageDiv">
                 <img
                   id="birdImg"
-                  src={hasAnswered ? image.url : "./anothermysterybird.png"}
+                  src={hasAnswered ? image.url : "./mysterybird.png"}
                   alt={
                     hasAnswered
                       ? question.en
@@ -152,7 +152,8 @@ const Quiz = ({
               </div>
               <div id="imageLabel">
                 {hasAnswered && question.en}
-                {displayHistory &&
+                {hasAnswered &&
+                  displayHistory &&
                   ` Right: ${displayHistory.right} Wrong: ${displayHistory.wrong}`}
               </div>
               <audio

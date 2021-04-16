@@ -93,7 +93,7 @@ function App() {
                 <Newuserform />
               </>
             ) : (
-              <Redirect to="/about" />
+              <Redirect to="/quiz" />
             )}
           </Route>
           <Route path="/user">
@@ -106,8 +106,20 @@ function App() {
                 handleLogout={handleLogout}
               />
             ) : (
-              <Redirect to="/about" />
+              <Redirect to="/quiz" />
             )}
+          </Route>
+          <Route path="/">
+            <Quiz
+              keys={keys}
+              nextKey={nextKey}
+              play={play}
+              choices={choices}
+              user={user}
+              setUser={setUser}
+              answerHistory={answerHistory}
+              setAnswerHistory={setAnswerHistory}
+            />
           </Route>
         </Switch>
       </Container>
