@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/api/getimage";
+const baseUrl = "/api/getimage";
 
 const getImage = async (birdname) => {
   const response = await axios.post(baseUrl, { birdname });

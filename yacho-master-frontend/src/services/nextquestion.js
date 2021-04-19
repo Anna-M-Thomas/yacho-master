@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/api/nextquestion";
+const baseUrl = "/api/nextquestion";
 
 const getQuestion = async (choices) => {
   const response = await axios.post(baseUrl, { choices });

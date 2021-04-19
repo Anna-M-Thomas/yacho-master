@@ -25,7 +25,8 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use(middleware.requestLogger);
-app.use(express.static("files"));
+//app.use(express.static("files"));
+app.use(express.static("build"));
 
 app.use("/api/users", usersRouter);
 app.use("/api/nextquestion", questionsRouter);

@@ -192,3 +192,5 @@ April 19, 2021
 -30 minutes: more JSON edits
 -30 minutes: finished JSON, checking audio, last translation bit, looking at i18n debugging
 -30 minutes: looking at Heroku, changing back to getting audio from Xeno-canto
+-30 minutes: trying to make Heroku work
+-30 minutes: trying to figure out why api calls don't work

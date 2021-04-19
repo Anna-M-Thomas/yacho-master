@@ -6,7 +6,6 @@ const Answer = require("../models/answer");
 //WHOOPS can't get token without this
 const getToken = (request) => {
   const authorization = request.get("authorization");
-  console.log("inside answers router", authorization);
   if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     return authorization.substring(7);
   }

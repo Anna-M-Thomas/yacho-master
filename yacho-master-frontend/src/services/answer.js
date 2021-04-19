@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/api/answers";
+const baseUrl = "/api/answers";
 
 const getConfig = (token) => {
   return { headers: { Authorization: `bearer ${token}` } };

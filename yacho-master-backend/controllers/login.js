@@ -43,7 +43,6 @@ loginRouter.post("/check", async (request, response, next) => {
 loginRouter.post("/", async (request, response, next) => {
   try {
     const body = request.body;
-    console.log("body inside loginRouter", body);
     const user = await User.findOne({ username: body.username }).populate(
       "answers",
       {

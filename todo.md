@@ -134,21 +134,25 @@
 - Save right and wrong to answers array if not logged in, not local storage (?probably)...no, I'm going to leave that just for logged in users...done
   -Clicking the right answer registers as being the wrong answer...fixed...done
   -Switch all Buttons to contained...done mostly
+- Translate rest of site for both JP/EN...done
+- Start to work on the Dreaded Design...doneish
+  -Looking for hover effect for menu links...never mind Material UI does it for me for buttons...done
+  Add endpoint that gives all the recorders (for thanks)...no I don't need to do that, giving thanks individually...done
 
-  -Looking for hover effect for menu links
+  - Show citation and license with audio file
+    `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
+    Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
+    (How to do that with react-i18next?)...done
 
-- Add some kind of message/alert component that says right or wrong and shows errors
-- Translate rest of site for both JP/EN
+  -Tell Heroku secrets & things, it doesn't know anything yet and that is probably why image api is now failing
+  -Set it up so can look at app locally (post switching to relative URL)
 
-- Start to work on the Dreaded Design
+- Add some kind of message/alert component that says right or wrong and shows errors...kind of like it better without alert?
 - What am I going to do for a hundred and something more hours? Think of more stuff to do!
-- Show citation and license with audio file
-  `${bird.rec}, XC${bird.id}. Accessible at ${bird.url}.`
-  Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
-  (How to do that with react-i18next?)
+
 - Make everything async
 - I should probably just have one gitignore file instead of multiple, it's one repository?
-  Add endpoint that gives all the recorders (for thanks)...no I don't need to do that, giving thanks individually
+
 - Safari is super slow with audio, but this seems to be just "the nature of safari"
 
 Other problems
