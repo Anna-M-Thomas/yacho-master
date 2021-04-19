@@ -14,7 +14,7 @@ const Settings = ({
   choices,
   setChoices,
 }) => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [settingNow, setSettingNow] = useState(null);
   const [index, setIndex] = useState(null);
 
@@ -103,6 +103,10 @@ const Settings = ({
     window.localStorage.setItem("choices", JSON.stringify(event.target.value));
     window.localStorage.setItem("keys", JSON.stringify(newKeys));
   };
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <main>

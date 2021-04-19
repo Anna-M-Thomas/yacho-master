@@ -21,7 +21,7 @@ const Quiz = ({
   const [hasAnswered, setHasAnswered] = useState(false);
   const [displayHistory, setdisplayHistory] = useState(null);
 
-  const { t, i18n } = useTranslation();
+  const { t, i18n, ready } = useTranslation();
   const currentLang = i18n.language;
 
   useHotkeys(nextKey, () => nextQuestion(), [hasAnswered], { keydown: true });
@@ -128,10 +128,15 @@ const Quiz = ({
         setAnswers(result.answers);
       });
       audioRef.current.load();
+
       setHasAnswered(false);
       setdisplayHistory(null);
     }
   };
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <main>
@@ -151,14 +156,17 @@ const Quiz = ({
                 />
               </div>
               <div id="imageLabel">
-                {hasAnswered && question.en}
+                {hasAnswered && currentLang === "en" && question.en}
+                {hasAnswered && currentLang === "jp" && question.jp}
                 {hasAnswered &&
                   displayHistory &&
-                  ` Right: ${displayHistory.right} Wrong: ${displayHistory.wrong}`}
+                  ` ${t("quiz.right")}: ${displayHistory.right} ${t(
+                    "quiz.wrong"
+                  )}: ${displayHistory.wrong}`}
               </div>
               <audio
                 ref={audioRef}
-                src={`http://localhost:3001/${question.id}.mp3`}
+                src={`http://www.xeno-canto.org/${question.id}/download`}
                 controls
                 preload="auto"
               />

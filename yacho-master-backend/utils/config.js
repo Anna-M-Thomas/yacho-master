@@ -7,6 +7,6 @@ if (process.env.NODE_ENV === "test") {
 
 let FLICKER_KEY = process.env.FLICKER_KEY;
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 module.exports = { MONGODB_URI, PORT, FLICKER_KEY };

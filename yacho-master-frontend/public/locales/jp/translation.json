@@ -14,7 +14,9 @@
   "quiz": {
     "title": "クイズ!",
     "playstopaudio": "録音を再生・停止:",
-    "nextquestion": "次の質問"
+    "nextquestion": "次の質問",
+    "right": "正解",
+    "wrong": "不正解"
   },
   "settings": {
     "title": "設定",

@@ -5,7 +5,7 @@ import Textfield from "@material-ui/core/Textfield";
 import Button from "@material-ui/core/Button";
 
 const Newuserform = () => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [newUserName, setNewUserName] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -21,6 +21,10 @@ const Newuserform = () => {
       setNewPassword("");
     }
   };
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <>

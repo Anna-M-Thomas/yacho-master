@@ -23,11 +23,9 @@ const useStyles = makeStyles({
 const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
   const [clearHistoryOpen, setClearHistoryOpen] = useState(false);
   const [deleteUserOpen, setDeleteUserOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t, i18n, ready } = useTranslation();
   const classes = useStyles();
   const currentLang = i18n.language;
-
-  console.log("# of birds answered", answerHistory.length);
 
   const handleClearHistory = () => {
     setClearHistoryOpen(false);
@@ -50,9 +48,10 @@ const User = ({ user, answerHistory, setAnswerHistory, handleLogout }) => {
       .catch((error) => console.log(error));
   };
 
-  if (!user || !answerHistory) {
+  if (!user || !answerHistory || !ready) {
     return null;
   }
+
   return (
     <main>
       <div>

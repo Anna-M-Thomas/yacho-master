@@ -14,7 +14,9 @@
   "quiz": {
     "title": "Quiz!",
     "playstopaudio": "Play/stop audio:",
-    "nextquestion": "Next question"
+    "nextquestion": "Next question",
+    "right": "Right",
+    "wrong": "Wrong"
   },
   "settings": {
     "title": "Settings",

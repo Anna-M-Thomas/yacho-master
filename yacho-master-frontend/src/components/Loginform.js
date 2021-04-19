@@ -4,7 +4,7 @@ import Textfield from "@material-ui/core/Textfield";
 import Button from "@material-ui/core/Button";
 
 const Loginform = ({ handleLogin }) => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,6 +17,10 @@ const Loginform = ({ handleLogin }) => {
       handleLogin(loginInfo);
     }
   };
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <>

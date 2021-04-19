@@ -185,3 +185,10 @@ April 16, 2021
 -30 minutes: Missing bird image
 -30 minutes: Favicon stuff, starting fixing audio
 -30 minutes: downloadeding new audio
+
+April 19, 2021
+-30 minutes: Downloading audio, starting JSON edits
+-30 minutes: JSON edits
+-30 minutes: more JSON edits
+-30 minutes: finished JSON, checking audio, last translation bit, looking at i18n debugging
+-30 minutes: looking at Heroku, changing back to getting audio from Xeno-canto

@@ -163,43 +163,98 @@ Other problems
 Too short or not clear--look for a better source?
 
 - Common sandpiper www.xeno-canto.org/575518 change to https://www.xeno-canto.org/240418 downloaded
-
-- Eurasian bittern www.xeno-canto.org/628793 oh whatever, it's fine.
+  deleted
+  added
+  changed JSON
 
 - Jungle nightjar www.xeno-canto.org/404907 change to https://www.xeno-canto.org/575166 downloaded
+  deleted
+  added
+  changed JSON
 
 - Common snipe www.xeno-canto.org/622103 to https://www.xeno-canto.org/637616 donwloaded
+  deleted
+  added
+  changed JSON
 
 - Japanese cormorant www.xeno-canto.org/360997 to https://www.xeno-canto.org/215126 downloaded
+  deleted
+  added
+  changed JSON
 
 - Striated heron www.xeno-canto.org/550529 to https://www.xeno-canto.org/623412 downloaded
+  deleted
+  added
+  changed JSON
 
 - Bull-bellied pipit www.xeno-canto.org/624421 to https://www.xeno-canto.org/622932
+  deleted
+  added
+  changed JSON
 
 - Rock dove www.xeno-canto.org/550328 to https://www.xeno-canto.org/615956 downloaded
-
-- Whistling Green Pigeon www.xeno-canto.org/551645
-  never mind, good enough
+  deleted
+  added
+  changed JSON
 
 - Oriental Cuckoo www.xeno-canto.org/624365 to https://www.xeno-canto.org/636271
+  deleted
+  added
+  changed JSON
 
 - Tundra Swan www.xeno-canto.org/622675 to https://www.xeno-canto.org/615226 downloaded
+  deleted
+  added
+  changed JSON
 
 - Japanese Wood Pigeon www.xeno-canto.org/190496 to https://www.xeno-canto.org/285879 downloaded
+  to 190495
+  to
+  deleted
+  added...need to remove & find another, this is no derivs...190495
+  switched and changed JSON
 
 - Japanese Reed Bunting www.xeno-canto.org/492006 to https://www.xeno-canto.org/467361 downloaded
+  deleted
+  added
+  changed JSON
 
 - Northern Shoveler www.xeno-canto.org/541310 to https://www.xeno-canto.org/635744 downloaded
+  deleted
+  added
+  changed JSON
 
-- Grey Heron (too much silence) www.xeno-canto.org/625963
+- Grey Heron (too much silence) www.xeno-canto.org/625963 to https://www.xeno-canto.org/638666
+  deleted
+  added
+  changed JSON
 
-- Grey-Capped Greenfinch www.xeno-canto.org/627141
+- Grey-Capped Greenfinch www.xeno-canto.org/627141 to can't use 285949, no derivs to https://www.xeno-canto.org/192392 instead downloaded
+  deleted
+  added
+  changed JSON
 
-- Little Grebe (can hear honking instead) www.xeno-canto.org/553775
+- Little Grebe (can hear honking instead) www.xeno-canto.org/553775 to https://www.xeno-canto.org/215128 downloaded
+  deleted
+  added
+  changed JSON
 
--Water rail www.xeno-canto.org/575203
--Common redshank www.xeno-canto.org/560874
+-Water rail www.xeno-canto.org/575203 to https://www.xeno-canto.org/638533 downloaded
+deleted
+added
+changed JSON
 
--Grey-tailed Tattler
+-Common redshank www.xeno-canto.org/560874 to https://www.xeno-canto.org/618146 downloaded
+deleted
+added
+changed JSON
 
--Common Redpoll www.xeno-canto.org/626750
+-Grey-tailed Tattler www.xeno-canto.org/596212 to https://www.xeno-canto.org/192309
+deleted
+added
+changed JSON
+
+-Common Redpoll www.xeno-canto.org/626750 to https://www.xeno-canto.org/486718
+deleted
+added
+changed JSON

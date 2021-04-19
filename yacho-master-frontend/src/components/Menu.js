@@ -20,7 +20,10 @@ const Languageselect = () => {
 };
 
 const Menu = ({ user }) => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
+  if (!ready) {
+    return null;
+  }
 
   return (
     <AppBar position="sticky" color="primary" id="menu">
