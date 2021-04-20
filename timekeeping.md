@@ -179,12 +179,14 @@ Total 2 hours
 
 April 15, 2021
 -30 minutes: Using quiz and checking recordings
+Total 30 minutes
 
 April 16, 2021
 -30 minutes: more checking recordings
 -30 minutes: Missing bird image
 -30 minutes: Favicon stuff, starting fixing audio
 -30 minutes: downloadeding new audio
+Total 2 hours
 
 April 19, 2021
 -30 minutes: Downloading audio, starting JSON edits
@@ -195,3 +197,6 @@ April 19, 2021
 -30 minutes: trying to make Heroku work
 -30 minutes: trying to figure out why api calls don't work
 -30 minutes: fixed api by added secrets to Heroku, changed name, shared online
+Total 4 hours
+
+Going to take a long hiatus at 61.5 hours

@@ -156,8 +156,7 @@ const Quiz = ({
                 />
               </div>
               <div id="imageLabel">
-                {hasAnswered && currentLang === "en" && question.en}
-                {hasAnswered && currentLang === "jp" && question.jp}
+                {hasAnswered && `${question.en} ${question.jp}`}
                 {hasAnswered &&
                   displayHistory &&
                   ` ${t("quiz.right")}: ${displayHistory.right} ${t(

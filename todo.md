@@ -144,7 +144,8 @@
     Anon Torimi, XC404507. Accessible at www.xeno-canto.org/404507.
     (How to do that with react-i18next?)...done
 
-  -Tell Heroku secrets & things, it doesn't know anything yet and that is probably why image api is now failing
+  -Tell Heroku secrets & things, it doesn't know anything yet and that is probably why image api is now failing...done
+
   -Set it up so can look at app locally (post switching to relative URL)
 
 - Add some kind of message/alert component that says right or wrong and shows errors...kind of like it better without alert?
