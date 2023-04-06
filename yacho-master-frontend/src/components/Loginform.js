@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Textfield from "@material-ui/core/Textfield";
-import Button from "@material-ui/core/Button";
+import { TextField, Button } from "@material-ui/core";
 
 const Loginform = ({ handleLogin }) => {
   const { t, ready } = useTranslation();
@@ -26,13 +25,13 @@ const Loginform = ({ handleLogin }) => {
     <>
       <h1>{t("login.login")}</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
-        <Textfield
+        <TextField
           type="text"
           label={t("login.username")}
           value={userName}
           onChange={({ target }) => setUserName(target.value)}
         />
-        <Textfield
+        <TextField
           type="password"
           label={t("login.password")}
           value={password}

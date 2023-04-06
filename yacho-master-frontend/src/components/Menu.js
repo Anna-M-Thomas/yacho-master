@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Toolbar from "@material-ui/core/Toolbar";
-import AppBar from "@material-ui/core/Appbar";
-import Button from "@material-ui/core/Button";
+import { AppBar, Button, Toolbar } from "@material-ui/core";
 
 const Languageselect = () => {
   const { i18n } = useTranslation();
