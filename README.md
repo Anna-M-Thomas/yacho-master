@@ -6,4 +6,4 @@ Full Stack Open １〜７を受講した後のプロジェクト: 日本に生�
 
 It's online at the following link
 下のリンクで公開中です。
-https://yacho-master.herokuapp.com/
+https://yacho-master.onrender.com/
