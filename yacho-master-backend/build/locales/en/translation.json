@@ -1,0 +1,58 @@
+{
+  "title": "My cat is the cutest cat",
+  "description": {
+    "part1": "He goes meow meow meow meow",
+    "part2": "Meow meow meow meow meow"
+  },
+  "menu": {
+    "quiz": "Quiz",
+    "settings": "Settings",
+    "about": "About",
+    "login": "Login",
+    "loggedin": "logged in"
+  },
+  "quiz": {
+    "title": "Quiz!",
+    "playstopaudio": "Play/stop audio:",
+    "nextquestion": "Next question",
+    "right": "Right",
+    "wrong": "Wrong"
+  },
+  "settings": {
+    "title": "Settings",
+    "answer": "Answer",
+    "playbutton": "Play button",
+    "nextbutton": "Next button",
+    "numberofchoices": "Number of choices",
+    "resetallvalues": "Reset all values"
+  },
+  "login": {
+    "login": "Login",
+    "newuser": "Make a new user",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Submit"
+  },
+  "about": {
+    "para1": "Yacho Master was made with love by Anna after taking the amazing Full Stack Open course by the University of Helsinki (parts 1 through 7)! Full Stack Open is a free course where you can learn React, Redux, Node.js, MongoDB and more, and as of this writing is available in Finnish, English, Chinese, and Spanish.",
+    "para2": "This app uses recordings from Xeno-Canto, and the images are from Flickr.",
+    "para3": "All of the bird recordings on Xeno-Canto are released under one of the Creative Commons Licenses. If you enjoyed this app and have personal bird recordings, please consider uploading your recordings to Xeno-Canto or releasing them under a Creative Commons license so others can use them for education and science!",
+    "aboutcc": "About Creative Commons licenses"
+  },
+  "user": {
+    "answerhistory": "Answer history for",
+    "logout": "logout",
+    "deleteanswer?": "Delete answer history?",
+    "deleteuser?": "Delete user?",
+    "birdname": "Bird name",
+    "answeredright": "Answered right",
+    "answeredwrong": "Answered wrong",
+    "clearhistory": "Clear history",
+    "deleteuser": "Delete user"
+  },
+  "confirm": {
+    "cantundo": "You cannot undo this action.",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  }
+}

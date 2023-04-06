@@ -2,5 +2,4 @@ yacho-master-backend/files
 yacho-master-backend/node_modules
 
 yacho-master-backend/.env
-yacho-master-backend/build
 yacho-master-frontend/build

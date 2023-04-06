@@ -1,0 +1,58 @@
+{
+  "title": "私の猫は世界一可愛い猫だよ",
+  "description": {
+    "part1": "彼はにゃーにゃーにゃーにゃーにゃという",
+    "part2": "にゃーにゃーにゃーにゃーにゃー"
+  },
+  "menu": {
+    "quiz": "クイズ",
+    "settings": "設定",
+    "about": "アプリについて",
+    "login": "ログイン",
+    "loggedin": "ログイン中"
+  },
+  "quiz": {
+    "title": "クイズ!",
+    "playstopaudio": "録音を再生・停止:",
+    "nextquestion": "次の質問",
+    "right": "正解",
+    "wrong": "不正解"
+  },
+  "settings": {
+    "title": "設定",
+    "answer": "答えボタン",
+    "nextbutton": "次の質問ボタン",
+    "playbutton": "再生ボタン",
+    "numberofchoices": "選択の個数",
+    "resetallvalues": "設定をデファウトに戻す"
+  },
+  "login": {
+    "login": "ログイン",
+    "newuser": "新しいアカウントを作成",
+    "username": "ユーザー ネーム",
+    "password": "パスワード",
+    "submit": "送信"
+  },
+  "about": {
+    "para1": "Yacho Masterは最高でおすすめであるヘルシンキー大学のFull Stack Open 1~7を受けた後に、私アンナによって愛を込めて作られました。Full Stack OpenはReact, Redux, Node.js, MongoDBなど学べる無料教材で、2021年現在フィンランド語、英語、中国語とスペイン語で受講可能です。",
+    "para2": "野鳥録音はXeno-Cantoを利用し、画像はFlickrからです。",
+    "para3": "Xeno-Cantoは鳥の鳴き声データベースですべての録音はクリエイティブコモンズライセンスの1つで公開されています。教育や科学のために利用できるように、ぜひお持ちの録音をXeno-Cantoでのアップロード、またはクリエイティブコモンズライセンスを付けての公開をご検討ください！",
+    "aboutcc": "クリエイティブコモンズライセンスについて"
+  },
+  "user": {
+    "answerhistory": "回答歴: ユザー",
+    "logout": "ログアウト",
+    "deleteanswer?": "全ての回答歴を削除しますか？",
+    "deleteuser?": "アカウントを削除しますか？",
+    "birdname": "鳥の名前",
+    "answeredright": "正解の回数",
+    "answeredwrong": "不正の回数",
+    "clearhistory": "回答歴をクリア",
+    "deleteuser": "アカウントを削除"
+  },
+  "confirm": {
+    "cantundo": "この操作を元に戻すことはできません。",
+    "cancel": "キャンセル",
+    "delete": "削除"
+  }
+}
